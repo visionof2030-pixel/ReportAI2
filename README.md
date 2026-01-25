@@ -2322,13 +2322,17 @@ user-select: none;
 </div>
 
 <script>
+window.__ACTIVATED__ = false;
+
 // ==================== متغيرات التفعيل ====================
 const ACTIVATION_KEY_NAME = "activation_code";
-const BACKEND_URL = "https://admin-panel-smartreport.onrender.com";
+const BACKEND_URL = "https://deep-qphc.onrender.com";
 
 function hideActivationScreen() {
-    document.getElementById("activationScreen").style.display = "none";
-    document.body.style.overflow = "auto";
+    if (window.__ACTIVATED__) {
+        document.getElementById("activationScreen").style.display = "none";
+        document.body.style.overflow = "auto";
+    }
 }
 
 function showActivationError() {
@@ -2352,8 +2356,9 @@ async function activateTool() {
         if (!res.ok) throw new Error("Invalid");
 
         localStorage.setItem(ACTIVATION_KEY_NAME, code);
-        hideActivationScreen();
-        showNotification("تم تفعيل الأداة بنجاح! ✓");
+window.__ACTIVATED__ = true;   // ← هذا السطر مفقود
+hideActivationScreen();
+showNotification("تم تفعيل الأداة بنجاح! ✓");
 
     } catch {
         showActivationError();
@@ -3987,9 +3992,10 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { "X-Activation-Code": code }
         })
         .then(r => {
-            if (!r.ok) throw new Error();
-            hideActivationScreen();
-        })
+    if (!r.ok) throw new Error();
+    window.__ACTIVATED__ = true;   // ← هذا السطر مفقود
+    hideActivationScreen();
+})
         .catch(() => {
             localStorage.removeItem(ACTIVATION_KEY_NAME);
             document.getElementById("activationScreen").style.display = "flex";
