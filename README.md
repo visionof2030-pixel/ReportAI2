@@ -31,6 +31,93 @@ color:#e8f4f0;font-weight:500;
 }
 .top-marquee:hover .marquee-inner{animation-play-state:paused;}
 
+/* شاشة التفعيل */
+#activationScreen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, #022e22, #044a35);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cairo', sans-serif;
+}
+
+#activationScreen .activation-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    border: 3px solid #ffd166;
+}
+
+#activationScreen h3 {
+    color: #044a35; 
+    margin-bottom: 20px; 
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#activationScreen p {
+    color: #666; 
+    font-size: 14px; 
+    margin-bottom: 20px;
+}
+
+#activationCodeInput {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #d4ebe2;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.3s;
+}
+
+#activationCodeInput:focus {
+    outline: none;
+    border-color: #066d4d;
+    box-shadow: 0 0 0 3px rgba(6, 109, 77, 0.15);
+}
+
+#activationScreen button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #066d4d 0%, #05553d 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    font-family: 'Cairo', sans-serif;
+}
+
+#activationScreen button:hover {
+    background: linear-gradient(135deg, #05553d 0%, #044a35 100%);
+    transform: translateY(-3px);
+}
+
+#activationError {
+    color: #d9534f;
+    font-size: 13px;
+    margin-top: 15px;
+    padding: 10px;
+    background: #fee;
+    border-radius: 8px;
+    border-right: 4px solid #d9534f;
+    display: none;
+}
+
 /* شريط التحكم العلوي - متجاوب تماماً */
 .control-bar{
 position:fixed;top:45px;left:0;right:0;width:100%;z-index:250;
@@ -106,23 +193,315 @@ box-shadow: 0 3px 8px rgba(6, 109, 77, 0.15);
 flex: 1;
 text-align: center;
 justify-content: center;
+cursor: pointer;
+transition: all 0.3s;
+position: relative;
+}
+
+.app-title:hover {
+transform: translateY(-2px);
+box-shadow: 0 5px 12px rgba(6, 109, 77, 0.25);
+}
+
+/* زر تنفيذ المعلم - قابل للنقر */
+.app-title {
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.app-title:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(6, 109, 77, 0.25);
+}
+
+/* نافذة الإدارة المخفية */
+.admin-panel {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    width: 90%;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto;
+    border: 3px solid #ffd166;
+}
+
+.admin-panel.show {
+    display: block;
+    animation: fadeIn 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1999;
+}
+
+.overlay.show {
+    display: block;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0f0ea;
+}
+
+.admin-header h3 {
+    color: #044a35;
+    font-size: 20px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-admin {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #066d4d;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.close-admin:hover {
+    background-color: #e8f4f0;
+}
+
+/* تصميم حقول المفاتيح */
+.key-field {
+    margin-bottom: 20px;
+    background: #f8fdfa;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #d4ebe2;
+    transition: all 0.3s;
+}
+
+.key-field:hover {
+    border-color: #066d4d;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(6, 109, 77, 0.1);
+}
+
+.key-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.key-header label {
+    font-weight: 800;
+    color: #044a35;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.key-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.check-key-btn, .toggle-key-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.check-key-btn {
+    background: linear-gradient(135deg, #5a67d8 0%, #4c51bf 100%);
+    color: white;
+}
+
+.check-key-btn:hover {
+    background: linear-gradient(135deg, #4c51bf 0%, #434190 100%);
+}
+
+.toggle-key-btn {
+    background: linear-gradient(135deg, #ffd166 0%, #f0ad4e 100%);
+    color: #333;
+}
+
+.toggle-key-btn:hover {
+    background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
+}
+
+.toggle-key-btn.active {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+}
+
+.key-status {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-top: 8px;
+    display: none;
+    align-items: center;
+    gap: 5px;
+}
+
+.key-status.active {
+    display: flex;
+    background: #e8f4f0;
+    color: #044a35;
+    border-right: 3px solid #25D366;
+}
+
+.key-status.inactive {
+    display: flex;
+    background: #fee;
+    color: #d9534f;
+    border-right: 3px solid #d9534f;
+}
+
+.key-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d4ebe2;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: monospace;
+    background: white;
+    transition: all 0.3s;
+}
+
+.key-input:focus {
+    outline: none;
+    border-color: #066d4d;
+    box-shadow: 0 0 0 3px rgba(6, 109, 77, 0.15);
+}
+
+/* إجراءات المفاتيح */
+.key-actions-global {
+    display: flex;
+    gap: 10px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.global-action-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.activate-all-btn {
+    background: linear-gradient(135deg, #066d4d 0%, #05553d 100%);
+    color: white;
+}
+
+.activate-all-btn:hover {
+    background: linear-gradient(135deg, #05553d 0%, #044a35 100%);
+    transform: translateY(-3px);
+}
+
+.deactivate-all-btn {
+    background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
+    color: #333;
+}
+
+.deactivate-all-btn:hover {
+    background: linear-gradient(135deg, #ec971f 0%, #d58512 100%);
+    transform: translateY(-3px);
+}
+
+.save-keys-btn {
+    background: linear-gradient(135deg, #5a67d8 0%, #4c51bf 100%);
+    color: white;
+}
+
+.save-keys-btn:hover {
+    background: linear-gradient(135deg, #4c51bf 0%, #434190 100%);
+    transform: translateY(-3px);
+}
+
+/* زر التعبئة الذكية ٢ */
+#aiFillBtn2 {
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    position: relative;
+    display: none; /* مخفي بشكل افتراضي */
+}
+
+#aiFillBtn2:hover {
+    background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);
+}
+
+#aiFillBtn2.show {
+    display: flex;
+}
+
+/* زر خاص يظهر بعد 3 نقرات على عنوان المعلم */
+#specialBtn {
+    display: none;
+}
+
+#specialBtn.show {
+    display: flex;
 }
 
 /* مجموعة الأزرار المعدلة - مرتبة في صفين */
 .btn-group {
-display: flex;
-flex-direction: column;
-gap: 8px;
-width: 100%;
-max-width: 600px;
-margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .btn-row {
-display: flex;
-justify-content: space-between;
-gap: 8px;
-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
 }
 
 button.main-btn{
@@ -1355,6 +1734,17 @@ user-select: none;
 
 <body>
 
+<!-- شاشة كود التفعيل -->
+<div id="activationScreen">
+    <div class="activation-box">
+        <h3><i class="fas fa-lock"></i> تفعيل الأداة</h3>
+        <p>أدخل كود التفعيل الذي حصلت عليه من المطور</p>
+        <input id="activationCodeInput" placeholder="أدخل كود التفعيل هنا">
+        <button onclick="activateTool()">تفعيل</button>
+        <div id="activationError">كود غير صالح. الرجاء التأكد من الكود والمحاولة مرة أخرى.</div>
+    </div>
+</div>
+
 <div class="top-marquee">
 <div class="marquee-inner">
 <i class="fas fa-bullhorn" style="margin-left:10px;"></i>
@@ -1367,10 +1757,10 @@ user-select: none;
 
 <div class="control-bar">
     <div class="header-controls">
-        <!-- عنوان التطبيق الأساسي -->
-        <div class="app-title">
-            <i class="fas fa-tools"></i>
-            <span>أداة إصدار التقارير والشواهد</span>
+        <!-- العنوان بدون مفتاح Gemini - توسيط في المنتصف -->
+        <div class="app-title" onclick="handleTeacherTitleClick()">
+            <i class="fas fa-user-tie"></i>
+            <span>تنفيذ: المعلم فهد الخالدي</span>
         </div>
         
         <!-- حاوية التاريخ الجديدة - إدخال يدوي -->
@@ -1389,7 +1779,7 @@ user-select: none;
             <div class="btn-row">
                 <button class="main-btn" id="saveTeacherBtn" onclick="saveTeacherData()" title="حفظ بيانات إدارة التعليم، اسم المدرسة، الصف، المادة، المستهدفون، المكان">
                     <i class="fas fa-chalkboard-teacher btn-icon"></i>
-                    <span class="btn-text">حفظ البيانات</span>
+                    <span class="btn-text">حفظ بيانات المعلم</span>
                 </button>
                 <button class="main-btn" id="aiFillBtn" onclick="fillWithAI()" title="تعبئة جميع الحقول باستخدام الذكاء الاصطناعي">
                     <i class="fas fa-robot btn-icon"></i>
@@ -1401,8 +1791,12 @@ user-select: none;
                 </button>
             </div>
             
-            <!-- الصف الثاني: 3 أزرار -->
+            <!-- الصف الثاني: 4 أزرار (تمت إضافة زر التعبئة الذكية ٢) -->
             <div class="btn-row">
+                <button class="main-btn" id="aiFillBtn2" onclick="fillWithAI2()" title="تعبئة ذكية متقدمة باستخدام مفاتيح جيمني المتعددة">
+                    <i class="fas fa-magic btn-icon"></i>
+                    <span class="btn-text">تعبئة ذكية ٢</span>
+                </button>
                 <button class="main-btn" id="clearBtn" onclick="clearData()" title="مسح جميع البيانات المدخلة">
                     <i class="fas fa-trash-alt btn-icon"></i>
                     <span class="btn-text">مسح البيانات</span>
@@ -1418,6 +1812,114 @@ user-select: none;
             </div>
         </div>
     </div>
+</div>
+
+<!-- نافذة التحكم الإداري المخفية -->
+<div class="overlay" id="adminOverlay" onclick="closeAdminPanel()"></div>
+
+<div class="admin-panel" id="adminPanel">
+    <div class="admin-header">
+        <h3><i class="fas fa-key"></i> لوحة التحكم الإداري - مفاتيح Gemini</h3>
+        <button class="close-admin" onclick="closeAdminPanel()">×</button>
+    </div>
+    
+    <div class="admin-content">
+        <!-- مفتاح 1 -->
+        <div class="key-field">
+            <div class="key-header">
+                <label><i class="fas fa-key"></i> المفتاح 1</label>
+                <div class="key-actions">
+                    <button class="check-key-btn" onclick="checkKey(1)">
+                        <i class="fas fa-check"></i> تحقق
+                    </button>
+                    <button class="toggle-key-btn" id="toggleKey1" onclick="toggleKey(1)">
+                        <i class="fas fa-power-off"></i> تفعيل
+                    </button>
+                </div>
+            </div>
+            <input type="password" class="key-input" id="keyInput1" placeholder="أدخل مفتاح Gemini API الأول">
+            <div class="key-status" id="keyStatus1"></div>
+        </div>
+        
+        <!-- مفتاح 2 -->
+        <div class="key-field">
+            <div class="key-header">
+                <label><i class="fas fa-key"></i> المفتاح 2</label>
+                <div class="key-actions">
+                    <button class="check-key-btn" onclick="checkKey(2)">
+                        <i class="fas fa-check"></i> تحقق
+                    </button>
+                    <button class="toggle-key-btn" id="toggleKey2" onclick="toggleKey(2)">
+                        <i class="fas fa-power-off"></i> تفعيل
+                    </button>
+                </div>
+            </div>
+            <input type="password" class="key-input" id="keyInput2" placeholder="أدخل مفتاح Gemini API الثاني">
+            <div class="key-status" id="keyStatus2"></div>
+        </div>
+        
+        <!-- مفتاح 3 -->
+        <div class="key-field">
+            <div class="key-header">
+                <label><i class="fas fa-key"></i> المفتاح 3</label>
+                <div class="key-actions">
+                    <button class="check-key-btn" onclick="checkKey(3)">
+                        <i class="fas fa-check"></i> تحقق
+                    </button>
+                    <button class="toggle-key-btn" id="toggleKey3" onclick="toggleKey(3)">
+                        <i class="fas fa-power-off"></i> تفعيل
+                    </button>
+                </div>
+            </div>
+            <input type="password" class="key-input" id="keyInput3" placeholder="أدخل مفتاح Gemini API الثالث">
+            <div class="key-status" id="keyStatus3"></div>
+        </div>
+        
+        <!-- مفتاح 4 -->
+        <div class="key-field">
+            <div class="key-header">
+                <label><i class="fas fa-key"></i> المفتاح 4</label>
+                <div class="key-actions">
+                    <button class="check-key-btn" onclick="checkKey(4)">
+                        <i class="fas fa-check"></i> تحقق
+                    </button>
+                    <button class="toggle-key-btn" id="toggleKey4" onclick="toggleKey(4)">
+                        <i class="fas fa-power-off"></i> تفعيل
+                    </button>
+                </div>
+            </div>
+            <input type="password" class="key-input" id="keyInput4" placeholder="أدخل مفتاح Gemini API الرابع">
+            <div class="key-status" id="keyStatus4"></div>
+        </div>
+        
+        <!-- إجراءات عامة للمفاتيح -->
+        <div class="key-actions-global">
+            <button class="global-action-btn activate-all-btn" onclick="activateAllKeys()">
+                <i class="fas fa-play"></i> تفعيل الكل
+            </button>
+            <button class="global-action-btn deactivate-all-btn" onclick="deactivateAllKeys()">
+                <i class="fas fa-stop"></i> إيقاف الكل
+            </button>
+            <button class="global-action-btn save-keys-btn" onclick="saveKeys()">
+                <i class="fas fa-save"></i> حفظ المفاتيح
+            </button>
+        </div>
+        
+        <div class="admin-info" style="background: #f8fdfa; padding: 15px; border-radius: 10px; margin-top: 20px; border-right: 4px solid #ffd166;">
+            <p style="font-size: 12px; color: #044a35; margin-bottom: 8px;">
+                <i class="fas fa-info-circle"></i> النظام سيتحول تلقائيًا بين المفاتيح عند تجاوز الحد اليومي
+            </p>
+            <p style="font-size: 12px; color: #044a35;">
+                <i class="fas fa-sync-alt"></i> زر "التعبئة الذكية ٢" سيستخدم المفاتيح المفعّلة بالتناوب
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- إشعارات -->
+<div class="notification" id="saveNotification">
+<i class="fas fa-check-circle"></i>
+<span>تم حفظ بيانات المعلم بنجاح!</span>
 </div>
 
 <!-- نافذة الدعم الفني -->
@@ -1820,7 +2322,47 @@ user-select: none;
 </div>
 
 <script>
+// ==================== متغيرات التفعيل ====================
+const ACTIVATION_KEY_NAME = "activation_code";
+const BACKEND_URL = "https://admin-panel-smartreport.onrender.com";
+
+function hideActivationScreen() {
+    document.getElementById("activationScreen").style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+function showActivationError() {
+    document.getElementById("activationError").style.display = "block";
+}
+
+async function activateTool() {
+    const code = document.getElementById("activationCodeInput").value.trim();
+    if (!code) {
+        showActivationError();
+        return;
+    }
+
+    try {
+        const res = await fetch(BACKEND_URL + "/health", {
+            headers: {
+                "X-Activation-Code": code
+            }
+        });
+
+        if (!res.ok) throw new Error("Invalid");
+
+        localStorage.setItem(ACTIVATION_KEY_NAME, code);
+        hideActivationScreen();
+        showNotification("تم تفعيل الأداة بنجاح! ✓");
+
+    } catch {
+        showActivationError();
+    }
+}
+
 // ==================== متغيرات إدارة المفاتيح ====================
+let teacherClickCount = 0;
+let aiFill2ClickCount = 0;
 let geminiKeys = [
     { id: 1, key: '', active: false, lastUsed: 0, dailyCount: 0, maxDaily: 1500 },
     { id: 2, key: '', active: false, lastUsed: 0, dailyCount: 0, maxDaily: 1500 },
@@ -2079,7 +2621,375 @@ let currentHijriDate = '';
 let currentGregorianDate = '';
 
 // رابط خادم الذكاء الاصطناعي B الصحيح
-const backendAIUrl = 'https://gemini-backend-x1r2.onrender.com/ask';
+const backendAIUrl = BACKEND_URL + '/ask';
+
+// ==================== دوال إدارة المفاتيح ====================
+
+// دالة فتح/إغلاق لوحة التحكم الإداري
+function openAdminPanel() {
+    document.getElementById('adminOverlay').classList.add('show');
+    document.getElementById('adminPanel').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    loadKeysFromStorage();
+}
+
+function closeAdminPanel() {
+    document.getElementById('adminOverlay').classList.remove('show');
+    document.getElementById('adminPanel').classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+// دالة التعامل مع النقر على عنوان المعلم
+function handleTeacherTitleClick() {
+    teacherClickCount++;
+    
+    if (teacherClickCount === 3) {
+        // إظهار زر التعبئة الذكية ٢
+        document.getElementById('aiFillBtn2').classList.add('show');
+        showNotification('تم تفعيل زر التعبئة الذكية ٢! ✓');
+    } else if (teacherClickCount >= 5) {
+        // إظهار لوحة التحكم الإداري
+        openAdminPanel();
+        teacherClickCount = 0; // إعادة تعيين العداد
+    }
+}
+
+// تحميل المفاتيح من التخزين المحلي
+function loadKeysFromStorage() {
+    const savedKeys = localStorage.getItem('geminiKeys');
+    if (savedKeys) {
+        const parsedKeys = JSON.parse(savedKeys);
+        geminiKeys = parsedKeys;
+        
+        // تحديث واجهة المستخدم
+        geminiKeys.forEach(key => {
+            if (key.key) {
+                document.getElementById(`keyInput${key.id}`).value = key.key;
+                updateKeyStatus(key.id, key.active ? 'active' : 'inactive');
+                document.getElementById(`toggleKey${key.id}`).classList.toggle('active', key.active);
+                document.getElementById(`toggleKey${key.id}`).innerHTML = 
+                    key.active ? '<i class="fas fa-power-off"></i> مفعل' : '<i class="fas fa-power-off"></i> تفعيل';
+            }
+        });
+        
+        showNotification('تم تحميل المفاتيح المحفوظة ✓');
+    }
+}
+
+// حفظ المفاتيح في التخزين المحلي
+function saveKeys() {
+    // تحديث قيم المفاتيح من الحقول
+    geminiKeys.forEach(key => {
+        key.key = document.getElementById(`keyInput${key.id}`).value.trim();
+    });
+    
+    localStorage.setItem('geminiKeys', JSON.stringify(geminiKeys));
+    showNotification('تم حفظ المفاتيح بنجاح ✓');
+}
+
+// التحقق من صحة المفتاح
+async function checkKey(keyId) {
+    const keyInput = document.getElementById(`keyInput${keyId}`);
+    const keyValue = keyInput.value.trim();
+    
+    if (!keyValue) {
+        updateKeyStatus(keyId, 'inactive', 'المفتاح فارغ');
+        return;
+    }
+    
+    try {
+        // اختبار المفتاح بمحاولة استدعاء بسيطة
+        const testResponse = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + keyValue, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: "Hello"
+                    }]
+                }]
+            })
+        });
+        
+        if (testResponse.ok) {
+            updateKeyStatus(keyId, 'active', 'المفتاح صالح');
+            geminiKeys[keyId - 1].key = keyValue;
+        } else {
+            updateKeyStatus(keyId, 'inactive', 'المفتاح غير صالح');
+        }
+    } catch (error) {
+        updateKeyStatus(keyId, 'inactive', 'خطأ في الاتصال');
+    }
+}
+
+// تفعيل/إلغاء تفعيل المفتاح
+function toggleKey(keyId) {
+    const button = document.getElementById(`toggleKey${keyId}`);
+    const keyIndex = keyId - 1;
+    
+    geminiKeys[keyIndex].active = !geminiKeys[keyIndex].active;
+    
+    if (geminiKeys[keyIndex].active) {
+        button.classList.add('active');
+        button.innerHTML = '<i class="fas fa-power-off"></i> مفعل';
+        updateKeyStatus(keyId, 'active', 'المفتاح مفعل');
+    } else {
+        button.classList.remove('active');
+        button.innerHTML = '<i class="fas fa-power-off"></i> تفعيل';
+        updateKeyStatus(keyId, 'inactive', 'المفتاح معطل');
+    }
+}
+
+// تحديث حالة المفتاح في الواجهة
+function updateKeyStatus(keyId, status, message = '') {
+    const statusElement = document.getElementById(`keyStatus${keyId}`);
+    statusElement.className = `key-status ${status}`;
+    statusElement.innerHTML = `<i class="fas fa-${status === 'active' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
+}
+
+// تفعيل جميع المفاتيح
+function activateAllKeys() {
+    geminiKeys.forEach((key, index) => {
+        if (key.key) {
+            key.active = true;
+            const button = document.getElementById(`toggleKey${key.id}`);
+            button.classList.add('active');
+            button.innerHTML = '<i class="fas fa-power-off"></i> مفعل';
+            updateKeyStatus(key.id, 'active', 'مفعل');
+        }
+    });
+    showNotification('تم تفعيل جميع المفاتيح ✓');
+}
+
+// إلغاء تفعيل جميع المفاتيح
+function deactivateAllKeys() {
+    geminiKeys.forEach(key => {
+        key.active = false;
+        const button = document.getElementById(`toggleKey${key.id}`);
+        button.classList.remove('active');
+        button.innerHTML = '<i class="fas fa-power-off"></i> تفعيل';
+        updateKeyStatus(key.id, 'inactive', 'معطل');
+    });
+    showNotification('تم إلغاء تفعيل جميع المفاتيح ✓');
+}
+
+// الحصول على المفتاح التالي المتاح
+function getNextAvailableKey() {
+    const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000;
+    
+    // تصفية المفاتيح النشطة والمرتبة حسب الاستخدام
+    const availableKeys = geminiKeys.filter(key => 
+        key.active && key.key && 
+        (now - key.lastUsed > oneDay || key.dailyCount < key.maxDaily)
+    );
+    
+    if (availableKeys.length === 0) {
+        return null;
+    }
+    
+    // ترتيب المفاتيح حسب عدد الاستخدامات اليومية (الأقل استخدامًا أولاً)
+    availableKeys.sort((a, b) => a.dailyCount - b.dailyCount);
+    
+    return availableKeys[0];
+}
+
+// تحديث استخدام المفتاح
+function updateKeyUsage(keyId) {
+    const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000;
+    const keyIndex = keyId - 1;
+    
+    // إعادة تعيين العداد اليومي إذا مر يوم
+    if (now - geminiKeys[keyIndex].lastUsed > oneDay) {
+        geminiKeys[keyIndex].dailyCount = 0;
+    }
+    
+    geminiKeys[keyIndex].dailyCount++;
+    geminiKeys[keyIndex].lastUsed = now;
+    
+    // حفظ التحديثات
+    localStorage.setItem('geminiKeys', JSON.stringify(geminiKeys));
+}
+
+// ==================== دالة التعبئة الذكية ٢ (باستخدام المفاتيح المتعددة) ====================
+async function fillWithAI2() {
+    // التحقق من كود التفعيل
+    const activationCode = localStorage.getItem(ACTIVATION_KEY_NAME);
+    if (!activationCode) {
+        alert('الرجاء تفعيل الأداة أولاً باستخدام كود التفعيل');
+        return;
+    }
+    
+    // التحقق من اتصال الإنترنت
+    if (!navigator.onLine) {
+        alert('لا يوجد اتصال بالإنترنت. الرجاء التأكد من الاتصال');
+        return;
+    }
+    
+    // الحصول على نوع التقرير
+    const reportType = getReportTypeText();
+    if (!reportType || reportType === 'تقرير') {
+        alert('الرجاء اختيار أو إدخال نوع التقرير أولاً');
+        return;
+    }
+    
+    // التحقق من وجود مفاتيح مفعلة
+    const availableKey = getNextAvailableKey();
+    if (!availableKey) {
+        alert('لا توجد مفاتيح جيمني مفعلة أو أن جميعها تجاوز الحد اليومي. الرجاء تفعيل مفاتيح جديدة من لوحة التحكم.');
+        return;
+    }
+    
+    // الحصول على معلومات إضافية
+    const subject = document.getElementById('subject').value || '';
+    const lesson = document.getElementById('lesson').value || '';
+    const grade = document.getElementById('grade').value || '';
+    const target = document.getElementById('target').value || '';
+    const place = document.getElementById('place').value || '';
+    const count = document.getElementById('count').value || '';
+    
+    // عرض مؤشر التحميل
+    const aiButton = document.getElementById('aiFillBtn2');
+    const originalText = aiButton.querySelector('.btn-text').textContent;
+    const originalIcon = aiButton.querySelector('.btn-icon').className;
+    
+    // إضافة مؤشر التحميل
+    let loadingIndicator = aiButton.querySelector('.ai-loading-indicator');
+    if (!loadingIndicator) {
+        loadingIndicator = document.createElement('div');
+        loadingIndicator.className = 'ai-loading-indicator';
+        aiButton.appendChild(loadingIndicator);
+    }
+    loadingIndicator.style.display = 'block';
+    
+    aiButton.querySelector('.btn-text').textContent = 'جارٍ التعبئة...';
+    aiButton.querySelector('.btn-icon').className = 'fas fa-spinner fa-spin btn-icon';
+    aiButton.classList.add('ai-loading');
+    aiButton.disabled = true;
+    
+    try {
+        // إعداد النص المطلوب للذكاء الاصطناعي - البرومبت المهني
+        const prompt = `أنت خبير تربوي تعليمي محترف تمتلك خبرة ميدانية واسعة في التعليم العام.  
+اعتمد منظورًا تربويًا مهنيًا احترافيًا يركّز على تحسين جودة التعليم، ودعم المعلم، وتعزيز بيئة التعلّم، وخدمة القيادة المدرسية.  
+
+التقرير المطلوب: "${reportType}"
+${subject ? `المادة: ${subject}` : ''}
+${lesson ? `الدرس: ${lesson}` : ''}
+${grade ? `الصف: ${grade}` : ''}
+${target ? `المستهدفون: ${target}` : ''}
+${place ? `مكان التنفيذ: ${place}` : ''}
+${count ? `عدد الحضور: ${count}` : ''}
+
+**توجيهات مهنية:**
+- كن موضوعيًا ومتزنًا وبنّاءً  
+- قدّم الملاحظات بصيغة تطويرية غير نقدية  
+- راعِ واقع الميدان التعليمي وسياق المدرسة  
+- اربط بين المعلم والطالب والمنهج والبيئة الصفية والقيادة المدرسية  
+- ركّز على جودة التعليم وأثر الممارسات على تعلم الطلاب  
+- التزم بلغة عربية فصيحة سليمة وخالية من الأخطاء  
+
+**شروط المحتوى:**اكتب محتوى كل حقل بصيغة تقريرية مهنية وكأنه صادر عن المعلم.
+لا تكتب أبداً عنوان الحقل داخل المحتوى ولا تعِد صياغته بصيغة مباشرة (مثل: الهدف التربوي هو، النبذة المختصرة).
+يجب أن يحتوي كل حقل على ما يقارب 25 كلمة.
+ابدأ بالمضمون مباشرة دون تمهيد أو عبارات إنشائية.
+يمكن الاستفادة من معنى العنوان أو أحد مفاهيمه بشكل غير مباشر فقط عند الحاجة وبما يخدم الفكرة دون تكرار أو حشو.
+احرص على وجود ترابط منطقي بين الأهداف، النبذة المختصرة، الاستراتيجيات، إجراءات التنفيذ، نقاط القوة، نقاط التحسين، والتوصيات.
+اربط المحتوى بالمادة الدراسية وعنوان الدرس إن وُجد، وكذلك بمكان التنفيذ، بأسلوب مهني متوازن يجمع بين الإشارة المباشرة وغير المباشرة دون تكلف.
+اجعل الهدف النهائي للمحتوى تحسين الممارسة التعليمية ودعم التطوير المهني المستدام.
+راعِ الوضوح والترابط، واجعل كل جملة تضيف قيمة تعليمية فعلية.
+الحقول المطلوبة:**
+1. الهدف التربوي
+2. نبذة مختصرة  
+3. إجراءات التنفيذ
+4. الاستراتيجيات
+5. نقاط القوة
+6. نقاط التحسين
+7. التوصيات
+
+يرجى تقديم الإجابة باللغة العربية الفصحى، وتنظيمها بحيث يكون كل حقل في سطر منفصل يبدأ برقمه فقط دون ذكر العنوان.`;
+
+        // استخدام API جيمني مباشرة مع المفتاح المحدد
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${availableKey.key}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: prompt
+                    }]
+                }],
+                generationConfig: {
+                    temperature: 0.7,
+                    topK: 40,
+                    topP: 0.95,
+                    maxOutputTokens: 2048,
+                }
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`خطأ في المفتاح ${availableKey.id}: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        // فحص الاستجابة
+        if (!data || !data.candidates || !data.candidates[0] || !data.candidates[0].content || !data.candidates[0].content.parts) {
+            throw new Error('لم يتم الحصول على إجابة صحيحة من الذكاء الاصطناعي');
+        }
+        
+        const aiResponse = data.candidates[0].content.parts[0].text;
+        
+        // تحديث استخدام المفتاح
+        updateKeyUsage(availableKey.id);
+        
+        // تحليل الإجابة وتعيينها للحقول
+        parseAIResponseProfessional(aiResponse);
+        
+        showNotification(`تم تعبئة الحقول باستخدام المفتاح ${availableKey.id} ✓ (${availableKey.dailyCount}/${availableKey.maxDaily})`);
+        
+    } catch (error) {
+        console.error('خطأ في الذكاء الاصطناعي:', error);
+        
+        // محاولة استخدام مفتاح آخر إذا فشل الأول
+        if (error.message.includes('خطأ في المفتاح')) {
+            // تعطيل المفتاح الحالي
+            geminiKeys[availableKey.id - 1].active = false;
+            localStorage.setItem('geminiKeys', JSON.stringify(geminiKeys));
+            
+            // تحديث الواجهة
+            const button = document.getElementById(`toggleKey${availableKey.id}`);
+            if (button) {
+                button.classList.remove('active');
+                button.innerHTML = '<i class="fas fa-power-off"></i> تفعيل';
+                updateKeyStatus(availableKey.id, 'inactive', 'تجاوز الحد اليومي');
+            }
+            
+            // محاولة مرة أخرى بمفتاح آخر
+            setTimeout(() => {
+                fillWithAI2();
+            }, 1000);
+        } else {
+            alert(`خطأ: ${error.message}\n\nتأكد من:\n1. اتصال الإنترنت\n2. صحة المفاتيح المدخلة`);
+        }
+    } finally {
+        // إخفاء مؤشر التحميل
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+        }
+        
+        // استعادة الحالة الأصلية
+        aiButton.querySelector('.btn-text').textContent = originalText;
+        aiButton.querySelector('.btn-icon').className = originalIcon;
+        aiButton.classList.remove('ai-loading');
+        aiButton.disabled = false;
+    }
+}
 
 // ==================== دوال التحويل والتواريخ ====================
 async function convertHijriToGregorian(hijriDate) {
@@ -2347,59 +3257,8 @@ function adaptSubjectLessonFont() {
 }
 
 function adaptSubjectLessonFontWithRetry() {
-  adaptSubjectLessonFont();
-  setTimeout(adaptSubjectLessonFont, 100);
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', adaptSubjectLessonFont);
-  }
-}
-
-// دالة تحديث التاريخ اليدوي
-async function updateManualDate() {
-    const manualDate = document.getElementById('manualDateInput').value;
-    if (manualDate && manualDate.trim() !== '') {
-        const hijriDate = manualDate.trim();
-        currentHijriDate = hijriDate;
-        
-        try {
-            const gregorianDate = await convertHijriToGregorian(hijriDate);
-            currentGregorianDate = gregorianDate;
-            
-            document.getElementById('currentDateDisplay').textContent = `هـ: ${hijriDate}`;
-            document.getElementById('hDate').innerHTML = hijriDate + " هـ";
-            document.getElementById('gDate').innerHTML = gregorianDate + " م";
-            
-            showNotification('تم تحديث التاريخين (الهجري والميلادي) ✓');
-        } catch (error) {
-            document.getElementById('currentDateDisplay').textContent = `هجري: ${hijriDate}`;
-            document.getElementById('hDate').innerHTML = hijriDate + " هـ";
-            document.getElementById('gDate').innerHTML = hijriDate + " هـ";
-            showNotification('تم تحديث التاريخ الهجري ✓ (تعذر تحويل التاريخ الميلادي)');
-        }
-        
-        const savedData = localStorage.getItem('teacherData');
-        if (savedData) {
-            const teacherData = JSON.parse(savedData);
-            teacherData.manualHijriDate = currentHijriDate;
-            teacherData.manualGregorianDate = currentGregorianDate;
-            localStorage.setItem('teacherData', JSON.stringify(teacherData));
-        }
-    }
-}
-
-// دالة تبديل حالة الأداة
-function toggleTool(toolElement) {
-    const checkbox = toolElement.querySelector('input[type="checkbox"]');
-    checkbox.checked = !checkbox.checked;
-    
-    if (checkbox.checked) {
-        toolElement.classList.add('checked');
-    } else {
-        toolElement.classList.remove('checked');
-    }
-    
-    updateToolsDisplay();
+    adaptSubjectLessonFont();
+    setTimeout(adaptSubjectLessonFont, 100);
 }
 
 function updateReport(){
@@ -2499,7 +3358,7 @@ function loadImage(input, target) {
     }
 }
 
-// دالة جديدة لحفظ البيانات فقط
+// دالة جديدة لحفظ بيانات المعلم فقط
 function saveTeacherData(){
     const teacherData = {
         education: document.getElementById('education').value,
@@ -2534,7 +3393,7 @@ function saveTeacherData(){
     });
     
     localStorage.setItem('teacherData', JSON.stringify(teacherData));
-    showNotification('تم حفظ البيانات بنجاح!');
+    showNotification('تم حفظ بيانات المعلم بنجاح!');
 }
 
 // دالة لعرض الإشعارات
@@ -2548,7 +3407,7 @@ function showNotification(message) {
     }, 3000);
 }
 
-// دالة لتحميل البيانات المحفوظة عند تشغيل الصفحة
+// دالة لتحميل بيانات المعلم المحفوظة عند تشغيل الصفحة
 function loadTeacherData() {
     const savedData = localStorage.getItem('teacherData');
     
@@ -2610,6 +3469,13 @@ function loadTeacherData() {
 
 // دالة الذكاء الاصطناعي الأصلية
 async function fillWithAI() {
+    // التحقق من كود التفعيل
+    const activationCode = localStorage.getItem(ACTIVATION_KEY_NAME);
+    if (!activationCode) {
+        alert('الرجاء تفعيل الأداة أولاً باستخدام كود التفعيل');
+        return;
+    }
+    
     // التحقق من اتصال الإنترنت
     if (!navigator.onLine) {
         alert('لا يوجد اتصال بالإنترنت. الرجاء التأكد من الاتصال');
@@ -2693,6 +3559,7 @@ ${count ? `عدد الحضور: ${count}` : ''}
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'X-Activation-Code': activationCode
             },
             body: JSON.stringify({
                 prompt: prompt,
@@ -3109,100 +3976,56 @@ async function loadDates(){
 }
 
 // عند تحميل الصفحة
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", () => {
+    const code = localStorage.getItem(ACTIVATION_KEY_NAME);
+
+    if (!code) {
+        document.getElementById("activationScreen").style.display = "flex";
+        document.body.style.overflow = "hidden";
+    } else {
+        fetch(BACKEND_URL + "/health", {
+            headers: { "X-Activation-Code": code }
+        })
+        .then(r => {
+            if (!r.ok) throw new Error();
+            hideActivationScreen();
+        })
+        .catch(() => {
+            localStorage.removeItem(ACTIVATION_KEY_NAME);
+            document.getElementById("activationScreen").style.display = "flex";
+            document.body.style.overflow = "hidden";
+        });
+    }
+
     loadDates();
     loadTeacherData();
+    loadKeysFromStorage();
     updateReport();
-    
-    // إضافة مستمع البحث
+
     document.getElementById('reportSearch').addEventListener('input', handleReportSearch);
-    
-    // إخفاء نتائج البحث عند النقر خارجها
+
     document.addEventListener('click', function(event) {
         const searchResults = document.getElementById('searchResults');
-        const reportSearch = document.getElementById('reportSearch');
-        
         if (!event.target.closest('#reportSearchContainer')) {
             searchResults.style.display = 'none';
         }
     });
-    
-    // تحسينات للهواتف
-    if ('ontouchstart' in window) {
-        document.body.classList.add('touch-device');
-    }
-    
-    document.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('touchstart', function() {
-            this.style.transform = 'scale(0.95)';
-        });
-        btn.addEventListener('touchend', function() {
-            this.style.transform = '';
-        });
-    });
-    
-    // تحسين البحث للمس
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('#searchResults div')) {
-            const clickedReport = e.target.textContent;
-            const reportTypeSelect = document.getElementById('reportType');
-            const categorySelect = document.getElementById('reportCategory');
-            
-            for (const category in allReportsByCategory) {
-                if (allReportsByCategory[category].includes(clickedReport)) {
-                    categorySelect.value = category;
-                    const reports = allReportsByCategory[category] || [];
-                    updateReportTypeOptions(reports);
-                    break;
-                }
-            }
-            
-            reportTypeSelect.value = clickedReport;
-            handleReportType();
-            updateReport();
-            document.getElementById('searchResults').style.display = 'none';
-            document.getElementById('reportSearch').value = '';
-        }
-    });
-    
-    // تحسينات للأندرويد
-    if (navigator.userAgent.match(/Android/i)) {
-        document.body.classList.add('android-fix');
-    }
-    
-    // إصلاح مشكلة التمرير على iOS
-    document.addEventListener('touchmove', function(e) {
-        if (e.target.type === 'range') {
-            e.preventDefault();
-        }
-    }, { passive: false });
-    
-    // إضافة مؤشر التحميل لزر الذكاء الاصطناعي
-    const aiButton = document.getElementById('aiFillBtn');
-    const loadingIndicator = document.createElement('div');
-    loadingIndicator.className = 'ai-loading-indicator';
-    aiButton.appendChild(loadingIndicator.cloneNode(true));
-    
-    // إضافة مستمعات لأحداث تكيف الخطوط
+
     window.addEventListener('resize', adaptSubjectLessonFont);
-    
+
     document.addEventListener('input', function(e) {
         if (e.target.id === 'subject' || e.target.id === 'lesson') {
             setTimeout(adaptSubjectLessonFont, 50);
         }
     });
-    
+
     document.addEventListener('change', function(e) {
         if (e.target.matches('select, input[type="text"], input[type="file"]')) {
             setTimeout(adaptSubjectLessonFont, 100);
         }
     });
-}
+});
 </script>
-<div id="saveNotification" class="notification">
-    <i class="fas fa-check-circle"></i>
-    <span></span>
-</div>
 
 </body>
 </html>
