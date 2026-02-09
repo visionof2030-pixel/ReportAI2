@@ -31,6 +31,379 @@ color:#e8f4f0;font-weight:500;
 }
 .top-marquee:hover .marquee-inner{animation-play-state:paused;}
 
+/* ==================== نظام الأزرار الجديد ==================== */
+
+/* المجموعة الأولى: الأزرار الصغيرة أعلى الهيدر */
+.top-small-buttons {
+    position: fixed;
+    top: 45px; /* أسفل شريط الأخبار مباشرة */
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 250;
+    background: linear-gradient(135deg, #ffffff 0%, #f5fcf9 100%);
+    padding: 8px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #e0f0ea;
+    box-shadow: 0 2px 8px rgba(4, 74, 53, 0.08);
+}
+
+.small-buttons-grid {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+}
+
+/* تصميم الأزرار الصغيرة */
+.small-btn {
+    border: 2px solid;
+    padding: 6px 4px;
+    font-size: 9px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-height: 40px;
+    min-width: 80px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    flex: 1;
+}
+
+/* زر حفظ البيانات - أزرق */
+#saveTeacherBtn {
+    background: linear-gradient(135deg, #4f7bff 0%, #3b5bdb 100%);
+    color: white;
+    border-color: #3b5bdb;
+}
+
+#saveTeacherBtn:hover {
+    background: linear-gradient(135deg, #3b5bdb 0%, #2d4ac0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(59, 91, 219, 0.3);
+}
+
+/* زر مسح البيانات - أصفر */
+#clearBtn {
+    background: linear-gradient(135deg, #ffd166 0%, #ffc145 100%);
+    color: #5a3e00;
+    border-color: #ffc145;
+}
+
+#clearBtn:hover {
+    background: linear-gradient(135deg, #ffc145 0%, #ffb830 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(255, 193, 69, 0.3);
+}
+
+/* زر الضبط - رمادي */
+#settingsBtn {
+    background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+    color: white;
+    border-color: #4a5568;
+}
+
+#settingsBtn:hover {
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(74, 85, 104, 0.3);
+}
+
+.small-btn-icon {
+    font-size: 10px;
+    color: white;
+}
+
+.small-btn .small-btn-text {
+    font-size: 8px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.small-btn:active {
+    transform: translateY(0);
+}
+
+/* المجموعة الثانية: الأزرار الكبيرة */
+.main-buttons-bar {
+    position: fixed;
+    top: 93px; /* أسفل الأزرار الصغيرة */
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 240;
+    background: linear-gradient(135deg, #f8fdfa 0%, #f0f9f6 100%);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(4, 74, 53, 0.1);
+    border-bottom: 1px solid #d4ebe2;
+}
+
+.main-buttons-grid {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+}
+
+/* تصميم الأزرار الرئيسية */
+.main-btn {
+    border: 2px solid;
+    padding: 12px 8px;
+    font-size: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 60px;
+    min-width: 120px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    flex: 1;
+}
+
+/* زر تنزيل PDF - أحمر */
+#pdfBtn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    color: white;
+    border-color: #ee5a52;
+}
+
+#pdfBtn:hover {
+    background: linear-gradient(135deg, #ee5a52 0%, #d64545 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(238, 90, 82, 0.4);
+}
+
+/* زر مشاركة واتساب - أخضر */
+#whatsappBtn {
+    background: linear-gradient(135deg, #25D366 0%, #1da851 100%);
+    color: white;
+    border-color: #1da851;
+}
+
+#whatsappBtn:hover {
+    background: linear-gradient(135deg, #1da851 0%, #179244 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(29, 168, 81, 0.4);
+}
+
+.main-btn-icon {
+    font-size: 16px;
+    color: white;
+}
+
+.main-btn .main-btn-text {
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.main-btn:active {
+    transform: translateY(0);
+}
+
+/* ========== زر التعبئة الذكية العائم - تصميم جديد ومحسّن ========== */
+#aiFillFloatingBtn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #9D50BB 0%, #6E48AA 25%, #533D8B 50%, #3A2569 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: 
+        0 12px 35px rgba(157, 80, 187, 0.6),
+        0 0 0 3px rgba(255, 215, 0, 0.3),
+        0 0 25px rgba(157, 80, 187, 0.5);
+    border: 4px solid rgba(255, 255, 255, 0.7);
+    z-index: 1000;
+    overflow: hidden;
+    transform: translateY(0);
+    animation: floatButton 3s ease-in-out infinite, magicalGlow 2s ease-in-out infinite;
+}
+
+/* تأثير الطفو */
+@keyframes floatButton {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-12px) rotate(3deg); }
+    50% { transform: translateY(0) rotate(0deg); }
+    75% { transform: translateY(-8px) rotate(-3deg); }
+}
+
+/* تأثير التوهج السحري الجديد */
+@keyframes magicalGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 12px 35px rgba(157, 80, 187, 0.6),
+            0 0 0 3px rgba(255, 215, 0, 0.3),
+            0 0 25px rgba(157, 80, 187, 0.5);
+    }
+    50% { 
+        box-shadow: 
+            0 18px 45px rgba(157, 80, 187, 0.8),
+            0 0 0 4px rgba(255, 215, 0, 0.5),
+            0 0 35px rgba(157, 80, 187, 0.7),
+            0 0 0 8px rgba(255, 255, 255, 0.1);
+    }
+}
+
+#aiFillFloatingBtn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg, 
+        transparent 30%, 
+        rgba(255, 255, 255, 0.25) 50%, 
+        transparent 70%
+    );
+    transition: transform 0.8s;
+    transform: rotate(45deg) translate(-20%, -100%);
+}
+
+#aiFillFloatingBtn:hover::before {
+    transform: rotate(45deg) translate(20%, 100%);
+}
+
+#aiFillFloatingBtn:hover {
+    background: linear-gradient(135deg, #6E48AA 0%, #533D8B 25%, #3A2569 50%, #2A1B4E 100%);
+    transform: translateY(-10px) scale(1.12);
+    box-shadow: 
+        0 25px 60px rgba(157, 80, 187, 0.9),
+        0 0 0 5px rgba(255, 215, 0, 0.5),
+        0 0 50px rgba(157, 80, 187, 0.8),
+        0 0 0 10px rgba(255, 255, 255, 0.15);
+    animation-play-state: paused;
+}
+
+#aiFillFloatingBtn:active {
+    transform: translateY(-5px) scale(1.06);
+    box-shadow: 
+        0 15px 40px rgba(157, 80, 187, 0.7),
+        0 0 0 4px rgba(255, 215, 0, 0.4),
+        0 0 30px rgba(157, 80, 187, 0.6);
+}
+
+#aiFillFloatingBtn .floating-ai-icon {
+    font-size: 38px;
+    animation: magicalPulse 2s infinite;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+    margin-bottom: 2px;
+    color: #FFD700;
+}
+
+#aiFillFloatingBtn .floating-ai-text {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    background: linear-gradient(45deg, #FFD700, #FFF8DC, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: goldenTextShine 2s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+/* تأثير النبض السحري الجديد للأيقونة */
+@keyframes magicalPulse {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5)) brightness(1);
+    }
+    25% { 
+        transform: scale(1.15) rotate(10deg);
+        filter: drop-shadow(0 5px 10px rgba(255, 215, 0, 0.6)) brightness(1.2);
+    }
+    50% { 
+        transform: scale(1.1) rotate(-5deg);
+        filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.5)) brightness(1.1);
+    }
+    75% { 
+        transform: scale(1.18) rotate(5deg);
+        filter: drop-shadow(0 6px 12px rgba(255, 215, 0, 0.7)) brightness(1.3);
+    }
+}
+
+/* تأثير تلميع النص الذهبي */
+@keyframes goldenTextShine {
+    0%, 100% { 
+        background-position: 0% 50%;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    50% { 
+        background-position: 100% 50%;
+        text-shadow: 0 3px 6px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.2);
+    }
+}
+
+/* حالة التحميل للزر العائم - تصميم محسّن */
+#aiFillFloatingBtn.loading {
+    background: linear-gradient(135deg, #9D50BB 0%, #6E48AA 25%, #533D8B 50%, #3A2569 100%);
+    animation: loadingMagicalGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingMagicalGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 12px 35px rgba(157, 80, 187, 0.6),
+            0 0 0 4px rgba(157, 80, 187, 0.4),
+            0 0 30px rgba(157, 80, 187, 0.6);
+    }
+    50% { 
+        box-shadow: 
+            0 18px 45px rgba(157, 80, 187, 0.9),
+            0 0 0 5px rgba(157, 80, 187, 0.7),
+            0 0 40px rgba(157, 80, 187, 0.8);
+    }
+}
+
+#aiFillFloatingBtn.loading .floating-ai-icon {
+    animation: magicalSpin 1.2s linear infinite;
+    color: #FFD700;
+}
+
+@keyframes magicalSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* شاشة التفعيل */
 #activationScreen {
     position: fixed;
@@ -143,308 +516,12 @@ color:#e8f4f0;font-weight:500;
     display: none;
 }
 
-/* شريط التحكم العلوي - تصميم مبسط */
-.control-bar {
-    position: fixed;
-    top: 45px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: 250;
-    background: linear-gradient(135deg, #ffffff 0%, #f5fcf9 100%);
-    padding: 12px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(4, 74, 53, 0.12);
-    border-bottom: 2px solid #d0e6de;
-    backdrop-filter: blur(5px);
-}
-
-/* شبكة الأزرار العلوية */
-.top-buttons-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    width: 100%;
-    max-width: 800px;
-}
-
-/* تصميم الأزرار العلوية الثانوية */
-.top-btn {
-    border: 2px solid;
-    padding: 10px 6px;
-    font-size: 11px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    min-height: 50px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-/* زر حفظ البيانات - أزرق */
-#saveTeacherBtn {
-    background: linear-gradient(135deg, #4f7bff 0%, #3b5bdb 100%);
-    color: white;
-    border-color: #3b5bdb;
-}
-
-#saveTeacherBtn:hover {
-    background: linear-gradient(135deg, #3b5bdb 0%, #2d4ac0 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 91, 219, 0.3);
-}
-
-/* زر تنزيل PDF - أحمر */
-#pdfBtn {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
-    color: white;
-    border-color: #ee5a52;
-}
-
-#pdfBtn:hover {
-    background: linear-gradient(135deg, #ee5a52 0%, #d64545 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(238, 90, 82, 0.3);
-}
-
-/* زر مسح البيانات - أصفر */
-#clearBtn {
-    background: linear-gradient(135deg, #ffd166 0%, #ffc145 100%);
-    color: #5a3e00;
-    border-color: #ffc145;
-}
-
-#clearBtn:hover {
-    background: linear-gradient(135deg, #ffc145 0%, #ffb830 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 193, 69, 0.3);
-}
-
-/* زر مشاركة واتساب - أخضر */
-#whatsappBtn {
-    background: linear-gradient(135deg, #25D366 0%, #1da851 100%);
-    color: white;
-    border-color: #1da851;
-}
-
-#whatsappBtn:hover {
-    background: linear-gradient(135deg, #1da851 0%, #179244 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(29, 168, 81, 0.3);
-}
-
-/* زر الضبط - رمادي */
-#settingsBtn {
-    background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
-    color: white;
-    border-color: #4a5568;
-}
-
-#settingsBtn:hover {
-    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 85, 104, 0.3);
-}
-
-.top-btn-icon {
-    font-size: 14px;
-    color: white;
-}
-
-.top-btn-text {
-    font-size: 10px;
-    font-weight: 800;
-    text-align: center;
-    line-height: 1.2;
-    white-space: nowrap;
-}
-
-.top-btn:active {
-    transform: translateY(0);
-}
-
-/* ========== زر التعبئة الذكية العائم - تصميم محسّن ========== */
-#aiFillFloatingBtn {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(135deg, #38b2ac 0%, #319795 25%, #2c7a7b 50%, #285e61 100%);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 16px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    box-shadow: 
-        0 12px 35px rgba(56, 178, 172, 0.5),
-        0 0 0 3px rgba(255, 215, 0, 0.25),
-        0 0 25px rgba(255, 215, 0, 0.4);
-    border: 4px solid rgba(255, 255, 255, 0.6);
-    z-index: 1000;
-    overflow: hidden;
-    transform: translateY(0);
-    animation: floatButton 3s ease-in-out infinite, goldenGlow 2s ease-in-out infinite;
-}
-
-/* تأثير الطفو */
-@keyframes floatButton {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-12px) rotate(2deg); }
-    50% { transform: translateY(0) rotate(0deg); }
-    75% { transform: translateY(-8px) rotate(-2deg); }
-}
-
-/* تأثير التوهج الذهبي */
-@keyframes goldenGlow {
-    0%, 100% { 
-        box-shadow: 
-            0 12px 35px rgba(56, 178, 172, 0.5),
-            0 0 0 3px rgba(255, 215, 0, 0.25),
-            0 0 25px rgba(255, 215, 0, 0.4);
-    }
-    50% { 
-        box-shadow: 
-            0 18px 45px rgba(56, 178, 172, 0.7),
-            0 0 0 4px rgba(255, 215, 0, 0.4),
-            0 0 35px rgba(255, 215, 0, 0.6);
-    }
-}
-
-#aiFillFloatingBtn::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg, 
-        transparent 30%, 
-        rgba(255, 255, 255, 0.15) 50%, 
-        transparent 70%
-    );
-    transition: transform 0.8s;
-    transform: rotate(45deg) translate(-20%, -100%);
-}
-
-#aiFillFloatingBtn:hover::before {
-    transform: rotate(45deg) translate(20%, 100%);
-}
-
-#aiFillFloatingBtn:hover {
-    background: linear-gradient(135deg, #2c7a7b 0%, #285e61 25%, #234e52 50%, #1d4044 100%);
-    transform: translateY(-10px) scale(1.12);
-    box-shadow: 
-        0 25px 60px rgba(56, 178, 172, 0.8),
-        0 0 0 5px rgba(255, 215, 0, 0.5),
-        0 0 50px rgba(255, 215, 0, 0.7);
-    animation-play-state: paused;
-}
-
-#aiFillFloatingBtn:active {
-    transform: translateY(-5px) scale(1.06);
-    box-shadow: 
-        0 15px 40px rgba(56, 178, 172, 0.6),
-        0 0 0 4px rgba(255, 215, 0, 0.35),
-        0 0 30px rgba(255, 215, 0, 0.5);
-}
-
-#aiFillFloatingBtn .floating-ai-icon {
-    font-size: 36px;
-    animation: pulse 2s infinite;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
-    margin-bottom: 2px;
-}
-
-#aiFillFloatingBtn .floating-ai-text {
-    font-size: 15px;
-    font-weight: 900;
-    letter-spacing: 0.8px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(45deg, #ffffff, #ffd700, #ffffff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% auto;
-    animation: textShine 2s ease-in-out infinite;
-    white-space: nowrap;
-}
-
-/* تأثير تلميع النص */
-@keyframes textShine {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-/* تحسين تأثير النبض للأيقونة */
-@keyframes pulse {
-    0%, 100% { 
-        transform: scale(1);
-        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
-    }
-    50% { 
-        transform: scale(1.15);
-        filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.6));
-    }
-}
-
-/* حالة التحميل للزر العائم - تصميم محسّن */
-#aiFillFloatingBtn.loading {
-    background: linear-gradient(135deg, #38b2ac 0%, #319795 25%, #2c7a7b 50%, #285e61 100%);
-    animation: loadingGlow 1.5s ease-in-out infinite;
-}
-
-@keyframes loadingGlow {
-    0%, 100% { 
-        box-shadow: 
-            0 12px 35px rgba(56, 178, 172, 0.5),
-            0 0 0 4px rgba(56, 178, 172, 0.35),
-            0 0 30px rgba(56, 178, 172, 0.5);
-    }
-    50% { 
-        box-shadow: 
-            0 18px 45px rgba(56, 178, 172, 0.8),
-            0 0 0 5px rgba(56, 178, 172, 0.6),
-            0 0 40px rgba(56, 178, 172, 0.7);
-    }
-}
-
-#aiFillFloatingBtn.loading .floating-ai-icon {
-    animation: spin 1.2s linear infinite;
-    color: #ffd700;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* إزالة الزر الرئيسي القديم */
-#aiFillMainBtn {
-    display: none;
-}
-
 /* ========== تحسين واجهة الإدخال ========== */
 .input-section{
     background:#ffffff;
     padding:25px;
     border-radius:20px;
-    margin-top:120px;
+    margin-top:170px; /* زيادة الهامش بسبب الأزرار الإضافية */
     border:2px solid #e0f0ea;
     box-shadow:0 10px 30px rgba(4, 74, 53, 0.12);
     position:relative;
@@ -582,7 +659,7 @@ button[title]:hover::before {
 /* إشعارات */
 .notification {
     position: fixed;
-    top: 100px;
+    top: 150px;
     right: 10px;
     left: 10px;
     background: linear-gradient(135deg, #066d4d 0%, #044a35 100%);
@@ -745,27 +822,49 @@ button[title]:hover::before {
 
 /* تحسينات للأجهزة المحمولة العامة */
 @media (max-width: 768px) {
-    .control-bar {
-        top: 45px;
-        padding: 10px 15px;
+    .top-small-buttons {
+        padding: 6px 15px;
     }
     
-    .top-buttons-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
+    .small-buttons-grid {
+        gap: 6px;
     }
     
-    .top-btn {
-        min-height: 45px;
-        padding: 8px 4px;
+    .small-btn {
+        min-height: 35px;
+        min-width: 70px;
+        padding: 4px 3px;
     }
     
-    .top-btn-icon {
-        font-size: 12px;
-    }
-    
-    .top-btn-text {
+    .small-btn-icon {
         font-size: 9px;
+    }
+    
+    .small-btn .small-btn-text {
+        font-size: 7px;
+    }
+    
+    .main-buttons-bar {
+        padding: 8px 15px;
+    }
+    
+    .main-buttons-grid {
+        gap: 10px;
+        max-width: 250px;
+    }
+    
+    .main-btn {
+        min-height: 50px;
+        min-width: 100px;
+        padding: 8px 6px;
+    }
+    
+    .main-btn-icon {
+        font-size: 14px;
+    }
+    
+    .main-btn .main-btn-text {
+        font-size: 10px;
     }
     
     #aiFillFloatingBtn {
@@ -776,15 +875,15 @@ button[title]:hover::before {
     }
     
     #aiFillFloatingBtn .floating-ai-icon {
-        font-size: 30px;
+        font-size: 32px;
     }
     
     #aiFillFloatingBtn .floating-ai-text {
-        font-size: 13px;
+        font-size: 12px;
     }
     
     .input-section {
-        margin-top: 130px;
+        margin-top: 160px;
         padding: 15px;
     }
     
@@ -802,7 +901,7 @@ button[title]:hover::before {
     }
     
     .notification {
-        top: 110px;
+        top: 140px;
         padding: 10px 15px;
         font-size: 14px;
     }
@@ -819,22 +918,31 @@ button[title]:hover::before {
         animation-duration: 35s;
     }
     
-    .top-buttons-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
+    .small-btn {
+        min-height: 30px;
+        min-width: 60px;
+        padding: 3px 2px;
     }
     
-    .top-btn {
-        min-height: 40px;
-        padding: 6px 3px;
-    }
-    
-    .top-btn-icon {
-        font-size: 11px;
-    }
-    
-    .top-btn-text {
+    .small-btn-icon {
         font-size: 8px;
+    }
+    
+    .small-btn .small-btn-text {
+        font-size: 6px;
+    }
+    
+    .main-btn {
+        min-height: 45px;
+        min-width: 90px;
+    }
+    
+    .main-btn-icon {
+        font-size: 12px;
+    }
+    
+    .main-btn .main-btn-text {
+        font-size: 9px;
     }
     
     #aiFillFloatingBtn {
@@ -849,11 +957,11 @@ button[title]:hover::before {
     }
     
     #aiFillFloatingBtn .floating-ai-text {
-        font-size: 12px;
+        font-size: 11px;
     }
     
     .input-section {
-        margin-top: 125px;
+        margin-top: 155px;
         padding: 12px;
     }
     
@@ -1322,9 +1430,9 @@ button[title]:hover::before {
 
 <body>
 
-<!-- زر التعبئة الذكية العائم - تصميم محسّن -->
+<!-- زر التعبئة الذكية العائم - تصميم جديد -->
 <button id="aiFillFloatingBtn" onclick="fillWithAI()" title="تعبئة الحقول تلقائياً باستخدام الذكاء الاصطناعي">
-    <i class="fas fa-magic floating-ai-icon"></i>
+    <i class="fas fa-wand-magic-sparkles floating-ai-icon"></i>
     <span class="floating-ai-text">تعبئة ذكية</span>
 </button>
 
@@ -1343,6 +1451,7 @@ button[title]:hover::before {
     </div>
 </div>
 
+<!-- شريط الأخبار العلوي -->
 <div class="top-marquee">
 <div class="marquee-inner">
 <i class="fas fa-bullhorn" style="margin-left:10px;"></i>
@@ -1351,32 +1460,39 @@ button[title]:hover::before {
 </div>
 </div>
 
-<!-- شريط الأزرار العلوية -->
-<div class="control-bar">
-    <div class="top-buttons-grid">
-        <button class="top-btn" id="saveTeacherBtn" onclick="saveTeacherData()" title="حفظ بيانات المعلم والمدرسة">
-            <i class="fas fa-save top-btn-icon"></i>
-            <span class="top-btn-text">حفظ البيانات</span>
+<!-- ========== المجموعة الأولى: الأزرار الصغيرة (أعلى الهيدر) ========== -->
+<div class="top-small-buttons">
+    <div class="small-buttons-grid">
+        <button class="small-btn" id="saveTeacherBtn" onclick="saveTeacherData()" title="حفظ بيانات المعلم والمدرسة">
+            <i class="fas fa-save small-btn-icon"></i>
+            <span class="small-btn-text">حفظ البيانات</span>
         </button>
-        <button class="top-btn" id="pdfBtn" onclick="downloadPDF()" title="تحويل التقرير إلى PDF وتنزيله">
-            <i class="fas fa-file-pdf top-btn-icon"></i>
-            <span class="top-btn-text">تنزيل PDF</span>
+        <button class="small-btn" id="clearBtn" onclick="clearData()" title="مسح جميع البيانات المدخلة">
+            <i class="fas fa-trash-alt small-btn-icon"></i>
+            <span class="small-btn-text">مسح البيانات</span>
         </button>
-        <button class="top-btn" id="clearBtn" onclick="clearData()" title="مسح جميع البيانات المدخلة">
-            <i class="fas fa-trash-alt top-btn-icon"></i>
-            <span class="top-btn-text">مسح البيانات</span>
-        </button>
-        <button class="top-btn" id="whatsappBtn" onclick="sharePDFWhatsApp()" title="مشاركة التقرير عبر واتساب">
-            <i class="fab fa-whatsapp top-btn-icon"></i>
-            <span class="top-btn-text">مشاركة واتساب</span>
-        </button>
-        <button class="top-btn" id="settingsBtn" onclick="openSettings()" title="إعدادات الاشتراك">
-            <i class="fas fa-cog top-btn-icon"></i>
-            <span class="top-btn-text">الضبط</span>
+        <button class="small-btn" id="settingsBtn" onclick="openSettings()" title="إعدادات الاشتراك">
+            <i class="fas fa-cog small-btn-icon"></i>
+            <span class="small-btn-text">الضبط</span>
         </button>
     </div>
 </div>
 
+<!-- ========== المجموعة الثانية: الأزرار الكبيرة ========== -->
+<div class="main-buttons-bar">
+    <div class="main-buttons-grid">
+        <button class="main-btn" id="whatsappBtn" onclick="sharePDFWhatsApp()" title="مشاركة التقرير عبر واتساب">
+            <i class="fab fa-whatsapp main-btn-icon"></i>
+            <span class="main-btn-text">مشاركة واتساب</span>
+        </button>
+        <button class="main-btn" id="pdfBtn" onclick="downloadPDF()" title="تحويل التقرير إلى PDF وتنزيله">
+            <i class="fas fa-file-pdf main-btn-icon"></i>
+            <span class="main-btn-text">تنزيل PDF</span>
+        </button>
+    </div>
+</div>
+
+<!-- المحتوى الرئيسي -->
 <div class="wrapper">
 <div class="input-section">
   
@@ -2235,9 +2351,9 @@ ${count ? `عدد الحضور: ${count}` : ''}
         aiButton.disabled = false;
         
         // إزالة أي تأثيرات بصرية متبقية
-        aiButton.style.background = 'linear-gradient(135deg, #38b2ac 0%, #319795 100%)';
+        aiButton.style.background = 'linear-gradient(135deg, #9D50BB 0%, #6E48AA 100%)';
         aiButton.style.transform = 'translateY(0)';
-        aiButton.style.boxShadow = '0 8px 25px rgba(56, 178, 172, 0.4)';
+        aiButton.style.boxShadow = '0 8px 25px rgba(157, 80, 187, 0.5)';
     }
 }
 
@@ -2806,7 +2922,8 @@ async function downloadPDF(){
     // ⚠️ مهم: تحميل التاريخ أولاً
     await loadDates();
     
-    document.querySelector('.control-bar').style.visibility = 'hidden';
+    document.querySelector('.top-small-buttons').style.visibility = 'hidden';
+    document.querySelector('.main-buttons-bar').style.visibility = 'hidden';
     document.querySelector('.top-marquee').style.visibility = 'hidden';
     document.getElementById('aiFillFloatingBtn').style.visibility = 'hidden';
     document.body.style.margin = "0";
@@ -2844,7 +2961,8 @@ async function downloadPDF(){
     .from(reportContent)
     .save()
     .then(() => {
-        document.querySelector('.control-bar').style.visibility = 'visible';
+        document.querySelector('.top-small-buttons').style.visibility = 'visible';
+        document.querySelector('.main-buttons-bar').style.visibility = 'visible';
         document.querySelector('.top-marquee').style.visibility = 'visible';
         document.getElementById('aiFillFloatingBtn').style.visibility = 'visible';
         document.body.style.margin = "";
@@ -2858,7 +2976,8 @@ async function sharePDFWhatsApp(){
     // ⚠️ مهم: تحميل التاريخ أولاً
     await loadDates();
     
-    document.querySelector('.control-bar').style.visibility = 'hidden';
+    document.querySelector('.top-small-buttons').style.visibility = 'hidden';
+    document.querySelector('.main-buttons-bar').style.visibility = 'hidden';
     document.querySelector('.top-marquee').style.visibility = 'visible';
     document.getElementById('aiFillFloatingBtn').style.visibility = 'hidden';
     document.body.style.margin = "0";
@@ -2894,7 +3013,8 @@ async function sharePDFWhatsApp(){
     .toPdf()
     .output('blob')
     .then((pdfBlob) => {
-        document.querySelector('.control-bar').style.visibility = 'visible';
+        document.querySelector('.top-small-buttons').style.visibility = 'visible';
+        document.querySelector('.main-buttons-bar').style.visibility = 'visible';
         document.querySelector('.top-marquee').style.visibility = 'visible';
         document.getElementById('aiFillFloatingBtn').style.visibility = 'visible';
         document.body.style.margin = "";
