@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<title>أداة إصدار التقارير والشواهد</title>
+<title>أداة إصدار التقارير التربوية</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -12,7 +12,7 @@
 html,body{font-family:'Cairo',sans-serif;background: linear-gradient(135deg, #f0f9f6 0%, #e8f4f0 50%, #d4ebe2 100%);direction:rtl;overflow-x:hidden;min-height:100vh;-webkit-text-size-adjust:100%; -moz-text-size-adjust:100%; -ms-text-size-adjust:100%; text-size-adjust:100%; touch-action: manipulation;}
 .wrapper{max-width:900px;margin:auto;padding:20px;width:100%;}
 
-/* شريط الأخبار العلوي - محسن للأجهزة المحمولة */
+/* شريط الأخبار العلوي */
 .top-marquee{
 position:fixed;top:0;left:0;right:0;width:100%;background:linear-gradient(135deg, #022e22 0%, #044a35 100%);color:#fff;
 padding:10px 5px;font-size:12px;z-index:300;overflow:hidden;height:45px;
@@ -107,6 +107,31 @@ color:#e8f4f0;font-weight:500;
     transform: translateY(-3px);
 }
 
+/* زر التواصل في شاشة التفعيل */
+#contactForTrialBtn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #5a67d8 0%, #4c51bf 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    font-family: 'Cairo', sans-serif;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#contactForTrialBtn:hover {
+    background: linear-gradient(135deg, #4c51bf 0%, #434190 100%);
+    transform: translateY(-3px);
+}
+
 #activationError {
     color: #d9534f;
     font-size: 13px;
@@ -118,1621 +143,1073 @@ color:#e8f4f0;font-weight:500;
     display: none;
 }
 
-/* شريط التحكم العلوي - متجاوب تماماً */
-.control-bar{
-position:fixed;top:45px;left:0;right:0;width:100%;z-index:250;
-background:linear-gradient(135deg, #ffffff 0%, #f5fcf9 100%);
-padding:12px 15px;display:flex;justify-content:space-between;align-items:center;
-box-shadow:0 4px 15px rgba(4, 74, 53, 0.12);border-bottom:2px solid #d0e6de;
-backdrop-filter:blur(5px);
-}
-
-/* تحسين تصميم الهيدر مع إضافة التاريخ */
-.header-controls {
-display: flex;
-align-items: center;
-gap: 15px;
-flex: 1;
-flex-wrap: wrap;
-}
-
-/* تاريخ التحويل - جديد */
-.date-toggle-container {
-display: flex;
-flex-direction: column;
-gap: 4px;
-background: linear-gradient(135deg, #e8f4f0 0%, #d4ebe2 100%);
-padding: 6px 10px;
-border-radius: 10px;
-font-size: 12px;
-border-right: 4px solid #ffd166;
-box-shadow: 0 3px 8px rgba(6, 109, 77, 0.15);
-min-width: 220px;
-}
-
-.date-toggle-btn {
-background: linear-gradient(135deg, #066d4d 0%, #05553d 100%);
-color: white;
-border: none;
-padding: 4px 8px;
-border-radius: 6px;
-font-size: 11px;
-cursor: pointer;
-display: flex;
-align-items: center;
-gap: 5px;
-transition: all 0.3s;
-}
-
-.date-toggle-btn:hover {
-background: linear-gradient(135deg, #05553d 0%, #044a35 100%);
-transform: translateY(-2px);
-}
-
-.date-display {
-font-weight: 700;
-color: #044a35;
-text-align: center;
-font-size: 12px;
-margin-bottom: 5px;
-}
-
-/* تصميم عنوان التطبيق المعدل */
-.app-title {
-background: linear-gradient(135deg, #e8f4f0 0%, #d4ebe2 100%);
-color: #044a35;
-padding: 6px 10px;
-border-radius: 10px;
-font-size: 12px;
-font-weight: 800;
-border-right: 4px solid #ffd166;
-display: flex;
-align-items: center;
-gap: 8px;
-box-shadow: 0 3px 8px rgba(6, 109, 77, 0.15);
-flex: 1;
-text-align: center;
-justify-content: center;
-cursor: pointer;
-transition: all 0.3s;
-position: relative;
-}
-
-.app-title:hover {
-transform: translateY(-2px);
-box-shadow: 0 5px 12px rgba(6, 109, 77, 0.25);
-}
-
-/* زر تنفيذ المعلم - قابل للنقر */
-.app-title {
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-}
-
-.app-title:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(6, 109, 77, 0.25);
-}
-
-/* نافذة الإدارة المخفية */
-.admin-panel {
-    display: none;
+/* شريط التحكم العلوي - تصميم مبسط */
+.control-bar {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    z-index: 2000;
-    width: 90%;
-    max-width: 500px;
-    max-height: 85vh;
-    overflow-y: auto;
-    border: 3px solid #ffd166;
-}
-
-.admin-panel.show {
-    display: block;
-    animation: fadeIn 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -60%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
+    top: 45px;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1999;
-}
-
-.overlay.show {
-    display: block;
-}
-
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #e0f0ea;
-}
-
-.admin-header h3 {
-    color: #044a35;
-    font-size: 20px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.close-admin {
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #066d4d;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s;
-}
-
-.close-admin:hover {
-    background-color: #e8f4f0;
-}
-
-/* تصميم حقول المفاتيح */
-.key-field {
-    margin-bottom: 20px;
-    background: #f8fdfa;
-    padding: 15px;
-    border-radius: 10px;
-    border: 2px solid #d4ebe2;
-    transition: all 0.3s;
-}
-
-.key-field:hover {
-    border-color: #066d4d;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(6, 109, 77, 0.1);
-}
-
-.key-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.key-header label {
-    font-weight: 800;
-    color: #044a35;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.key-actions {
-    display: flex;
-    gap: 8px;
-}
-
-.check-key-btn, .toggle-key-btn {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.check-key-btn {
-    background: linear-gradient(135deg, #5a67d8 0%, #4c51bf 100%);
-    color: white;
-}
-
-.check-key-btn:hover {
-    background: linear-gradient(135deg, #4c51bf 0%, #434190 100%);
-}
-
-.toggle-key-btn {
-    background: linear-gradient(135deg, #ffd166 0%, #f0ad4e 100%);
-    color: #333;
-}
-
-.toggle-key-btn:hover {
-    background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
-}
-
-.toggle-key-btn.active {
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    color: white;
-}
-
-.key-status {
-    font-size: 11px;
-    padding: 4px 8px;
-    border-radius: 4px;
-    margin-top: 8px;
-    display: none;
-    align-items: center;
-    gap: 5px;
-}
-
-.key-status.active {
-    display: flex;
-    background: #e8f4f0;
-    color: #044a35;
-    border-right: 3px solid #25D366;
-}
-
-.key-status.inactive {
-    display: flex;
-    background: #fee;
-    color: #d9534f;
-    border-right: 3px solid #d9534f;
-}
-
-.key-input {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #d4ebe2;
-    border-radius: 8px;
-    font-size: 14px;
-    font-family: monospace;
-    background: white;
-    transition: all 0.3s;
-}
-
-.key-input:focus {
-    outline: none;
-    border-color: #066d4d;
-    box-shadow: 0 0 0 3px rgba(6, 109, 77, 0.15);
-}
-
-/* إجراءات المفاتيح */
-.key-actions-global {
+    z-index: 250;
+    background: linear-gradient(135deg, #ffffff 0%, #f5fcf9 100%);
+    padding: 12px 20px;
     display: flex;
-    gap: 10px;
-    margin: 25px 0;
-    flex-wrap: wrap;
-}
-
-.global-action-btn {
-    flex: 1;
-    min-width: 120px;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(4, 74, 53, 0.12);
+    border-bottom: 2px solid #d0e6de;
+    backdrop-filter: blur(5px);
 }
 
-.activate-all-btn {
-    background: linear-gradient(135deg, #066d4d 0%, #05553d 100%);
-    color: white;
+/* شبكة الأزرار العلوية */
+.top-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 800px;
 }
 
-.activate-all-btn:hover {
-    background: linear-gradient(135deg, #05553d 0%, #044a35 100%);
-    transform: translateY(-3px);
-}
-
-.deactivate-all-btn {
-    background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
-    color: #333;
-}
-
-.deactivate-all-btn:hover {
-    background: linear-gradient(135deg, #ec971f 0%, #d58512 100%);
-    transform: translateY(-3px);
-}
-
-.save-keys-btn {
-    background: linear-gradient(135deg, #5a67d8 0%, #4c51bf 100%);
-    color: white;
-}
-
-.save-keys-btn:hover {
-    background: linear-gradient(135deg, #4c51bf 0%, #434190 100%);
-    transform: translateY(-3px);
-}
-
-/* زر التعبئة الذكية ٢ */
-#aiFillBtn2 {
-    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
-    position: relative;
-    display: none; /* مخفي بشكل افتراضي */
-}
-
-#aiFillBtn2:hover {
-    background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);
-}
-
-#aiFillBtn2.show {
-    display: flex;
-}
-
-/* زر خاص يظهر بعد 3 نقرات على عنوان المعلم */
-#specialBtn {
-    display: none;
-}
-
-#specialBtn.show {
-    display: flex;
-}
-
-/* مجموعة الأزرار المعدلة - مرتبة في صفين */
-.btn-group {
+/* تصميم الأزرار العلوية الثانوية */
+.top-btn {
+    border: 2px solid;
+    padding: 10px 6px;
+    font-size: 11px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 700;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 50px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.btn-row {
+/* زر حفظ البيانات - أزرق */
+#saveTeacherBtn {
+    background: linear-gradient(135deg, #4f7bff 0%, #3b5bdb 100%);
+    color: white;
+    border-color: #3b5bdb;
+}
+
+#saveTeacherBtn:hover {
+    background: linear-gradient(135deg, #3b5bdb 0%, #2d4ac0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 91, 219, 0.3);
+}
+
+/* زر تنزيل PDF - أحمر */
+#pdfBtn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    color: white;
+    border-color: #ee5a52;
+}
+
+#pdfBtn:hover {
+    background: linear-gradient(135deg, #ee5a52 0%, #d64545 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(238, 90, 82, 0.3);
+}
+
+/* زر مسح البيانات - أصفر */
+#clearBtn {
+    background: linear-gradient(135deg, #ffd166 0%, #ffc145 100%);
+    color: #5a3e00;
+    border-color: #ffc145;
+}
+
+#clearBtn:hover {
+    background: linear-gradient(135deg, #ffc145 0%, #ffb830 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 193, 69, 0.3);
+}
+
+/* زر مشاركة واتساب - أخضر */
+#whatsappBtn {
+    background: linear-gradient(135deg, #25D366 0%, #1da851 100%);
+    color: white;
+    border-color: #1da851;
+}
+
+#whatsappBtn:hover {
+    background: linear-gradient(135deg, #1da851 0%, #179244 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 168, 81, 0.3);
+}
+
+.top-btn-icon {
+    font-size: 14px;
+    color: white;
+}
+
+.top-btn-text {
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.top-btn:active {
+    transform: translateY(0);
+}
+
+/* ========== زر التعبئة الذكية العائم - تصميم محسّن ========== */
+#aiFillFloatingBtn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #38b2ac 0%, #319795 25%, #2c7a7b 50%, #285e61 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: 
+        0 12px 35px rgba(56, 178, 172, 0.5),
+        0 0 0 3px rgba(255, 215, 0, 0.25),
+        0 0 25px rgba(255, 215, 0, 0.4);
+    border: 4px solid rgba(255, 255, 255, 0.6);
+    z-index: 1000;
+    overflow: hidden;
+    transform: translateY(0);
+    animation: floatButton 3s ease-in-out infinite, goldenGlow 2s ease-in-out infinite;
 }
 
-button.main-btn{
-background:linear-gradient(135deg, #066d4d 0%, #05553d 100%);color:#fff;border:none;
-padding:12px 10px;font-size:13px;border-radius:12px;cursor:pointer;
-transition:all 0.3s ease;font-weight:700;position:relative;overflow:hidden;
-box-shadow:0 4px 10px rgba(6, 109, 77, 0.25);display:flex;flex-direction:column;align-items:center;justify-content:center;
-border:1px solid rgba(255,255,255,0.1);flex:1;
-min-height: 65px;
+/* تأثير الطفو */
+@keyframes floatButton {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-12px) rotate(2deg); }
+    50% { transform: translateY(0) rotate(0deg); }
+    75% { transform: translateY(-8px) rotate(-2deg); }
 }
-button.main-btn::after{
-content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-background:linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-transform:translateX(-100%);
+
+/* تأثير التوهج الذهبي */
+@keyframes goldenGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 12px 35px rgba(56, 178, 172, 0.5),
+            0 0 0 3px rgba(255, 215, 0, 0.25),
+            0 0 25px rgba(255, 215, 0, 0.4);
+    }
+    50% { 
+        box-shadow: 
+            0 18px 45px rgba(56, 178, 172, 0.7),
+            0 0 0 4px rgba(255, 215, 0, 0.4),
+            0 0 35px rgba(255, 215, 0, 0.6);
+    }
 }
-button.main-btn:hover::after{animation:buttonShine 0.6s;}
-@keyframes buttonShine{100%{transform:translateX(100%);}}
-button.main-btn:hover{
-background:linear-gradient(135deg, #05553d 0%, #044a35 100%);transform:translateY(-3px);
-box-shadow:0 6px 15px rgba(6, 109, 77, 0.35);
+
+#aiFillFloatingBtn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg, 
+        transparent 30%, 
+        rgba(255, 255, 255, 0.15) 50%, 
+        transparent 70%
+    );
+    transition: transform 0.8s;
+    transform: rotate(45deg) translate(-20%, -100%);
 }
-button.main-btn:active{transform:translateY(-1px);}
 
-.btn-icon{font-size:18px; margin-bottom:5px;}
-.btn-text{font-size:12px;font-weight:800; text-align:center; line-height:1.2;}
+#aiFillFloatingBtn:hover::before {
+    transform: rotate(45deg) translate(20%, 100%);
+}
 
-/* زر حفظ بيانات المعلم خاص */
-#saveTeacherBtn{background:linear-gradient(135deg, #2a7b5e 0%, #1e6b4f 100%);}
-#saveTeacherBtn:hover{background:linear-gradient(135deg, #1e6b4f 0%, #15563f 100%);}
+#aiFillFloatingBtn:hover {
+    background: linear-gradient(135deg, #2c7a7b 0%, #285e61 25%, #234e52 50%, #1d4044 100%);
+    transform: translateY(-10px) scale(1.12);
+    box-shadow: 
+        0 25px 60px rgba(56, 178, 172, 0.8),
+        0 0 0 5px rgba(255, 215, 0, 0.5),
+        0 0 50px rgba(255, 215, 0, 0.7);
+    animation-play-state: paused;
+}
 
-/* زر الدعم الفني */
-#supportBtn{background:linear-gradient(135deg, #5a67d8 0%, #4c51bf 100%);}
-#supportBtn:hover{background:linear-gradient(135deg, #4c51bf 0%, #434190 100%);}
+#aiFillFloatingBtn:active {
+    transform: translateY(-5px) scale(1.06);
+    box-shadow: 
+        0 15px 40px rgba(56, 178, 172, 0.6),
+        0 0 0 4px rgba(255, 215, 0, 0.35),
+        0 0 30px rgba(255, 215, 0, 0.5);
+}
 
-/* زر المسح */
-#clearBtn{background:linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);}
-#clearBtn:hover{background:linear-gradient(135deg, #ec971f 0%, #d58512 100%);}
+#aiFillFloatingBtn .floating-ai-icon {
+    font-size: 36px;
+    animation: pulse 2s infinite;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+    margin-bottom: 2px;
+}
 
-/* زر الذكاء الاصطناعي المعدل - الأصفر والأزرق */
-#aiFillBtn{background:linear-gradient(135deg, #ffd166 0%, #4d96ff 100%); position: relative;}
-#aiFillBtn:hover{background:linear-gradient(135deg, #ffc145 0%, #2d7dfd 100%);}
+#aiFillFloatingBtn .floating-ai-text {
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #ffffff, #ffd700, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: textShine 2s ease-in-out infinite;
+    white-space: nowrap;
+}
 
-/* تصميم خاص لأزرار PDF وواتساب */
-#pdfBtn{background:linear-gradient(135deg, #d9534f 0%, #c9302c 100%);}
-#pdfBtn:hover{background:linear-gradient(135deg, #c9302c 0%, #ac2925 100%);}
+/* تأثير تلميع النص */
+@keyframes textShine {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
 
-#whatsappBtn{background:linear-gradient(135deg, #25D366 0%, #128C7E 100%);}
-#whatsappBtn:hover{background:linear-gradient(135deg, #128C7E 0%, #075E54 100%);}
+/* تحسين تأثير النبض للأيقونة */
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+    }
+    50% { 
+        transform: scale(1.15);
+        filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.6));
+    }
+}
 
-/* ========== تحسين واجهة الإدخال - تصميم عصري 2026 ========== */
+/* حالة التحميل للزر العائم - تصميم محسّن */
+#aiFillFloatingBtn.loading {
+    background: linear-gradient(135deg, #38b2ac 0%, #319795 25%, #2c7a7b 50%, #285e61 100%);
+    animation: loadingGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 12px 35px rgba(56, 178, 172, 0.5),
+            0 0 0 4px rgba(56, 178, 172, 0.35),
+            0 0 30px rgba(56, 178, 172, 0.5);
+    }
+    50% { 
+        box-shadow: 
+            0 18px 45px rgba(56, 178, 172, 0.8),
+            0 0 0 5px rgba(56, 178, 172, 0.6),
+            0 0 40px rgba(56, 178, 172, 0.7);
+    }
+}
+
+#aiFillFloatingBtn.loading .floating-ai-icon {
+    animation: spin 1.2s linear infinite;
+    color: #ffd700;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* إزالة الزر الرئيسي القديم */
+#aiFillMainBtn {
+    display: none;
+}
+
+/* ========== تحسين واجهة الإدخال ========== */
 .input-section{
-background:#ffffff;padding:25px;border-radius:20px;margin-top:120px;
-border:2px solid #e0f0ea;box-shadow:0 10px 30px rgba(4, 74, 53, 0.12);
-position:relative;overflow:hidden;
+    background:#ffffff;
+    padding:25px;
+    border-radius:20px;
+    margin-top:120px;
+    border:2px solid #e0f0ea;
+    box-shadow:0 10px 30px rgba(4, 74, 53, 0.12);
+    position:relative;
+    overflow:hidden;
 }
 .input-section::before{
-content:'';position:absolute;top:0;right:0;width:100%;height:5px;
-background:linear-gradient(to left, #066d4d, #ffd166, #25D366);
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    width:100%;
+    height:5px;
+    background:linear-gradient(to left, #066d4d, #ffd166, #25D366);
 }
 
 .input-section h2{
-color:#044a35;font-size:24px;margin-bottom:30px;padding-bottom:15px;
-border-bottom:3px solid #e0f0ea;text-align:center;font-weight:900;
-position:relative;
+    color:#044a35;
+    font-size:24px;
+    margin-bottom:30px;
+    padding-bottom:15px;
+    border-bottom:3px solid #e0f0ea;
+    text-align:center;
+    font-weight:900;
+    position:relative;
 }
 .input-section h2::after{
-content:'';position:absolute;bottom:-3px;right:50%;transform:translateX(50%);
-width:120px;height:3px;background:linear-gradient(to left, #066d4d, #ffd166);
-border-radius:2px;
+    content:'';
+    position:absolute;
+    bottom:-3px;
+    right:50%;
+    transform:translateX(50%);
+    width:120px;
+    height:3px;
+    background:linear-gradient(to left, #066d4d, #ffd166);
+    border-radius:2px;
 }
 
 /* تصميم عصري للحقول */
 .form-group{margin-bottom:25px;position:relative;}
 .form-group label{
-font-size:16px;font-weight:800;margin-bottom:10px;display:block;color:#083024;
-display:flex;align-items:center;gap:12px;padding-right:8px;
-position:relative;
+    font-size:16px;
+    font-weight:800;
+    margin-bottom:10px;
+    display:block;
+    color:#083024;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding-right:8px;
+    position:relative;
 }
 .form-group label i{
-color:#066d4d;font-size:16px;background:#f0f9f6;padding:7px;border-radius:10px;
-border:1px solid #d4ebe2;box-shadow:0 2px 5px rgba(0,0,0,0.05);
+    color:#066d4d;
+    font-size:16px;
+    background:#f0f9f6;
+    padding:7px;
+    border-radius:10px;
+    border:1px solid #d4ebe2;
+    box-shadow:0 2px 5px rgba(0,0,0,0.05);
 }
 
 .form-group label::before{
-content:'';width:8px;height:8px;background:#ffd166;border-radius:50%;
-display:inline-block;margin-left:6px;box-shadow:0 0 6px #ffd166;
+    content:'';
+    width:8px;
+    height:8px;
+    background:#ffd166;
+    border-radius:50%;
+    display:inline-block;
+    margin-left:6px;
+    box-shadow:0 0 6px #ffd166;
 }
 
 input,select,textarea{
-width:100%;padding:16px;margin-top:8px;border:2px solid #d4ebe2;border-radius:12px;
-font-size:18px;background:#f9fcfb;transition:all 0.3s;font-family:'Cairo', sans-serif;
-color:#083024;box-shadow:inset 0 2px 8px rgba(0,0,0,0.05);-webkit-appearance:none;
+    width:100%;
+    padding:16px;
+    margin-top:8px;
+    border:2px solid #d4ebe2;
+    border-radius:12px;
+    font-size:18px;
+    background:#f9fcfb;
+    transition:all 0.3s;
+    font-family:'Cairo', sans-serif;
+    color:#083024;
+    box-shadow:inset 0 2px 8px rgba(0,0,0,0.05);
+    -webkit-appearance:none;
 }
 input:focus,select:focus,textarea:focus{
-outline:none;border-color:#066d4d;box-shadow:0 0 0 4px rgba(6,109,77,0.15), inset 0 2px 8px rgba(0,0,0,0.05);
-background:#ffffff;transform:translateY(-3px);
+    outline:none;
+    border-color:#066d4d;
+    box-shadow:0 0 0 4px rgba(6,109,77,0.15), inset 0 2px 8px rgba(0,0,0,0.05);
+    background:#ffffff;
+    transform:translateY(-3px);
 }
 textarea{height:120px;resize:none;overflow:hidden;line-height:1.7;font-size:17px;}
 
-/* تم إزالة أزرار التعبئة الذكية تحت الحقول */
-.auto-buttons{display:none;}
-
 .form-row{
-display:grid;grid-template-columns:1fr 1fr;gap:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
 /* تلميحات للأزرار */
 button[title] {
-position: relative;
+    position: relative;
 }
 button[title]:hover::after {
-content: attr(title);
-position: absolute;
-bottom: calc(100% + 10px);
-right: 50%;
-transform: translateX(50%);
-background: rgba(4, 58, 42, 0.95);
-color: white;
-padding: 10px 15px;
-border-radius: 8px;
-font-size: 12px;
-white-space: pre-line;
-z-index: 1000;
-border: 1px solid #044a35;
-box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-max-width: 300px;
-min-width: 200px;
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    right: 50%;
+    transform: translateX(50%);
+    background: rgba(4, 58, 42, 0.95);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: pre-line;
+    z-index: 1000;
+    border: 1px solid #044a35;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    max-width: 300px;
+    min-width: 200px;
 }
 button[title]:hover::before {
-content: '';
-position: absolute;
-bottom: calc(100% + 2px);
-right: 50%;
-transform: translateX(50%);
-border: 6px solid transparent;
-border-top-color: rgba(4, 58, 42, 0.95);
-z-index: 1000;
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 2px);
+    right: 50%;
+    transform: translateX(50%);
+    border: 6px solid transparent;
+    border-top-color: rgba(4, 58, 42, 0.95);
+    z-index: 1000;
 }
 
 /* إشعارات */
 .notification {
-position: fixed;
-top: 100px;
-right: 10px;
-left: 10px;
-background: linear-gradient(135deg, #066d4d 0%, #044a35 100%);
-color: white;
-padding: 12px 18px;
-border-radius: 10px;
-box-shadow: 0 6px 20px rgba(4, 74, 53, 0.3);
-z-index: 1000;
-display: flex;
-align-items: center;
-gap: 10px;
-font-weight: 600;
-transform: translateX(150%);
-transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-border-right: 5px solid #ffd166;
-text-align:center;
-justify-content:center;
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, #066d4d 0%, #044a35 100%);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(4, 74, 53, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    transform: translateX(150%);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    border-right: 5px solid #ffd166;
+    text-align:center;
+    justify-content:center;
 }
 .notification.show {
-transform: translateX(0);
+    transform: translateX(0);
 }
 .notification i {
-font-size: 18px;
-}
-
-/* نافذة المساعدة */
-.help-notification {
-position: fixed;
-bottom: 20px;
-right: 20px;
-left: auto;
-max-width: 300px;
-background: linear-gradient(135deg, #5a67d8 0%, #4c51bf 100%);
-z-index: 2000;
-display: none;
-}
-
-/* نافذة الدعم الفني */
-.support-modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color: rgba(0, 0, 0, 0.7);
-z-index: 1001;
-justify-content: center;
-align-items: center;
-padding: 15px;
-}
-
-.support-content {
-background: white;
-border-radius: 15px;
-padding: 25px;
-width: 100%;
-max-width: 500px;
-box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-position: relative;
-max-height: 90vh;
-overflow-y: auto;
-}
-
-.support-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-padding-bottom: 15px;
-border-bottom: 2px solid #e0f0ea;
-}
-
-.support-header h3 {
-color: #044a35;
-font-size: 20px;
-font-weight: 800;
-}
-
-.close-support {
-background: none;
-border: none;
-font-size: 24px;
-color: #066d4d;
-cursor: pointer;
-width: 30px;
-height: 30px;
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 50%;
-transition: all 0.3s;
-}
-
-.close-support:hover {
-background-color: #e8f4f0;
-}
-
-.support-form .form-group {
-margin-bottom: 20px;
-}
-
-.support-actions {
-display: flex;
-gap: 15px;
-margin-top: 25px;
-}
-
-.support-action-btn {
-flex: 1;
-padding: 14px;
-border-radius: 10px;
-border: none;
-color: white;
-font-weight: 700;
-font-size: 14px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
-transition: all 0.3s;
-box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.email-btn {
-background: linear-gradient(135deg, #d44646 0%, #b52a2a 100%);
-}
-
-.email-btn:hover {
-background: linear-gradient(135deg, #b52a2a 0%, #9c1f1f 100%);
-transform: translateY(-3px);
-}
-
-.whatsapp-support-btn {
-background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-}
-
-.whatsapp-support-btn:hover {
-background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);
-transform: translateY(-3px);
-}
-
-.support-info {
-background: #f8fdfa;
-border-radius: 10px;
-padding: 15px;
-margin-top: 20px;
-border-right: 4px solid #ffd166;
-}
-
-.support-info p {
-margin-bottom: 8px;
-font-size: 14px;
-color: #044a35;
-}
-
-.support-info i {
-color: #066d4d;
-margin-left: 8px;
+    font-size: 18px;
 }
 
 /* أنماط البحث والتصنيف */
 #reportSearchContainer {
-position: relative;
-margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 10px;
 }
 
 #searchResults {
-display: none;
-position: absolute;
-top: 100%;
-left: 0;
-right: 0;
-background: white;
-border: 1px solid #ddd;
-border-radius: 6px;
-max-height: 200px;
-overflow-y: auto;
-z-index: 1000;
-box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 #searchResults div {
-padding: 8px 12px;
-cursor: pointer;
-border-bottom: 1px solid #eee;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
 }
 
 #searchResults div:hover {
-background-color: #f0f9f6 !important;
-color: #066d4d;
+    background-color: #f0f9f6 !important;
+    color: #066d4d;
 }
 
 #searchResults div:last-child {
-border-bottom: none;
+    border-bottom: none;
 }
 
 #reportSearch:focus {
-outline: none;
-border-color: #066d4d;
-box-shadow: 0 0 0 2px rgba(6, 109, 77, 0.2);
+    outline: none;
+    border-color: #066d4d;
+    box-shadow: 0 0 0 2px rgba(6, 109, 77, 0.2);
 }
 
-/* قسم الأدوات والوسائل التعليمية في واجهة الإدخال */
+/* قسم الأدوات والوسائل التعليمية */
 .tools-section {
-background: #f8fdfa;
-padding: 18px;
-border-radius: 12px;
-border: 1px solid #d4ebe2;
-margin-top: 10px;
-box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    background: #f8fdfa;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #d4ebe2;
+    margin-top: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
 .tools-grid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
 }
 
 .tool-checkbox {
-display: flex;
-align-items: center;
-gap: 10px;
-padding: 10px;
-background: white;
-border-radius: 10px;
-border: 2px solid #d4ebe2;
-transition: all 0.3s;
-cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #d4ebe2;
+    transition: all 0.3s;
+    cursor: pointer;
 }
 
 .tool-checkbox:hover {
-border-color: #066d4d;
-background: #f0f9f6;
-transform: translateY(-3px);
-box-shadow: 0 4px 8px rgba(6, 109, 77, 0.1);
+    border-color: #066d4d;
+    background: #f0f9f6;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(6, 109, 77, 0.1);
 }
 
 .tool-checkbox input[type="checkbox"] {
-width: 20px;
-height: 20px;
-cursor: pointer;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
 
 .tool-checkbox span {
-font-size: 14px;
-font-weight: 700;
-color: #083024;
+    font-size: 14px;
+    font-weight: 700;
+    color: #083024;
 }
 
 .tool-checkbox.checked {
-border-color: #066d4d;
-background: #e8f4f0;
-box-shadow: 0 4px 10px rgba(6, 109, 77, 0.15);
+    border-color: #066d4d;
+    background: #e8f4f0;
+    box-shadow: 0 4px 10px rgba(6, 109, 77, 0.15);
 }
 
-/* علامة ✅ في واجهة الإدخال */
+/* علامة ✅ */
 .checkmark {
-color: #066d4d;
-font-size: 16px;
-margin-left: 5px;
-display: none;
+    color: #066d4d;
+    font-size: 16px;
+    margin-left: 5px;
+    display: none;
 }
 
 .tool-checkbox.checked .checkmark {
-display: inline-block;
+    display: inline-block;
 }
 
-/* خانة عنوان التقرير اليدوية - جديد */
+/* خانة عنوان التقرير اليدوية */
 .manual-title-container {
-margin-top: 15px;
-padding: 15px;
-background: #f8fdfa;
-border-radius: 12px;
-border: 2px solid #d4ebe2;
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8fdfa;
+    border-radius: 12px;
+    border: 2px solid #d4ebe2;
 }
 
 .manual-title-container label {
-display: flex;
-align-items: center;
-gap: 10px;
-color: #044a35;
-font-weight: 700;
-margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #044a35;
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
 .manual-title-container input {
-background: white;
-border: 2px solid #d4ebe2;
-padding: 12px;
-border-radius: 8px;
-font-size: 16px;
+    background: white;
+    border: 2px solid #d4ebe2;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
 /* ==================== تحسينات للهواتف المحمولة ==================== */
 
 /* تحسينات للأجهزة المحمولة العامة */
 @media (max-width: 768px) {
-.control-bar {
-top: 45px;
-padding: 8px;
-flex-direction: column;
-gap: 10px;
-height: auto;
-min-height: 120px;
-}
-
-.header-controls {
-width: 100%;
-flex-direction: column;
-gap: 10px;
-}
-
-.date-toggle-container {
-width: 100%;
-max-width: 100%;
-order: 2;
-min-width: unset;
-}
-
-.app-title {
-width: 100%;
-max-width: 100%;
-font-size: 11px;
-padding: 6px 10px;
-order: 1;
-min-width: unset;
-}
-
-.btn-group {
-    width: 100%;
-    max-width: 100%;
-    order: 3;
-    margin: 5px auto 0;
-}
-
-.btn-row {
-    gap: 6px;
-}
-
-.btn-row button.main-btn {
-    min-height: 55px;
-    padding: 8px 6px;
-}
-
-.btn-icon {
-    font-size: 16px !important;
-}
-
-.btn-text {
-    font-size: 10px !important;
-}
-
-.input-section {
-margin-top: 130px;
-padding: 15px;
-border-radius: 15px;
-}
-
-.input-section h2 {
-font-size: 20px;
-margin-bottom: 20px;
-}
-
-.form-row {
-grid-template-columns: 1fr;
-gap: 15px;
-}
-
-.tools-grid {
-grid-template-columns: 1fr;
-}
-
-.notification {
-top: 110px;
-padding: 10px 15px;
-font-size: 14px;
-}
-
-.support-content {
-padding: 20px;
-max-height: 85vh;
-}
-
-.support-actions {
-flex-direction: column;
-}
-
-.support-action-btn {
-width: 100%;
-}
-
-#searchResults {
-max-height: 150px;
-font-size: 13px;
-}
-
-.help-notification {
-right: 10px;
-left: 10px;
-max-width: unset;
-bottom: 10px;
-}
+    .control-bar {
+        top: 45px;
+        padding: 10px 15px;
+    }
+    
+    .top-buttons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .top-btn {
+        min-height: 45px;
+        padding: 8px 4px;
+    }
+    
+    .top-btn-icon {
+        font-size: 12px;
+    }
+    
+    .top-btn-text {
+        font-size: 9px;
+    }
+    
+    #aiFillFloatingBtn {
+        width: 85px;
+        height: 85px;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    #aiFillFloatingBtn .floating-ai-icon {
+        font-size: 30px;
+    }
+    
+    #aiFillFloatingBtn .floating-ai-text {
+        font-size: 13px;
+    }
+    
+    .input-section {
+        margin-top: 130px;
+        padding: 15px;
+    }
+    
+    .input-section h2 {
+        font-size: 20px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .notification {
+        top: 110px;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
 }
 
 /* تحسينات للشاشات الصغيرة جداً */
 @media (max-width: 480px) {
-.top-marquee {
-font-size: 11px;
-padding: 8px 5px;
-height: 40px;
+    .top-marquee {
+        font-size: 11px;
+        height: 40px;
+    }
+    
+    .marquee-inner {
+        animation-duration: 35s;
+    }
+    
+    .top-buttons-grid {
+        gap: 6px;
+    }
+    
+    .top-btn {
+        min-height: 40px;
+        padding: 6px 3px;
+    }
+    
+    .top-btn-icon {
+        font-size: 11px;
+    }
+    
+    .top-btn-text {
+        font-size: 8px;
+    }
+    
+    #aiFillFloatingBtn {
+        width: 80px;
+        height: 80px;
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    #aiFillFloatingBtn .floating-ai-icon {
+        font-size: 28px;
+    }
+    
+    #aiFillFloatingBtn .floating-ai-text {
+        font-size: 12px;
+    }
+    
+    .input-section {
+        margin-top: 125px;
+        padding: 12px;
+    }
+    
+    input, select, textarea {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+    }
+    
+    .tool-checkbox {
+        padding: 6px;
+    }
+    
+    .tool-checkbox span {
+        font-size: 12px;
+    }
 }
 
-.marquee-inner {
-animation-duration: 35s;
-}
-
-.control-bar {
-min-height: 110px;
-}
-
-.app-title {
-font-size: 10px;
-padding: 5px 8px;
-}
-
-.date-toggle-container {
-font-size: 11px;
-padding: 5px 8px;
-}
-
-.btn-group {
-    margin-top: 3px;
-}
-
-.btn-row {
-    gap: 4px;
-}
-
-.btn-row button.main-btn {
-    min-height: 50px;
-    padding: 6px 4px;
-}
-
-.btn-icon {
-    font-size: 14px !important;
-    margin-bottom: 3px;
-}
-
-.btn-text {
-    font-size: 9px !important;
-}
-
-.input-section {
-margin-top: 125px;
-padding: 12px;
-}
-
-input, select, textarea {
-padding: 12px;
-font-size: 16px;
-}
-
-.form-group label {
-font-size: 13px;
-}
-
-.form-group label i {
-font-size: 13px;
-padding: 5px;
-}
-
-.auto-btn {
-padding: 10px;
-font-size: 12px;
-}
-
-.tool-checkbox {
-padding: 6px;
-}
-
-.tool-checkbox span {
-font-size: 12px;
-}
-
-.support-header h3 {
-font-size: 18px;
-}
-
-.support-action-btn {
-padding: 12px;
-font-size: 13px;
-}
-}
-
-/* تحسينات للأجهزة فائقة الصغر */
-@media (max-width: 360px) {
-.control-bar {
-min-height: 105px;
-padding: 6px;
-}
-
-.btn-row {
-    gap: 3px;
-}
-
-.btn-row button.main-btn {
-    min-height: 45px;
-    padding: 5px 3px;
-}
-
-.btn-icon {
-    font-size: 12px !important;
-}
-
-.btn-text {
-    font-size: 8px !important;
-}
-
-.input-section {
-margin-top: 120px;
-padding: 10px;
-}
-
-input, select, textarea {
-padding: 10px;
-}
-}
-
-/* تحسينات خاصة لـ iPhone ذات الشقوق */
-/* iPhone X/XS/11 Pro/12 mini/13 mini */
-@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
-.top-marquee {
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-top);
-height: calc(45px + env(safe-area-inset-top) * 2);
-}
-
-.control-bar {
-top: calc(45px + env(safe-area-inset-top));
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-top);
-}
-
-.input-section {
-margin-top: calc(140px + env(safe-area-inset-top) * 2);
-}
-}
-
-/* iPhone 12/13/14 */
-@media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
-.top-marquee {
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-top);
-height: calc(45px + env(safe-area-inset-top) * 2);
-}
-
-.control-bar {
-top: calc(45px + env(safe-area-inset-top));
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-top);
-}
-
-.input-section {
-margin-top: calc(140px + env(safe-area-inset-top) * 2);
-}
-}
-
-/* iPhone 12/13/14 Pro Max */
-@media only screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
-.top-marquee {
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-top);
-height: calc(45px + env(safe-area-inset-top) * 2);
-}
-
-.control-bar {
-top: calc(45px + env(safe-area-inset-top));
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-top);
-}
-
-.input-section {
-margin-top: calc(140px + env(safe-area-inset-top) * 2);
-}
-}
-
-/* تحسينات للشاشات الطويلة */
-@media (max-height: 700px) and (orientation: portrait) {
-.input-section {
-margin-top: 110px;
-padding: 10px;
-}
-
-.form-group {
-margin-bottom: 15px;
-}
-
-.form-group label {
-font-size: 13px;
-margin-bottom: 5px;
-}
-
-input, select, textarea {
-padding: 10px;
-font-size: 14px;
-}
-
-.auto-btn {
-padding: 8px;
-font-size: 12px;
-}
-}
-
-/* تحسينات للوضع الأفقي (Landscape) */
-@media (max-width: 850px) and (orientation: landscape) {
-.control-bar {
-flex-direction: row;
-height: 70px;
-}
-
-.header-controls {
-flex-direction: row;
-gap: 10px;
-}
-
-.app-title {
-max-width: 200px;
-font-size: 10px;
-padding: 4px 8px;
-min-width: 180px;
-}
-
-.date-toggle-container {
-max-width: 180px;
-min-width: 150px;
-}
-
-.btn-group {
-    max-width: 500px;
-}
-
-.btn-row button.main-btn {
-    min-height: 50px;
-}
-
-.input-section {
-margin-top: 90px;
-padding: 12px;
-}
-
-.form-row {
-grid-template-columns: 1fr 1fr;
-gap: 10px;
-}
-}
-
-/* منع التكبير التلقائي على iOS عند التركيز على الحقول */
-input, select, textarea {
-font-size: 16px !important;
-}
-
-/* إصلاح مشكلة التكبير في iOS */
-@media screen and (max-width: 767px) {
-input, select, textarea, .form-group {
-font-size: 16px !important;
-}
-}
-
-/* تحسين تجربة اللمس */
-button, .auto-btn, .tool-checkbox {
--webkit-touch-callout: none;
--webkit-user-select: none;
-user-select: none;
-}
-
-/* تحسين التمرير السلس */
-.input-section, .support-content, #searchResults {
--webkit-overflow-scrolling: touch;
-}
-
-/* ==================== قسم PDF المعدل ==================== */
+/* ==================== قسم PDF ==================== */
 @page{
-  size:A4;
-  margin:10mm;
+    size:A4;
+    margin:10mm;
 }
 
 :root{
-  --main:#062f25;
-  --border:#2f9e8f;
+    --main:#062f25;
+    --border:#2f9e8f;
 }
 
 #report-content{
-  width:100%;
-  max-width:210mm;
-  margin:4mm auto 0 auto;
-  padding:0 6mm;
-  box-sizing:border-box;
-  display:none;
-  font-family:'Cairo',sans-serif;
-  background:#fff;
+    width:100%;
+    max-width:210mm;
+    margin:4mm auto 0 auto;
+    padding:0 6mm;
+    box-sizing:border-box;
+    display:none;
+    font-family:'Cairo',sans-serif;
+    background:#fff;
 }
 
-/* الهيدر - تم التعديل هنا */
 .header{
-  background:var(--main);
-  height:150px;
-  border-radius:8px;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  margin-bottom:8px;
+    background:var(--main);
+    height:150px;
+    border-radius:8px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    margin-bottom:8px;
 }
 .header img{width:140px;}
 .header-school-title{
-  position:absolute;
-  right:12px;
-  top:20px;
-  font-size:14px; /* تم تكبير الخط 3 درجات من 11px إلى 14px */
-  font-weight:800;
+    position:absolute;
+    right:12px;
+    top:20px;
+    font-size:14px;
+    font-weight:800;
 }
 .header-school{
-  position:absolute;
-  right:12px;
-  top:45px; /* تم تعديل الموقع ليصبح تحت العنوان */
-  font-size:18px; /* تم تكبير الخط 3 درجات من 14px إلى 18px */
-  font-weight:900;
+    position:absolute;
+    right:12px;
+    top:45px;
+    font-size:18px;
+    font-weight:900;
 }
 .header-education{
-  position:absolute;
-  left:50%;
-  bottom:18px;
-  transform:translateX(-50%);
-  font-size:16px; /* تم تكبير الخط 3 درجات من 13px إلى 16px */
-  font-weight:800;
-  text-align:center;
-  width:100%;
+    position:absolute;
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+    font-size:16px;
+    font-weight:800;
+    text-align:center;
+    width:100%;
 }
 .header-date{
-  position:absolute;
-  left:12px;
-  top:10px;
-  font-size:12px; /* تم تكبير الخط 3 درجات من 9px إلى 12px */
-  text-align:right;
+    position:absolute;
+    left:12px;
+    top:10px;
+    font-size:12px;
+    text-align:right;
 }
 
-/* مربعات المعلومات - تم التعديل هنا حسب طلبك: تبديل نوع التقرير والمستهدفون */
 .info-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:6px;
-  margin-bottom:6px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:6px;
+    margin-bottom:6px;
 }
 .info-grid2{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:6px;
-  margin-bottom:6px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+    margin-bottom:6px;
 }
 
 .info-box{
-  border:1px solid var(--border);
-  border-radius:7px;
-  padding:14px 4px 6px;
-  position:relative;
-  text-align:center;
-  font-size:11px; /* تم تصغير الخط للمحتوى */
-  min-height:34px;
-  overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:7px;
+    padding:14px 4px 6px;
+    position:relative;
+    text-align:center;
+    font-size:11px;
+    min-height:34px;
+    overflow:hidden;
 }
 .info-title{
-  position:absolute;
-  top:4px;
-  right:50%;
-  transform:translateX(50%);
-  font-size:8px;
-  font-weight:800;
-  color:var(--main);
-  white-space:nowrap;
+    position:absolute;
+    top:4px;
+    right:50%;
+    transform:translateX(50%);
+    font-size:8px;
+    font-weight:800;
+    color:var(--main);
+    white-space:nowrap;
 }
 .info-value{
-  font-size:11px; /* تم تصغير خط المحتوى */
-  font-weight:600;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+    font-size:11px;
+    font-weight:600;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
-/* التعديل الخاص: تصغير محتوى نوع التقرير فقط */
 #reportTypeBox{
-  font-size: 9px;     /* تصغير المحتوى */
-  font-weight: 600;
+    font-size: 9px;
+    font-weight: 600;
 }
 
-/* مادة | درس - تم التعديل هنا */
 .subject-lesson-box{
-  border:1px solid var(--border);
-  border-radius:7px;
-  position:relative;
-  padding:14px 4px 6px;
-  overflow:hidden;
-  height: 48px;          /* ارتفاع ثابت */
-  min-height: 48px;
-  max-height: 48px;
+    border:1px solid var(--border);
+    border-radius:7px;
+    position:relative;
+    padding:14px 4px 6px;
+    overflow:hidden;
+    height: 48px;
+    min-height: 48px;
+    max-height: 48px;
 }
 .subject-lesson-title{
-  position:absolute;
-  top:4px;
-  right:50%;
-  transform:translateX(50%);
-  font-size:8px;
-  font-weight:800;
-  color:var(--main);
+    position:absolute;
+    top:4px;
+    right:50%;
+    transform:translateX(50%);
+    font-size:8px;
+    font-weight:800;
+    color:var(--main);
 }
 .subject-lesson{
-  display:grid;
-  grid-template-columns:1fr 1px 1fr;
-  align-items:center;
-  text-align:center;
-  font-size:11px; /* تم تصغير خط المحتوى */
-  height: 100%;
+    display:grid;
+    grid-template-columns:1fr 1px 1fr;
+    align-items:center;
+    text-align:center;
+    font-size:11px;
+    height: 100%;
 }
 .subject-divider{
-  background:var(--border);
-  height:60%;
-  margin:auto;
+    background:var(--border);
+    height:60%;
+    margin:auto;
 }
 
-/* الهدف التربوي */
 .box-objective{
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:8px;
-  margin-bottom:6px;
-  height:95px;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:8px;
+    margin-bottom:6px;
+    height:95px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
 }
 .box-objective .box-title{
-  text-align:center;
-  color:var(--main);
-  font-weight:800;
-  font-size:8px;
-  margin-bottom:4px;
+    text-align:center;
+    color:var(--main);
+    font-weight:800;
+    font-size:8px;
+    margin-bottom:4px;
 }
 .box-objective .box-content{
-  font-size:14px; /* تم تكبير الخط 3 درجات من 11px إلى 14px */
-  line-height:1.5;
-  text-align:center;
-  overflow:hidden;
+    font-size:14px;
+    line-height:1.5;
+    text-align:center;
+    overflow:hidden;
 }
 
-/* التعديل الخاص: تكبير عنوان الهدف التربوي فقط */
 .box-objective .box-title{
-  font-size: 17px;      /* كبّر العنوان */
-  font-weight: 900;
+    font-size: 17px;
+    font-weight: 900;
 }
 
-/* المربعات الكبيرة */
 .box{
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:8px;
-  margin-bottom:6px;
-  height:137px;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:8px;
+    margin-bottom:6px;
+    height:137px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
 }
 .box-title{
-  text-align:center;
-  color:var(--main);
-  font-weight:800;
-  font-size:14px; /* تم تكبير الخط 3 درجات من 11px إلى 14px */
-  margin-bottom:4px;
+    text-align:center;
+    color:var(--main);
+    font-weight:800;
+    font-size:14px;
+    margin-bottom:4px;
 }
 .box-content{
-  font-size:14px; /* تم تكبير الخط 3 درجات من 11px إلى 14px */
-  line-height:1.5;
-  text-align:center;
-  overflow:hidden;
+    font-size:14px;
+    line-height:1.5;
+    text-align:center;
+    overflow:hidden;
 }
 
-/* الصفوف */
 .row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:6px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
 }
 
-/* الأدوات */
 .tools-box{
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:6px;
-  margin-bottom:6px;
-  overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:6px;
+    margin-bottom:6px;
+    overflow:hidden;
 }
 .tools-title{
-  text-align:center;
-  font-weight:800;
-  color:var(--main);
-  font-size:13px; /* تم تكبير الخط 3 درجات من 10px إلى 13px */
-  margin-bottom:4px;
+    text-align:center;
+    font-weight:800;
+    color:var(--main);
+    font-size:13px;
+    margin-bottom:4px;
 }
 .tools-list{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:6px;
-  font-size:12px; /* تم تكبير الخط 3 درجات من 9px إلى 12px */
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:6px;
+    font-size:12px;
 }
 .tool{
-  background:#eef7f4;
-  border:1px solid #cfe8df;
-  border-radius:16px;
-  padding:3px 8px;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  white-space:nowrap;
+    background:#eef7f4;
+    border:1px solid #cfe8df;
+    border-radius:16px;
+    padding:3px 8px;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    white-space:nowrap;
 }
 .tool span{
-  background:var(--border);
-  color:#fff;
-  border-radius:50%;
-  width:12px;
-  height:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:8px;
+    background:var(--border);
+    color:#fff;
+    border-radius:50%;
+    width:12px;
+    height:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:8px;
 }
 
-/* ========== الصور - إعدادات جديدة جذرية ========== */
 .images{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:6px;
-  margin-bottom:6px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+    margin-bottom:6px;
 }
 .image-box{
-  border:1px dashed var(--border);
-  height:160px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  background:#f9fcfb;
-  position:relative;
+    border:1px dashed var(--border);
+    height:160px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:#f9fdfb;
+    position:relative;
 }
 .image-box::before{
-  content:'صورة توثيقية';
-  position:absolute;
-  top:4px;
-  right:4px;
-  font-size:12px; /* تم تكبير الخط 3 درجات من 9px إلى 12px */
-  background:rgba(255,255,255,.9);
-  padding:1px 5px;
-  border-radius:3px;
-  z-index:1;
+    content:'صورة توثيقية';
+    position:absolute;
+    top:4px;
+    right:4px;
+    font-size:12px;
+    background:rgba(255,255,255,.9);
+    padding:1px 5px;
+    border-radius:3px;
+    z-index:1;
 }
 
 .image-box img{
-  width: 65%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+    width: 65%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
-/* التوقيعات */
 .signatures{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-  text-align:center;
-  font-size:13px; /* تم تكبير الخط 3 درجات من 10px إلى 13px */
-  margin-bottom:6px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    text-align:center;
+    font-size:13px;
+    margin-bottom:6px;
 }
 .signature-box{
-  padding-top:4px;
+    padding-top:4px;
 }
 .signature-role{
-  font-size:12px; /* تم تكبير الخط 3 درجات من 9px إلى 12px */
-  color:var(--main);
-  font-weight:700;
-  margin-bottom:2px;
+    font-size:12px;
+    color:var(--main);
+    font-weight:700;
+    margin-bottom:2px;
 }
 .signature-name{
-  font-size:14px; /* تم تكبير الخط 3 درجات من 11px إلى 14px */
-  font-weight:900;
-  color:#000;
+    font-size:14px;
+    font-weight:900;
+    color:#000;
 }
 .sign-line{
-  border-top:1px solid #000;
-  margin:6px auto 0;
-  width:70%;
+    border-top:1px solid #000;
+    margin:6px auto 0;
+    width:70%;
 }
 
-/* الفوتر */
 .footer-box{
-  background:var(--main);
-  color:#fff;
-  text-align:center;
-  font-size:11px; /* تم تكبير الخط 3 درجات من 8px إلى 11px */
-  padding:3px 4px;
-  border-radius:6px;
+    background:var(--main);
+    color:#fff;
+    text-align:center;
+    font-size:11px;
+    padding:3px 4px;
+    border-radius:6px;
 }
 
-/* لضمان ظهور الألوان في PDF */
 .pdf-export * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
 }
 
-/* إصلاحات للأندرويد */
-.android-fix * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
-/* إصلاحات الشريط السفلي على iOS */
-@supports (padding-bottom: env(safe-area-inset-bottom)) {
-    .wrapper {
-        padding-bottom: env(safe-area-inset-bottom);
-    }
-}
-
-/* مؤشر التحميل للذكاء الاصطناعي */
-.ai-loading-indicator {
-    display: none;
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    width: 20px;
-    height: 20px;
-    background: #ffd166;
-    border-radius: 50%;
-    animation: pulse 1.5s infinite;
-    z-index: 10;
-}
-
-@keyframes pulse {
-    0% { transform: scale(0.8); opacity: 0.7; }
-    50% { transform: scale(1.2); opacity: 1; }
-    100% { transform: scale(0.8); opacity: 0.7; }
-}
-
-/* إدخال التاريخ يدوياً */
-#manualDateInput {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 12px;
-    text-align: center;
-    font-family: 'Cairo', sans-serif;
-}
-
-#manualDateInput:focus {
-    outline: none;
-    border-color: #066d4d;
-    box-shadow: 0 0 0 2px rgba(6, 109, 77, 0.2);
-}
-
-/* منع النص من دفع المربع للتمدد - تم تعديلها */
 #subjectBox,
 #lessonBox{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  padding: 0 5px;
-  transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 5px;
+    transition: all 0.3s ease;
 }
 </style>
 </head>
 
 <body>
+
+<!-- زر التعبئة الذكية العائم - تصميم محسّن -->
+<button id="aiFillFloatingBtn" onclick="fillWithAI()" title="تعبئة الحقول تلقائياً باستخدام الذكاء الاصطناعي">
+    <i class="fas fa-magic floating-ai-icon"></i>
+    <span class="floating-ai-text">تعبئة ذكية</span>
+</button>
 
 <!-- شاشة كود التفعيل -->
 <div id="activationScreen">
@@ -1741,6 +1218,10 @@ user-select: none;
         <p>أدخل كود التفعيل الذي حصلت عليه من المطور</p>
         <input id="activationCodeInput" placeholder="أدخل كود التفعيل هنا">
         <button onclick="activateTool()">تفعيل</button>
+        <button id="contactForTrialBtn" onclick="contactForTrial()">
+            <i class="fas fa-comments"></i>
+            تواصل للتجربة أو الاشتراك
+        </button>
         <div id="activationError">كود غير صالح. الرجاء التأكد من الكود والمحاولة مرة أخرى.</div>
     </div>
 </div>
@@ -1750,217 +1231,29 @@ user-select: none;
 <i class="fas fa-bullhorn" style="margin-left:10px;"></i>
 اختر نوع التقرير من التصنيفات المتاحة وحدّد الأدوات التعليمية المستخدمة في الدرس،
 ثم اضغط زر التعبئة لتوليد محتوى البنود تلقائيًا.
-يمكن إعادة التوليد لتغيير الصياغة وتعديل النصوص عند الحاجة،
-كما يمكن إدخال اسم أي تقرير غير موجود ليتم توليده مباشرة وبسهولة عبر استخدام زر التعبئة.
 </div>
 </div>
 
+<!-- شريط الأزرار العلوية -->
 <div class="control-bar">
-    <div class="header-controls">
-        <!-- العنوان بدون مفتاح Gemini - توسيط في المنتصف -->
-        <div class="app-title" onclick="handleTeacherTitleClick()">
-            <i class="fas fa-user-tie"></i>
-            <span>تنفيذ: المعلم فهد الخالدي</span>
-        </div>
-        
-        <!-- حاوية التاريخ الجديدة - إدخال يدوي -->
-        <div class="date-toggle-container">
-            <div class="date-display" id="currentDateDisplay">
-                التاريخ الحالي
-            </div>
-            <input type="text" id="manualDateInput" 
-                   placeholder="أدخل التاريخ الهجري (مثال: ١٤٤٦/٠٦/١٥)" 
-                   onchange="updateManualDate()">
-        </div>
-        
-        <!-- مجموعة الأزرار المعدلة والمرتبة في صفين -->
-        <div class="btn-group">
-            <!-- الصف الأول: 3 أزرار -->
-            <div class="btn-row">
-                <button class="main-btn" id="saveTeacherBtn" onclick="saveTeacherData()" title="حفظ بيانات إدارة التعليم، اسم المدرسة، الصف، المادة، المستهدفون، المكان">
-                    <i class="fas fa-chalkboard-teacher btn-icon"></i>
-                    <span class="btn-text">حفظ بيانات المعلم</span>
-                </button>
-                <button class="main-btn" id="aiFillBtn" onclick="fillWithAI()" title="تعبئة جميع الحقول باستخدام الذكاء الاصطناعي">
-                    <i class="fas fa-robot btn-icon"></i>
-                    <span class="btn-text">تعبئة ذكية</span>
-                </button>
-                <button class="main-btn" id="pdfBtn" onclick="downloadPDF()" title="تحويل التقرير إلى PDF وتنزيله">
-                    <i class="fas fa-file-pdf btn-icon"></i>
-                    <span class="btn-text">تنزيل PDF</span>
-                </button>
-            </div>
-            
-            <!-- الصف الثاني: 4 أزرار (تمت إضافة زر التعبئة الذكية ٢) -->
-            <div class="btn-row">
-                <button class="main-btn" id="aiFillBtn2" onclick="fillWithAI2()" title="تعبئة ذكية متقدمة باستخدام مفاتيح جيمني المتعددة">
-                    <i class="fas fa-magic btn-icon"></i>
-                    <span class="btn-text">تعبئة ذكية ٢</span>
-                </button>
-                <button class="main-btn" id="clearBtn" onclick="clearData()" title="مسح جميع البيانات المدخلة">
-                    <i class="fas fa-trash-alt btn-icon"></i>
-                    <span class="btn-text">مسح البيانات</span>
-                </button>
-                <button class="main-btn" id="supportBtn" onclick="openSupportModal()" title="الدعم الفني والتواصل مع المطور">
-                    <i class="fas fa-headset btn-icon"></i>
-                    <span class="btn-text">الدعم الفني</span>
-                </button>
-                <button class="main-btn" id="whatsappBtn" onclick="sharePDFWhatsApp()" title="مشاركة التقرير عبر واتساب">
-                    <i class="fab fa-whatsapp btn-icon"></i>
-                    <span class="btn-text">مشاركة واتساب</span>
-                </button>
-            </div>
-        </div>
+    <div class="top-buttons-grid">
+        <button class="top-btn" id="saveTeacherBtn" onclick="saveTeacherData()" title="حفظ بيانات المعلم والمدرسة">
+            <i class="fas fa-save top-btn-icon"></i>
+            <span class="top-btn-text">حفظ البيانات</span>
+        </button>
+        <button class="top-btn" id="pdfBtn" onclick="downloadPDF()" title="تحويل التقرير إلى PDF وتنزيله">
+            <i class="fas fa-file-pdf top-btn-icon"></i>
+            <span class="top-btn-text">تنزيل PDF</span>
+        </button>
+        <button class="top-btn" id="clearBtn" onclick="clearData()" title="مسح جميع البيانات المدخلة">
+            <i class="fas fa-trash-alt top-btn-icon"></i>
+            <span class="top-btn-text">مسح البيانات</span>
+        </button>
+        <button class="top-btn" id="whatsappBtn" onclick="sharePDFWhatsApp()" title="مشاركة التقرير عبر واتساب">
+            <i class="fab fa-whatsapp top-btn-icon"></i>
+            <span class="top-btn-text">مشاركة واتساب</span>
+        </button>
     </div>
-</div>
-
-<!-- نافذة التحكم الإداري المخفية -->
-<div class="overlay" id="adminOverlay" onclick="closeAdminPanel()"></div>
-
-<div class="admin-panel" id="adminPanel">
-    <div class="admin-header">
-        <h3><i class="fas fa-key"></i> لوحة التحكم الإداري - مفاتيح Gemini</h3>
-        <button class="close-admin" onclick="closeAdminPanel()">×</button>
-    </div>
-    
-    <div class="admin-content">
-        <!-- مفتاح 1 -->
-        <div class="key-field">
-            <div class="key-header">
-                <label><i class="fas fa-key"></i> المفتاح 1</label>
-                <div class="key-actions">
-                    <button class="check-key-btn" onclick="checkKey(1)">
-                        <i class="fas fa-check"></i> تحقق
-                    </button>
-                    <button class="toggle-key-btn" id="toggleKey1" onclick="toggleKey(1)">
-                        <i class="fas fa-power-off"></i> تفعيل
-                    </button>
-                </div>
-            </div>
-            <input type="password" class="key-input" id="keyInput1" placeholder="أدخل مفتاح Gemini API الأول">
-            <div class="key-status" id="keyStatus1"></div>
-        </div>
-        
-        <!-- مفتاح 2 -->
-        <div class="key-field">
-            <div class="key-header">
-                <label><i class="fas fa-key"></i> المفتاح 2</label>
-                <div class="key-actions">
-                    <button class="check-key-btn" onclick="checkKey(2)">
-                        <i class="fas fa-check"></i> تحقق
-                    </button>
-                    <button class="toggle-key-btn" id="toggleKey2" onclick="toggleKey(2)">
-                        <i class="fas fa-power-off"></i> تفعيل
-                    </button>
-                </div>
-            </div>
-            <input type="password" class="key-input" id="keyInput2" placeholder="أدخل مفتاح Gemini API الثاني">
-            <div class="key-status" id="keyStatus2"></div>
-        </div>
-        
-        <!-- مفتاح 3 -->
-        <div class="key-field">
-            <div class="key-header">
-                <label><i class="fas fa-key"></i> المفتاح 3</label>
-                <div class="key-actions">
-                    <button class="check-key-btn" onclick="checkKey(3)">
-                        <i class="fas fa-check"></i> تحقق
-                    </button>
-                    <button class="toggle-key-btn" id="toggleKey3" onclick="toggleKey(3)">
-                        <i class="fas fa-power-off"></i> تفعيل
-                    </button>
-                </div>
-            </div>
-            <input type="password" class="key-input" id="keyInput3" placeholder="أدخل مفتاح Gemini API الثالث">
-            <div class="key-status" id="keyStatus3"></div>
-        </div>
-        
-        <!-- مفتاح 4 -->
-        <div class="key-field">
-            <div class="key-header">
-                <label><i class="fas fa-key"></i> المفتاح 4</label>
-                <div class="key-actions">
-                    <button class="check-key-btn" onclick="checkKey(4)">
-                        <i class="fas fa-check"></i> تحقق
-                    </button>
-                    <button class="toggle-key-btn" id="toggleKey4" onclick="toggleKey(4)">
-                        <i class="fas fa-power-off"></i> تفعيل
-                    </button>
-                </div>
-            </div>
-            <input type="password" class="key-input" id="keyInput4" placeholder="أدخل مفتاح Gemini API الرابع">
-            <div class="key-status" id="keyStatus4"></div>
-        </div>
-        
-        <!-- إجراءات عامة للمفاتيح -->
-        <div class="key-actions-global">
-            <button class="global-action-btn activate-all-btn" onclick="activateAllKeys()">
-                <i class="fas fa-play"></i> تفعيل الكل
-            </button>
-            <button class="global-action-btn deactivate-all-btn" onclick="deactivateAllKeys()">
-                <i class="fas fa-stop"></i> إيقاف الكل
-            </button>
-            <button class="global-action-btn save-keys-btn" onclick="saveKeys()">
-                <i class="fas fa-save"></i> حفظ المفاتيح
-            </button>
-        </div>
-        
-        <div class="admin-info" style="background: #f8fdfa; padding: 15px; border-radius: 10px; margin-top: 20px; border-right: 4px solid #ffd166;">
-            <p style="font-size: 12px; color: #044a35; margin-bottom: 8px;">
-                <i class="fas fa-info-circle"></i> النظام سيتحول تلقائيًا بين المفاتيح عند تجاوز الحد اليومي
-            </p>
-            <p style="font-size: 12px; color: #044a35;">
-                <i class="fas fa-sync-alt"></i> زر "التعبئة الذكية ٢" سيستخدم المفاتيح المفعّلة بالتناوب
-            </p>
-        </div>
-    </div>
-</div>
-
-<!-- إشعارات -->
-<div class="notification" id="saveNotification">
-<i class="fas fa-check-circle"></i>
-<span>تم حفظ بيانات المعلم بنجاح!</span>
-</div>
-
-<!-- نافذة الدعم الفني -->
-<div class="support-modal" id="supportModal">
-<div class="support-content">
-<div class="support-header">
-<h3><i class="fas fa-headset" style="margin-left:10px;"></i>الدعم الفني</h3>
-<button class="close-support" onclick="closeSupportModal()">×</button>
-</div>
-
-<div class="support-form">
-<div class="form-group">
-<label for="supportName"><i class="fas fa-user"></i>الاسم الكامل</label>
-<input type="text" id="supportName" placeholder="أدخل اسمك الكامل">
-</div>
-
-<div class="form-group">
-<label for="supportPhone"><i class="fas fa-phone"></i>رقم التواصل</label>
-<input type="tel" id="supportPhone" placeholder="أدخل رقم الجوال أو الهاتف">
-</div>
-
-<div class="form-group">
-<label for="supportIssue"><i class="fas fa-exclamation-circle"></i>تفاصيل المشكلة</label>
-<textarea id="supportIssue" rows="4" placeholder="صف مشكلتك بالتفصيل..."></textarea>
-</div>
-
-<div class="support-info">
-<p><i class="fas fa-envelope"></i>البريد الإلكتروني: iFahadenglish@gmail.com</p>
-<p><i class="fab fa-whatsapp"></i>واتساب: +966597077245</p>
-</div>
-
-<div class="support-actions">
-<button class="support-action-btn email-btn" onclick="sendEmailSupport()">
-<i class="fas fa-envelope"></i>مراسلة عبر البريد
-</button>
-<button class="support-action-btn whatsapp-support-btn" onclick="sendWhatsAppSupport()">
-<i class="fab fa-whatsapp"></i>مراسلة عبر واتساب
-</button>
-</div>
-</div>
-</div>
 </div>
 
 <div class="wrapper">
@@ -2003,13 +1296,14 @@ user-select: none;
     <!-- حقل الإدخال للنوع "أخرى" -->
     <input id="reportTypeInput" placeholder="أدخل اسم التقرير" oninput="updateReport()" style="display:none; margin-top:8px;">
     
-    <!-- خانة عنوان التقرير اليدوية - جديد -->
+    <!-- خانة عنوان التقرير اليدوية -->
     <div class="manual-title-container">
         <label><i class="fas fa-heading"></i>عنوان التقرير (يدوي)</label>
         <input type="text" id="manualReportTitle" placeholder="أدخل عنوان التقرير يدوياً..." oninput="updateManualTitle()">
     </div>
   </div>
   
+  <!-- بقية حقول الإدخال -->
   <div class="form-group">
     <label><i class="fas fa-university"></i>إدارة التعليم</label>
     <select id="education" oninput="updateReport()">
@@ -2081,7 +1375,6 @@ user-select: none;
     </div>
   </div>
   
-  <!-- المادة والدرس - أصبحا بجوار بعضهما -->
   <div class="form-row">
     <div class="form-group">
       <label><i class="fas fa-book"></i>المادة</label>
@@ -2114,45 +1407,38 @@ user-select: none;
   <div class="form-group">
     <label><i class="fas fa-flag"></i>الهدف التربوي</label>
     <textarea id="goal" placeholder="أدخل الهدف التربوي" oninput="updateReport()"></textarea>
-    <!-- تم إزالة أزرار التعبئة الذكية -->
   </div>
   
   <div class="form-group">
     <label><i class="fas fa-file-signature"></i>نبذة مختصرة</label>
     <textarea id="summary" placeholder="أدخل نبذة مختصرة" oninput="updateReport()"></textarea>
-    <!-- تم إزالة أزرار التعبئة الذكية -->
   </div>
   
   <div class="form-group">
     <label><i class="fas fa-tasks"></i>إجراءات التنفيذ</label>
     <textarea id="steps" placeholder="كيف تم تنفيذ النشاط؟" oninput="updateReport()"></textarea>
-    <!-- تم إزالة أزرار التعبئة الذكية -->
   </div>
   
   <div class="form-group">
     <label><i class="fas fa-chess-board"></i>الاستراتيجيات</label>
     <textarea id="strategies" placeholder="ما هي الاستراتيجيات" oninput="updateReport()"></textarea>
-    <!-- تم إزالة أزرار التعبئة الذكية -->
   </div>
   
   <div class="form-row">
     <div class="form-group">
       <label><i class="fas fa-thumbs-up"></i>نقاط القوة</label>
       <textarea id="strengths" placeholder="نقاط القوة" oninput="updateReport()"></textarea>
-      <!-- تم إزالة أزرار التعبئة الذكية -->
     </div>
     
     <div class="form-group">
       <label><i class="fas fa-tools"></i>نقاط التحسين</label>
       <textarea id="improve" placeholder="نقاط تحتاج تطوير" oninput="updateReport()"></textarea>
-      <!-- تم إزالة أزرار التعبئة الذكية -->
     </div>
   </div>
   
   <div class="form-group">
     <label><i class="fas fa-lightbulb"></i>التوصيات</label>
     <textarea id="recomm" placeholder="توصيات مستقبلية" oninput="updateReport()"></textarea>
-    <!-- تم إزالة أزرار التعبئة الذكية -->
   </div>
   
   <!-- قسم الأدوات والوسائل التعليمية -->
@@ -2232,9 +1518,8 @@ user-select: none;
 </div>
 </div>
 
-<!-- قسم PDF المعدل - تم تبديل نوع التقرير والمستهدفون حسب طلبك -->
+<!-- قسم PDF -->
 <div id="report-content" class="pdf-export" style="display:none;">
-
 <div class="header">
   <img src="https://i.ibb.co/1fc5gB6v/9-C92-E57-B-23-FA-479-D-A024-1-D5-F871-B4-F8-D.png">
   <div class="header-school-title">اسم المدرسة</div>
@@ -2246,18 +1531,14 @@ user-select: none;
   </div>
 </div>
 
-<!-- تم تبديل المستهدفون مكان نوع التقرير هنا -->
 <div class="info-grid">
   <div class="info-box"><div class="info-title">الفصل الدراسي</div><div class="info-value" id="termBox"></div></div>
   <div class="info-box"><div class="info-title">الصف</div><div class="info-value" id="gradeBox"></div></div>
   <div class="info-box"><div class="info-title">العدد</div><div class="info-value" id="countBox"></div></div>
-  <!-- التعديل: المستهدفون الآن في الصف الأول بدلاً من نوع التقرير -->
   <div class="info-box"><div class="info-title">المستهدفون</div><div class="info-value" id="targetBox"></div></div>
 </div>
 
-<!-- تم تبديل نوع التقرير مكان المستهدفون هنا -->
 <div class="info-grid2">
-  <!-- التعديل: نوع التقرير الآن في الصف الثاني بدلاً من المستهدفون -->
   <div class="info-box"><div class="info-title">نوع التقرير</div><div class="info-value" id="reportTypeBox"></div></div>
 
   <div class="subject-lesson-box">
@@ -2318,7 +1599,6 @@ user-select: none;
 <div class="footer-box">
   وزارة التعليم – المملكة العربية السعودية
 </div>
-
 </div>
 
 <script>
@@ -2327,6 +1607,44 @@ window.__ACTIVATED__ = false;
 // ==================== متغيرات التفعيل ====================
 const ACTIVATION_KEY_NAME = "activation_code";
 const BACKEND_URL = "https://deep-qphc.onrender.com";
+
+// ==================== متغيرات التاريخ ====================
+let currentHijriDate = '';
+let currentGregorianDate = '';
+
+// ==================== دالة تحميل التاريخ ====================
+async function loadDates() {
+    // التاريخ الميلادي
+    let g = new Date();
+    currentGregorianDate = `${g.getDate()}/${g.getMonth()+1}/${g.getFullYear()}`;
+
+    try {
+        // الحصول على التاريخ الهجري من API
+        const response = await fetch(
+            `https://api.aladhan.com/v1/gToH?date=${g.getDate()}-${g.getMonth()+1}-${g.getFullYear()}`
+        );
+        const data = await response.json();
+        const hijri = data.data.hijri;
+
+        // تحويل الأرقام إلى عربية
+        const toArabic = n =>
+            n.toString().replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+
+        currentHijriDate =
+            `${toArabic(hijri.year)}/${toArabic(hijri.month.number)}/${toArabic(hijri.day)}`;
+
+        // تحديث العرض في PDF
+        document.getElementById('hDate').innerHTML = currentHijriDate + " هـ";
+        document.getElementById('gDate').innerHTML = currentGregorianDate + " م";
+
+    } catch (error) {
+        // تاريخ افتراضي في حالة الخطأ
+        console.error("خطأ في تحميل التاريخ:", error);
+        currentHijriDate = "١٤٤٦/٠٦/٠١";
+        document.getElementById('hDate').innerHTML = currentHijriDate + " هـ";
+        document.getElementById('gDate').innerHTML = currentGregorianDate + " م";
+    }
+}
 
 function hideActivationScreen() {
     if (window.__ACTIVATED__) {
@@ -2356,26 +1674,22 @@ async function activateTool() {
         if (!res.ok) throw new Error("Invalid");
 
         localStorage.setItem(ACTIVATION_KEY_NAME, code);
-window.__ACTIVATED__ = true;   // ← هذا السطر مفقود
-hideActivationScreen();
-showNotification("تم تفعيل الأداة بنجاح! ✓");
+        window.__ACTIVATED__ = true;
+        hideActivationScreen();
+        showNotification("تم تفعيل الأداة بنجاح! ✓");
 
     } catch {
         showActivationError();
     }
 }
 
-// ==================== متغيرات إدارة المفاتيح ====================
-let teacherClickCount = 0;
-let aiFill2ClickCount = 0;
-let geminiKeys = [
-    { id: 1, key: '', active: false, lastUsed: 0, dailyCount: 0, maxDaily: 1500 },
-    { id: 2, key: '', active: false, lastUsed: 0, dailyCount: 0, maxDaily: 1500 },
-    { id: 3, key: '', active: false, lastUsed: 0, dailyCount: 0, maxDaily: 1500 },
-    { id: 4, key: '', active: false, lastUsed: 0, dailyCount: 0, maxDaily: 1500 }
-];
+// زر التواصل للتجربة أو الاشتراك
+function contactForTrial() {
+    const message = encodeURIComponent("أرغب في تجربة أداة إصدار التقارير التربوية أو الاشتراك فيها.\n\nيرجى التواصل معي للمزيد من المعلومات.");
+    window.open(`https://wa.me/966597077245?text=${message}`, '_blank');
+}
 
-// كائن يحتوي على جميع التقارير مصنفة
+// ==================== كائن التقارير ====================
 const allReportsByCategory = {
   "التقارير التعليمية الصفية": [
     "تقرير أنشطة صفية",
@@ -2561,7 +1875,7 @@ const allReportsByCategory = {
     "تقرير تحليل محتوى المنهج",
     "تقرير مواءمة المنهج مع نواتج التعلم",
     "تقرير تحديث الخطط الدراسية",
-    "t report تطوير أدوات التقويم",
+    "تقرير تطوير أدوات التقويم",
     "تقرير البحث الإجرائي"
   ],
   "تقارير الجودة واللجان": [
@@ -2584,8 +1898,8 @@ const allReportsByCategory = {
     "تقرير الإسعافات الأولية",
     "تقرير جاهزية المباني"
   ]
-}
-// إنشاء قائمة بجميع التقارير لاستخدامها في البحث العام
+};
+
 const allReports = [];
 for (const category in allReportsByCategory) {
     allReportsByCategory[category].forEach(report => {
@@ -2593,234 +1907,8 @@ for (const category in allReportsByCategory) {
     });
 }
 
-// كائن يحتوي على النصوص الذكية لكل نوع تقرير (تم إزالة المحتوى الخاص بتقرير نشاط إثرائي)
-const autoTextsByReportType = {
-    'تقرير نشاط إثرائي': {
-        goal: [""],
-        summary: [""],
-        steps: [""],
-        strategies: [""],
-        strengths: [""],
-        improve: [""],
-        recomm: [""]
-    }
-};
-
-// النصوص الافتراضية
-const defaultTexts = {
-    goal: ["الهدف التربوي"],
-    summary: ["النبذة المختصرة"],
-    steps: ["إجراءات التنفيذ"],
-    strategies: ["الاستراتيجيات"],
-    strengths: ["نقاط القوة"],
-    improve: ["نقاط التحسين"],
-    recomm: ["التوصيات"]
-};
-
-let counters = {goal:0,summary:0,steps:0,strategies:0,strengths:0,improve:0,recomm:0};
-let currentReportType = "";
-
-// متغيرات للتحكم بالتاريخ
-let dateMode = 'hijri'; // hijri أو gregorian
-let currentHijriDate = '';
-let currentGregorianDate = '';
-
-// رابط خادم الذكاء الاصطناعي B الصحيح
-const backendAIUrl = BACKEND_URL + '/ask';
-
-// ==================== دوال إدارة المفاتيح ====================
-
-// دالة فتح/إغلاق لوحة التحكم الإداري
-function openAdminPanel() {
-    document.getElementById('adminOverlay').classList.add('show');
-    document.getElementById('adminPanel').classList.add('show');
-    document.body.style.overflow = 'hidden';
-    loadKeysFromStorage();
-}
-
-function closeAdminPanel() {
-    document.getElementById('adminOverlay').classList.remove('show');
-    document.getElementById('adminPanel').classList.remove('show');
-    document.body.style.overflow = 'auto';
-}
-
-// دالة التعامل مع النقر على عنوان المعلم
-function handleTeacherTitleClick() {
-    teacherClickCount++;
-    
-    if (teacherClickCount === 3) {
-        // إظهار زر التعبئة الذكية ٢
-        document.getElementById('aiFillBtn2').classList.add('show');
-        showNotification('تم تفعيل زر التعبئة الذكية ٢! ✓');
-    } else if (teacherClickCount >= 5) {
-        // إظهار لوحة التحكم الإداري
-        openAdminPanel();
-        teacherClickCount = 0; // إعادة تعيين العداد
-    }
-}
-
-// تحميل المفاتيح من التخزين المحلي
-function loadKeysFromStorage() {
-    const savedKeys = localStorage.getItem('geminiKeys');
-    if (savedKeys) {
-        const parsedKeys = JSON.parse(savedKeys);
-        geminiKeys = parsedKeys;
-        
-        // تحديث واجهة المستخدم
-        geminiKeys.forEach(key => {
-            if (key.key) {
-                document.getElementById(`keyInput${key.id}`).value = key.key;
-                updateKeyStatus(key.id, key.active ? 'active' : 'inactive');
-                document.getElementById(`toggleKey${key.id}`).classList.toggle('active', key.active);
-                document.getElementById(`toggleKey${key.id}`).innerHTML = 
-                    key.active ? '<i class="fas fa-power-off"></i> مفعل' : '<i class="fas fa-power-off"></i> تفعيل';
-            }
-        });
-        
-        showNotification('تم تحميل المفاتيح المحفوظة ✓');
-    }
-}
-
-// حفظ المفاتيح في التخزين المحلي
-function saveKeys() {
-    // تحديث قيم المفاتيح من الحقول
-    geminiKeys.forEach(key => {
-        key.key = document.getElementById(`keyInput${key.id}`).value.trim();
-    });
-    
-    localStorage.setItem('geminiKeys', JSON.stringify(geminiKeys));
-    showNotification('تم حفظ المفاتيح بنجاح ✓');
-}
-
-// التحقق من صحة المفتاح
-async function checkKey(keyId) {
-    const keyInput = document.getElementById(`keyInput${keyId}`);
-    const keyValue = keyInput.value.trim();
-    
-    if (!keyValue) {
-        updateKeyStatus(keyId, 'inactive', 'المفتاح فارغ');
-        return;
-    }
-    
-    try {
-        // اختبار المفتاح بمحاولة استدعاء بسيطة
-        const testResponse = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + keyValue, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{
-                        text: "Hello"
-                    }]
-                }]
-            })
-        });
-        
-        if (testResponse.ok) {
-            updateKeyStatus(keyId, 'active', 'المفتاح صالح');
-            geminiKeys[keyId - 1].key = keyValue;
-        } else {
-            updateKeyStatus(keyId, 'inactive', 'المفتاح غير صالح');
-        }
-    } catch (error) {
-        updateKeyStatus(keyId, 'inactive', 'خطأ في الاتصال');
-    }
-}
-
-// تفعيل/إلغاء تفعيل المفتاح
-function toggleKey(keyId) {
-    const button = document.getElementById(`toggleKey${keyId}`);
-    const keyIndex = keyId - 1;
-    
-    geminiKeys[keyIndex].active = !geminiKeys[keyIndex].active;
-    
-    if (geminiKeys[keyIndex].active) {
-        button.classList.add('active');
-        button.innerHTML = '<i class="fas fa-power-off"></i> مفعل';
-        updateKeyStatus(keyId, 'active', 'المفتاح مفعل');
-    } else {
-        button.classList.remove('active');
-        button.innerHTML = '<i class="fas fa-power-off"></i> تفعيل';
-        updateKeyStatus(keyId, 'inactive', 'المفتاح معطل');
-    }
-}
-
-// تحديث حالة المفتاح في الواجهة
-function updateKeyStatus(keyId, status, message = '') {
-    const statusElement = document.getElementById(`keyStatus${keyId}`);
-    statusElement.className = `key-status ${status}`;
-    statusElement.innerHTML = `<i class="fas fa-${status === 'active' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
-}
-
-// تفعيل جميع المفاتيح
-function activateAllKeys() {
-    geminiKeys.forEach((key, index) => {
-        if (key.key) {
-            key.active = true;
-            const button = document.getElementById(`toggleKey${key.id}`);
-            button.classList.add('active');
-            button.innerHTML = '<i class="fas fa-power-off"></i> مفعل';
-            updateKeyStatus(key.id, 'active', 'مفعل');
-        }
-    });
-    showNotification('تم تفعيل جميع المفاتيح ✓');
-}
-
-// إلغاء تفعيل جميع المفاتيح
-function deactivateAllKeys() {
-    geminiKeys.forEach(key => {
-        key.active = false;
-        const button = document.getElementById(`toggleKey${key.id}`);
-        button.classList.remove('active');
-        button.innerHTML = '<i class="fas fa-power-off"></i> تفعيل';
-        updateKeyStatus(key.id, 'inactive', 'معطل');
-    });
-    showNotification('تم إلغاء تفعيل جميع المفاتيح ✓');
-}
-
-// الحصول على المفتاح التالي المتاح
-function getNextAvailableKey() {
-    const now = Date.now();
-    const oneDay = 24 * 60 * 60 * 1000;
-    
-    // تصفية المفاتيح النشطة والمرتبة حسب الاستخدام
-    const availableKeys = geminiKeys.filter(key => 
-        key.active && key.key && 
-        (now - key.lastUsed > oneDay || key.dailyCount < key.maxDaily)
-    );
-    
-    if (availableKeys.length === 0) {
-        return null;
-    }
-    
-    // ترتيب المفاتيح حسب عدد الاستخدامات اليومية (الأقل استخدامًا أولاً)
-    availableKeys.sort((a, b) => a.dailyCount - b.dailyCount);
-    
-    return availableKeys[0];
-}
-
-// تحديث استخدام المفتاح
-function updateKeyUsage(keyId) {
-    const now = Date.now();
-    const oneDay = 24 * 60 * 60 * 1000;
-    const keyIndex = keyId - 1;
-    
-    // إعادة تعيين العداد اليومي إذا مر يوم
-    if (now - geminiKeys[keyIndex].lastUsed > oneDay) {
-        geminiKeys[keyIndex].dailyCount = 0;
-    }
-    
-    geminiKeys[keyIndex].dailyCount++;
-    geminiKeys[keyIndex].lastUsed = now;
-    
-    // حفظ التحديثات
-    localStorage.setItem('geminiKeys', JSON.stringify(geminiKeys));
-}
-
-// ==================== دالة التعبئة الذكية ٢ (باستخدام المفاتيح المتعددة) ====================
-async function fillWithAI2() {
+// ==================== دالة التعبئة الذكية (الزر العائم) ====================
+async function fillWithAI() {
     // التحقق من كود التفعيل
     const activationCode = localStorage.getItem(ACTIVATION_KEY_NAME);
     if (!activationCode) {
@@ -2841,13 +1929,6 @@ async function fillWithAI2() {
         return;
     }
     
-    // التحقق من وجود مفاتيح مفعلة
-    const availableKey = getNextAvailableKey();
-    if (!availableKey) {
-        alert('لا توجد مفاتيح جيمني مفعلة أو أن جميعها تجاوز الحد اليومي. الرجاء تفعيل مفاتيح جديدة من لوحة التحكم.');
-        return;
-    }
-    
     // الحصول على معلومات إضافية
     const subject = document.getElementById('subject').value || '';
     const lesson = document.getElementById('lesson').value || '';
@@ -2856,27 +1937,17 @@ async function fillWithAI2() {
     const place = document.getElementById('place').value || '';
     const count = document.getElementById('count').value || '';
     
-    // عرض مؤشر التحميل
-    const aiButton = document.getElementById('aiFillBtn2');
-    const originalText = aiButton.querySelector('.btn-text').textContent;
-    const originalIcon = aiButton.querySelector('.btn-icon').className;
+    // عرض حالة التحميل على الزر العائم
+    const aiButton = document.getElementById('aiFillFloatingBtn');
+    const originalText = aiButton.querySelector('.floating-ai-text').textContent;
+    const originalIcon = aiButton.querySelector('.floating-ai-icon').className;
     
-    // إضافة مؤشر التحميل
-    let loadingIndicator = aiButton.querySelector('.ai-loading-indicator');
-    if (!loadingIndicator) {
-        loadingIndicator = document.createElement('div');
-        loadingIndicator.className = 'ai-loading-indicator';
-        aiButton.appendChild(loadingIndicator);
-    }
-    loadingIndicator.style.display = 'block';
-    
-    aiButton.querySelector('.btn-text').textContent = 'جارٍ التعبئة...';
-    aiButton.querySelector('.btn-icon').className = 'fas fa-spinner fa-spin btn-icon';
-    aiButton.classList.add('ai-loading');
+    aiButton.classList.add('loading');
+    aiButton.querySelector('.floating-ai-text').textContent = 'جارٍ...';
+    aiButton.querySelector('.floating-ai-icon').className = 'fas fa-spinner fa-spin floating-ai-icon';
     aiButton.disabled = true;
     
     try {
-        // إعداد النص المطلوب للذكاء الاصطناعي - البرومبت المهني
         const prompt = `أنت خبير تربوي تعليمي محترف تمتلك خبرة ميدانية واسعة في التعليم العام.  
 اعتمد منظورًا تربويًا مهنيًا احترافيًا يركّز على تحسين جودة التعليم، ودعم المعلم، وتعزيز بيئة التعلّم، وخدمة القيادة المدرسية.  
 
@@ -2916,145 +1987,79 @@ ${count ? `عدد الحضور: ${count}` : ''}
 
 يرجى تقديم الإجابة باللغة العربية الفصحى، وتنظيمها بحيث يكون كل حقل في سطر منفصل يبدأ برقمه فقط دون ذكر العنوان.`;
 
-        // استخدام API جيمني مباشرة مع المفتاح المحدد
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${availableKey.key}`, {
+        const response = await fetch(BACKEND_URL + '/ask', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'X-Activation-Code': activationCode
             },
             body: JSON.stringify({
-                contents: [{
-                    parts: [{
-                        text: prompt
-                    }]
-                }],
-                generationConfig: {
-                    temperature: 0.7,
-                    topK: 40,
-                    topP: 0.95,
-                    maxOutputTokens: 2048,
+                prompt: prompt,
+                model: "gemini-2.5-flash-lite",
+                reportData: {
+                    reportType: reportType,
+                    subject: subject,
+                    lesson: lesson,
+                    grade: grade,
+                    target: target,
+                    place: place,
+                    count: count
                 }
             })
         });
 
         if (!response.ok) {
-            throw new Error(`خطأ في المفتاح ${availableKey.id}: ${response.status}`);
+            let errorMessage = "تعذر تنفيذ الطلب";
+
+            try {
+                const errData = await response.json();
+
+                if (errData.detail) {
+                    const map = {
+                        "Usage limit reached": "تم استهلاك عدد الاستخدامات المسموح بها لهذا الكود",
+                        "Activation code expired": "انتهت صلاحية كود التفعيل",
+                        "Activation code disabled": "كود التفعيل غير مفعل",
+                        "Invalid activation code": "كود التفعيل غير صحيح"
+                    };
+
+                    errorMessage = map[errData.detail] || errData.detail;
+                }
+            } catch (_) {}
+
+            throw new Error(errorMessage);
         }
 
         const data = await response.json();
         
-        // فحص الاستجابة
-        if (!data || !data.candidates || !data.candidates[0] || !data.candidates[0].content || !data.candidates[0].content.parts) {
-            throw new Error('لم يتم الحصول على إجابة صحيحة من الذكاء الاصطناعي');
+        if (!data || !data.answer) {
+            throw new Error('لم يتم الحصول على إجابة من الذكاء الاصطناعي');
         }
         
-        const aiResponse = data.candidates[0].content.parts[0].text;
-        
-        // تحديث استخدام المفتاح
-        updateKeyUsage(availableKey.id);
-        
-        // تحليل الإجابة وتعيينها للحقول
+        const aiResponse = data.answer;
         parseAIResponseProfessional(aiResponse);
-        
-        showNotification(`تم تعبئة الحقول باستخدام المفتاح ${availableKey.id} ✓ (${availableKey.dailyCount}/${availableKey.maxDaily})`);
+        showNotification('تم تعبئة الحقول باستخدام الذكاء الاصطناعي بنجاح! ✓');
         
     } catch (error) {
         console.error('خطأ في الذكاء الاصطناعي:', error);
-        
-        // محاولة استخدام مفتاح آخر إذا فشل الأول
-        if (error.message.includes('خطأ في المفتاح')) {
-            // تعطيل المفتاح الحالي
-            geminiKeys[availableKey.id - 1].active = false;
-            localStorage.setItem('geminiKeys', JSON.stringify(geminiKeys));
-            
-            // تحديث الواجهة
-            const button = document.getElementById(`toggleKey${availableKey.id}`);
-            if (button) {
-                button.classList.remove('active');
-                button.innerHTML = '<i class="fas fa-power-off"></i> تفعيل';
-                updateKeyStatus(availableKey.id, 'inactive', 'تجاوز الحد اليومي');
-            }
-            
-            // محاولة مرة أخرى بمفتاح آخر
-            setTimeout(() => {
-                fillWithAI2();
-            }, 1000);
-        } else {
-            alert(`خطأ: ${error.message}\n\nتأكد من:\n1. اتصال الإنترنت\n2. صحة المفاتيح المدخلة`);
-        }
+        alert(
+            error.message ||
+            "تعذر تنفيذ الطلب.\n\nيرجى التأكد من صلاحية كود التفعيل وعدم استهلاك عدد الاستخدامات."
+        );
     } finally {
-        // إخفاء مؤشر التحميل
-        if (loadingIndicator) {
-            loadingIndicator.style.display = 'none';
-        }
-        
-        // استعادة الحالة الأصلية
-        aiButton.querySelector('.btn-text').textContent = originalText;
-        aiButton.querySelector('.btn-icon').className = originalIcon;
-        aiButton.classList.remove('ai-loading');
+        // إزالة حالة التحميل وإعادة الزر إلى حالته الأصلية
+        aiButton.classList.remove('loading');
+        aiButton.querySelector('.floating-ai-text').textContent = originalText;
+        aiButton.querySelector('.floating-ai-icon').className = originalIcon;
         aiButton.disabled = false;
+        
+        // إزالة أي تأثيرات بصرية متبقية
+        aiButton.style.background = 'linear-gradient(135deg, #38b2ac 0%, #319795 100%)';
+        aiButton.style.transform = 'translateY(0)';
+        aiButton.style.boxShadow = '0 8px 25px rgba(56, 178, 172, 0.4)';
     }
 }
 
-// ==================== دوال التحويل والتواريخ ====================
-async function convertHijriToGregorian(hijriDate) {
-    if (!hijriDate || hijriDate.trim() === '') return '';
-    
-    try {
-        // تحويل الأرقام العربية إلى إنجليزية
-        const arabicToEnglish = {
-            '٠': '0', '١': '1', '٢': '2', '٣': '3', '٤': '4',
-            '٥': '5', '٦': '6', '٧': '7', '٨': '8', '٩': '9'
-        };
-        
-        let cleanDate = hijriDate;
-        for (let arabic in arabicToEnglish) {
-            cleanDate = cleanDate.replace(new RegExp(arabic, 'g'), arabicToEnglish[arabic]);
-        }
-        
-        const dateParts = cleanDate.split(/[-\/]/);
-        if (dateParts.length === 3) {
-            const day = parseInt(dateParts[2]);
-            const month = parseInt(dateParts[1]);
-            const year = parseInt(dateParts[0]);
-            
-            if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
-                const response = await fetch(`https://api.aladhan.com/v1/hToG?date=${day}-${month}-${year}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.data && data.data.gregorian) {
-                        const g = data.data.gregorian;
-                        return `${g.day}/${g.month.number}/${g.year}`;
-                    }
-                }
-            }
-        }
-        
-        return hijriDate;
-        
-    } catch (error) {
-        console.error('خطأ في تحويل التاريخ:', error);
-        return hijriDate;
-    }
-}
-
-function getCurrentTexts() {
-    const reportType = document.getElementById('reportType').value;
-    return autoTextsByReportType[reportType] || defaultTexts;
-}
-
-function autoFill(id){
-    const texts = getCurrentTexts();
-    if (texts[id] && texts[id].length > 0) {
-        counters[id] = (counters[id] + 1) % texts[id].length;
-        document.getElementById(id).value = texts[id][counters[id]];
-        updateReport();
-    } else {
-        alert("لا توجد نصوص ذكية متاحة لهذا الحقل في التقرير الحالي");
-    }
-}
-
-// دالة معالجة اختيار التصنيف
+// ==================== دوال مساعدة ====================
 function handleReportCategory() {
     const categorySelect = document.getElementById('reportCategory');
     const reportTypeSelect = document.getElementById('reportType');
@@ -3069,7 +2074,6 @@ function handleReportCategory() {
         manualTitleContainer.style.display = 'block';
         reportTypeSelect.innerHTML = '<option value="أخرى">أخرى</option>';
         reportTypeSelect.value = "أخرى";
-        handleReportType();
     } else if (categorySelect.value) {
         reportTypeSelect.style.display = 'block';
         reportTypeInput.style.display = 'none';
@@ -3086,9 +2090,9 @@ function handleReportCategory() {
         manualTitleContainer.style.display = 'block';
         reportTypeSelect.innerHTML = '<option value="">اختر تقريرًا</option>';
     }
+    updateReport();
 }
 
-// دالة تحديث خيارات قائمة التقارير
 function updateReportTypeOptions(reports) {
     const reportTypeSelect = document.getElementById('reportType');
     reportTypeSelect.innerHTML = '<option value="">اختر تقريرًا</option>';
@@ -3101,7 +2105,6 @@ function updateReportTypeOptions(reports) {
     });
 }
 
-// دالة البحث الفوري في التقارير
 function handleReportSearch() {
     const reportSearch = document.getElementById('reportSearch');
     const searchResults = document.getElementById('searchResults');
@@ -3161,7 +2164,6 @@ function handleReportSearch() {
                 reportTypeSelect.value = selectedReport;
                 reportSearch.value = '';
                 searchResults.style.display = 'none';
-                handleReportType();
                 updateReport();
                 reportTypeSelect.style.display = 'block';
                 reportTypeSelect.style.borderColor = '#066d4d';
@@ -3178,12 +2180,10 @@ function handleReportSearch() {
     }
 }
 
-// دالة لتحديث عنوان التقرير اليدوي
 function updateManualTitle() {
     updateReport();
 }
 
-// دالة تكيف الخطوط
 function adaptSubjectLessonFont() {
   const elements = [
     document.getElementById('subjectBox'),
@@ -3314,6 +2314,17 @@ function getReportTypeText() {
     }
 }
 
+function toggleTool(element) {
+    const checkbox = element.querySelector('input[type="checkbox"]');
+    checkbox.checked = !checkbox.checked;
+    if (checkbox.checked) {
+        element.classList.add('checked');
+    } else {
+        element.classList.remove('checked');
+    }
+    updateToolsDisplay();
+}
+
 function updateToolsDisplay() {
     const toolsListBox = document.getElementById('toolsListBox');
     toolsListBox.innerHTML = '';
@@ -3363,7 +2374,6 @@ function loadImage(input, target) {
     }
 }
 
-// دالة جديدة لحفظ بيانات المعلم فقط
 function saveTeacherData(){
     const teacherData = {
         education: document.getElementById('education').value,
@@ -3380,8 +2390,6 @@ function saveTeacherData(){
         term: document.getElementById('term').value,
         count: document.getElementById('count').value,
         manualTitle: document.getElementById('manualReportTitle').value,
-        manualHijriDate: currentHijriDate,
-        manualGregorianDate: currentGregorianDate,
         tools: []
     };
     
@@ -3401,18 +2409,24 @@ function saveTeacherData(){
     showNotification('تم حفظ بيانات المعلم بنجاح!');
 }
 
-// دالة لعرض الإشعارات
 function showNotification(message) {
-    const notification = document.getElementById('saveNotification');
-    notification.querySelector('span').textContent = message;
-    notification.classList.add('show');
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = `<i class="fas fa-check-circle"></i><span>${message}</span>`;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
     
     setTimeout(() => {
         notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 400);
     }, 3000);
 }
 
-// دالة لتحميل بيانات المعلم المحفوظة عند تشغيل الصفحة
 function loadTeacherData() {
     const savedData = localStorage.getItem('teacherData');
     
@@ -3433,16 +2447,6 @@ function loadTeacherData() {
         document.getElementById('term').value = teacherData.term || '';
         document.getElementById('count').value = teacherData.count || '';
         document.getElementById('manualReportTitle').value = teacherData.manualTitle || '';
-        
-        if (teacherData.manualHijriDate) {
-            currentHijriDate = teacherData.manualHijriDate;
-            currentGregorianDate = teacherData.manualGregorianDate || '';
-            document.getElementById('manualDateInput').value = currentHijriDate;
-            document.getElementById('currentDateDisplay').textContent = `هجري: ${currentHijriDate}`;
-            
-            document.getElementById('hDate').innerHTML = currentHijriDate + " هـ";
-            document.getElementById('gDate').innerHTML = currentGregorianDate ? currentGregorianDate + " م" : currentHijriDate + " هـ";
-        }
         
         const textFields = ['goal', 'summary', 'steps', 'strategies', 'strengths', 'improve', 'recomm'];
         textFields.forEach(field => {
@@ -3472,145 +2476,6 @@ function loadTeacherData() {
     }
 }
 
-// دالة الذكاء الاصطناعي الأصلية
-async function fillWithAI() {
-    // التحقق من كود التفعيل
-    const activationCode = localStorage.getItem(ACTIVATION_KEY_NAME);
-    if (!activationCode) {
-        alert('الرجاء تفعيل الأداة أولاً باستخدام كود التفعيل');
-        return;
-    }
-    
-    // التحقق من اتصال الإنترنت
-    if (!navigator.onLine) {
-        alert('لا يوجد اتصال بالإنترنت. الرجاء التأكد من الاتصال');
-        return;
-    }
-    
-    // الحصول على نوع التقرير
-    const reportType = getReportTypeText();
-    if (!reportType || reportType === 'تقرير') {
-        alert('الرجاء اختيار أو إدخال نوع التقرير أولاً');
-        return;
-    }
-    
-    // الحصول على معلومات إضافية
-    const subject = document.getElementById('subject').value || '';
-    const lesson = document.getElementById('lesson').value || '';
-    const grade = document.getElementById('grade').value || '';
-    const target = document.getElementById('target').value || '';
-    const place = document.getElementById('place').value || '';
-    const count = document.getElementById('count').value || '';
-    
-    // عرض مؤشر التحميل
-    const aiButton = document.getElementById('aiFillBtn');
-    const originalText = aiButton.querySelector('.btn-text').textContent;
-    const originalIcon = aiButton.querySelector('.btn-icon').className;
-    
-    let loadingIndicator = aiButton.querySelector('.ai-loading-indicator');
-    if (!loadingIndicator) {
-        loadingIndicator = document.createElement('div');
-        loadingIndicator.className = 'ai-loading-indicator';
-        aiButton.appendChild(loadingIndicator);
-    }
-    loadingIndicator.style.display = 'block';
-    
-    aiButton.querySelector('.btn-text').textContent = 'جارٍ التعبئة...';
-    aiButton.querySelector('.btn-icon').className = 'fas fa-spinner fa-spin btn-icon';
-    aiButton.classList.add('ai-loading');
-    aiButton.disabled = true;
-    
-    try {
-        const prompt = `أنت خبير تربوي تعليمي محترف تمتلك خبرة ميدانية واسعة في التعليم العام.  
-اعتمد منظورًا تربويًا مهنيًا احترافيًا يركّز على تحسين جودة التعليم، ودعم المعلم، وتعزيز بيئة التعلّم، وخدمة القيادة المدرسية.  
-
-التقرير المطلوب: "${reportType}"
-${subject ? `المادة: ${subject}` : ''}
-${lesson ? `الدرس: ${lesson}` : ''}
-${grade ? `الصف: ${grade}` : ''}
-${target ? `المستهدفون: ${target}` : ''}
-${place ? `مكان التنفيذ: ${place}` : ''}
-${count ? `عدد الحضور: ${count}` : ''}
-
-**توجيهات مهنية:**
-- كن موضوعيًا ومتزنًا وبنّاءً  
-- قدّم الملاحظات بصيغة تطويرية غير نقدية  
-- راعِ واقع الميدان التعليمي وسياق المدرسة  
-- اربط بين المعلم والطالب والمنهج والبيئة الصفية والقيادة المدرسية  
-- ركّز على جودة التعليم وأثر الممارسات على تعلم الطلاب  
-- التزم بلغة عربية فصيحة سليمة وخالية من الأخطاء  
-
-**شروط المحتوى:**اكتب محتوى كل حقل بصيغة تقريرية مهنية وكأنه صادر عن المعلم.
-لا تكتب أبداً عنوان الحقل داخل المحتوى ولا تعِد صياغته بصيغة مباشرة (مثل: الهدف التربوي هو، النبذة المختصرة).
-يجب أن يحتوي كل حقل على ما يقارب 25 كلمة.
-ابدأ بالمضمون مباشرة دون تمهيد أو عبارات إنشائية.
-يمكن الاستفادة من معنى العنوان أو أحد مفاهيمه بشكل غير مباشر فقط عند الحاجة وبما يخدم الفكرة دون تكرار أو حشو.
-احرص على وجود ترابط منطقي بين الأهداف، النبذة المختصرة، الاستراتيجيات، إجراءات التنفيذ، نقاط القوة، نقاط التحسين، والتوصيات.
-اربط المحتوى بالمادة الدراسية وعنوان الدرس إن وُجد، وكذلك بمكان التنفيذ، بأسلوب مهني متوازن يجمع بين الإشارة المباشرة وغير المباشرة دون تكلف.
-اجعل الهدف النهائي للمحتوى تحسين الممارسة التعليمية ودعم التطوير المهني المستدام.
-راعِ الوضوح والترابط، واجعل كل جملة تضيف قيمة تعليمية فعلية.
-الحقول المطلوبة:**
-1. الهدف التربوي
-2. نبذة مختصرة  
-3. إجراءات التنفيذ
-4. الاستراتيجيات
-5. نقاط القوة
-6. نقاط التحسين
-7. التوصيات
-
-يرجى تقديم الإجابة باللغة العربية الفصحى، وتنظيمها بحيث يكون كل حقل في سطر منفصل يبدأ برقمه فقط دون ذكر العنوان.`;
-
-        const response = await fetch(backendAIUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Activation-Code': activationCode
-            },
-            body: JSON.stringify({
-                prompt: prompt,
-                model: "gemini-2.5-flash-lite",
-                reportData: {
-                    reportType: reportType,
-                    subject: subject,
-                    lesson: lesson,
-                    grade: grade,
-                    target: target,
-                    place: place,
-                    count: count
-                }
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error(`خطأ في الاتصال بالخادم: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        if (!data || !data.answer) {
-            throw new Error('لم يتم الحصول على إجابة من الذكاء الاصطناعي');
-        }
-        
-        const aiResponse = data.answer;
-        parseAIResponseProfessional(aiResponse);
-        showNotification('تم تعبئة الحقول باستخدام الذكاء الاصطناعي بنجاح! ✓');
-        
-    } catch (error) {
-        console.error('خطأ في الذكاء الاصطناعي:', error);
-        alert(`خطأ: ${error.message}\n\nتأكد من:\n1. اتصال الإنترنت\n2. أن خادم Backend يعمل على الرابط: ${backendAIUrl}`);
-    } finally {
-        if (loadingIndicator) {
-            loadingIndicator.style.display = 'none';
-        }
-        
-        aiButton.querySelector('.btn-text').textContent = originalText;
-        aiButton.querySelector('.btn-icon').className = originalIcon;
-        aiButton.classList.remove('ai-loading');
-        aiButton.disabled = false;
-    }
-}
-
-// دالة محسنة لتحليل استجابة الذكاء الاصطناعي المهنية
 function parseAIResponseProfessional(response) {
     const lines = response.split('\n').filter(line => line.trim());
     
@@ -3637,7 +2502,6 @@ function parseAIResponseProfessional(response) {
             if (fieldMapping[fieldNumber]) {
                 const fieldId = fieldMapping[fieldNumber];
                 content = ensureWordCount(content, 25);
-                content = addProfessionalTouch(content, fieldId);
                 
                 document.getElementById(fieldId).value = content;
                 foundFields++;
@@ -3652,12 +2516,11 @@ function parseAIResponseProfessional(response) {
     updateReport();
 }
 
-// دالة لإزالة عناوين الحقول من النص
 function removeFieldTitles(content) {
     const fieldTitles = [
-        'الهدف التربوي', 'الهدف التربوي', ,
-        'نبذة مختصرة', 'نبذة مختصرة', ,
-        'إجراءات التنفيذ', 'إجراءات التنفيذ', ,
+        'الهدف التربوي', 'الهدف التربوي',
+        'نبذة مختصرة', 'نبذة مختصرة',
+        'إجراءات التنفيذ', 'إجراءات التنفيذ',
         'الاستراتيجيات', 'الاستراتيجيات',
         'نقاط القوة', 'نقاط القوة',
         'نقاط التحسين', 'نقاط تحسين',
@@ -3682,7 +2545,6 @@ function removeFieldTitles(content) {
     return cleanedContent || content;
 }
 
-// دالة لتأكيد عدد الكلمات مع لمسة مهنية
 function ensureWordCount(content, targetWords) {
     const words = content.split(' ');
     
@@ -3699,8 +2561,8 @@ function ensureWordCount(content, targetWords) {
             'لضمان تحقيق رؤية التعليم وتطوير العملية التعليمية بصورة شاملة',
             'مع الاستفادة من أفضل الممارسات التربوية والتقنيات التعليمية الحديثة',
             'بما يعزز من دور المعلم كميسر للتعلم وموجه للطالب نحو التميز'
-        ];
-        
+    ];
+    
         let extendedContent = content;
         while (extendedContent.split(' ').length < targetWords) {
             const randomPhrase = professionalPhrases[Math.floor(Math.random() * professionalPhrases.length)];
@@ -3722,29 +2584,6 @@ function ensureWordCount(content, targetWords) {
     return content;
 }
 
-// دالة لإضافة لمسة مهنية للمحتوى
-function addProfessionalTouch(content, fieldId) {
-    const words = content.split(' ');
-    if (words.length >= 20) return content;
-    
-    const professionalAdditions = {
-        'goal': ' بما يعزز من جودة التعليم ويدعم تحقيق رؤية المدرسة التعليمية',
-        'summary': ' مع التركيز على الأثر الإيجابي في تحسين الممارسات التعليمية',
-        'steps': ' ومراعاة الجوانب التربوية والنفسية للطلاب في جميع المراحل',
-        'strategies': ' بما يناسب البيئة الصفية ويحقق أقصى استفادة تعليمية',
-        'strengths': ' مما يسهم في تحقيق بيئة تعلم إيجابية ومنتجة',
-        'improve': ' مع وضع خطط تطويرية قابلة للتنفيذ في الفصول القادمة',
-        'recomm': ' بما يدعم التطوير المهني المستمر ويعزز جودة التعليم'
-    };
-    
-    if (professionalAdditions[fieldId]) {
-        return content + professionalAdditions[fieldId];
-    }
-    
-    return content;
-}
-
-// نهج بديل محسن لتحليل الاستجابة المهنية
 function fallbackProfessionalAIParsing(response) {
     const sentences = response.split(/[\.\n]/).filter(s => {
         const trimmed = s.trim();
@@ -3760,7 +2599,6 @@ function fallbackProfessionalAIParsing(response) {
             let content = sentences[sentenceIndex].trim();
             content = removeFieldTitles(content);
             content = ensureWordCount(content, 25);
-            content = addProfessionalTouch(content, field);
             
             document.getElementById(field).value = content;
             sentenceIndex++;
@@ -3775,46 +2613,6 @@ function fallbackProfessionalAIParsing(response) {
     });
 }
 
-// وظائف الدعم الفني
-function openSupportModal() {
-    document.getElementById('supportModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeSupportModal() {
-    document.getElementById('supportModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-document.getElementById('supportModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeSupportModal();
-    }
-});
-
-function sendEmailSupport() {
-    const name = document.getElementById('supportName').value || 'مستخدم بدون اسم';
-    const phone = document.getElementById('supportPhone').value || 'لم يتم تقديمه';
-    const issue = document.getElementById('supportIssue').value || 'لا توجد تفاصيل';
-    
-    const subject = encodeURIComponent('طلب دعم فني - أداة إصدار التقارير');
-    const body = encodeURIComponent(`الاسم: ${name}\nرقم التواصل: ${phone}\n\nتفاصيل المشكلة:\n${issue}\n\n---\nتم الإرسال من أداة إصدار التقارير`);
-    
-    window.location.href = `mailto:iFahadenglish@gmail.com?subject=${subject}&body=${body}`;
-    setTimeout(closeSupportModal, 500);
-}
-
-function sendWhatsAppSupport() {
-    const name = document.getElementById('supportName').value || 'مستخدم بدون اسم';
-    const phone = document.getElementById('supportPhone').value || 'لم يتم تقديمه';
-    const issue = document.getElementById('supportIssue').value || 'لا توجد تفاصيل';
-    
-    const message = encodeURIComponent(`طلب دعم فني - أداة إصدار التقارير\n\nالاسم: ${name}\nرقم التواصل: ${phone}\n\nتفاصيل المشكلة:\n${issue}\n\n---\nتم الإرسال من أداة إصدار التقارير`);
-    
-    window.open(`https://wa.me/966597077245?text=${message}`, '_blank');
-    setTimeout(closeSupportModal, 500);
-}
-
 function clearData(){
     if(confirm("هل أنت متأكد من مسح جميع البيانات؟")){
         localStorage.clear();
@@ -3823,8 +2621,12 @@ function clearData(){
 }
 
 async function downloadPDF(){
+    // ⚠️ مهم: تحميل التاريخ أولاً
+    await loadDates();
+    
     document.querySelector('.control-bar').style.visibility = 'hidden';
     document.querySelector('.top-marquee').style.visibility = 'hidden';
+    document.getElementById('aiFillFloatingBtn').style.visibility = 'hidden';
     document.body.style.margin = "0";
     document.body.style.background = "white";
 
@@ -3862,6 +2664,7 @@ async function downloadPDF(){
     .then(() => {
         document.querySelector('.control-bar').style.visibility = 'visible';
         document.querySelector('.top-marquee').style.visibility = 'visible';
+        document.getElementById('aiFillFloatingBtn').style.visibility = 'visible';
         document.body.style.margin = "";
         document.body.style.background = "#f9fcfb";
         reportContent.style.display = 'none';
@@ -3870,8 +2673,12 @@ async function downloadPDF(){
 }
 
 async function sharePDFWhatsApp(){
+    // ⚠️ مهم: تحميل التاريخ أولاً
+    await loadDates();
+    
     document.querySelector('.control-bar').style.visibility = 'hidden';
     document.querySelector('.top-marquee').style.visibility = 'visible';
+    document.getElementById('aiFillFloatingBtn').style.visibility = 'hidden';
     document.body.style.margin = "0";
     document.body.style.background = "white";
 
@@ -3907,6 +2714,7 @@ async function sharePDFWhatsApp(){
     .then((pdfBlob) => {
         document.querySelector('.control-bar').style.visibility = 'visible';
         document.querySelector('.top-marquee').style.visibility = 'visible';
+        document.getElementById('aiFillFloatingBtn').style.visibility = 'visible';
         document.body.style.margin = "";
         document.body.style.background = "#f9fcfb";
         reportContent.style.display = 'none';
@@ -3925,61 +2733,6 @@ async function sharePDFWhatsApp(){
     });
 }
 
-// دالة تحميل التواريخ
-async function loadDates(){
-    const savedData = localStorage.getItem('teacherData');
-    if (savedData) {
-        const teacherData = JSON.parse(savedData);
-        if (teacherData.manualHijriDate) {
-            currentHijriDate = teacherData.manualHijriDate;
-            currentGregorianDate = teacherData.manualGregorianDate || '';
-            document.getElementById('manualDateInput').value = currentHijriDate;
-            document.getElementById('currentDateDisplay').textContent = `هجري: ${currentHijriDate}`;
-            document.getElementById('hDate').innerHTML = currentHijriDate + " هـ";
-            document.getElementById('gDate').innerHTML = currentGregorianDate ? currentGregorianDate + " م" : currentHijriDate + " هـ";
-            return;
-        }
-    }
-    
-    let g = new Date();
-    currentGregorianDate = `${g.getDate()}/${g.getMonth()+1}/${g.getFullYear()}`;
-    
-    try {
-        let r = await fetch(`https://api.aladhan.com/v1/gToH?date=${g.getDate()}-${g.getMonth()+1}-${g.getFullYear()}`);
-        let j = await r.json();
-        let h = j.data.hijri;
-        
-        const englishToArabic = {
-            '0': '٠', '1': '١', '2': '٢', '3': '٣', '4': '٤',
-            '5': '٥', '6': '٦', '7': '٧', '8': '٨', '9': '٩'
-        };
-        
-        let arabicDay = h.day.toString();
-        let arabicMonth = h.month.number.toString();
-        let arabicYear = h.year.toString();
-        
-        for (let english in englishToArabic) {
-            arabicDay = arabicDay.replace(new RegExp(english, 'g'), englishToArabic[english]);
-            arabicMonth = arabicMonth.replace(new RegExp(english, 'g'), englishToArabic[english]);
-            arabicYear = arabicYear.replace(new RegExp(english, 'g'), englishToArabic[english]);
-        }
-        
-        currentHijriDate = `${arabicYear}/${arabicMonth}/${arabicDay}`;
-        
-        document.getElementById('manualDateInput').value = currentHijriDate;
-        document.getElementById('currentDateDisplay').textContent = `هجري: ${currentHijriDate}`;
-        
-        document.getElementById('gDate').innerHTML = currentGregorianDate + " م";
-        document.getElementById('hDate').innerHTML = currentHijriDate + " هـ";
-    } catch {
-        currentHijriDate = "١٤٤٦/٠٦/٠١";
-        document.getElementById('currentDateDisplay').textContent = "تعذر تحميل التاريخ";
-        document.getElementById('manualDateInput').value = currentHijriDate;
-        document.getElementById('gDate').innerHTML = currentGregorianDate + " م";
-        document.getElementById('hDate').innerHTML = currentHijriDate + " هجري";
-    }
-}
-
 // عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", () => {
     const code = localStorage.getItem(ACTIVATION_KEY_NAME);
@@ -3992,10 +2745,10 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { "X-Activation-Code": code }
         })
         .then(r => {
-    if (!r.ok) throw new Error();
-    window.__ACTIVATED__ = true;   // ← هذا السطر مفقود
-    hideActivationScreen();
-})
+            if (!r.ok) throw new Error();
+            window.__ACTIVATED__ = true;
+            hideActivationScreen();
+        })
         .catch(() => {
             localStorage.removeItem(ACTIVATION_KEY_NAME);
             document.getElementById("activationScreen").style.display = "flex";
@@ -4003,9 +2756,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // تحميل التواريخ عند فتح الصفحة
     loadDates();
+    
     loadTeacherData();
-    loadKeysFromStorage();
     updateReport();
 
     document.getElementById('reportSearch').addEventListener('input', handleReportSearch);
@@ -4022,12 +2776,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('input', function(e) {
         if (e.target.id === 'subject' || e.target.id === 'lesson') {
             setTimeout(adaptSubjectLessonFont, 50);
-        }
-    });
-
-    document.addEventListener('change', function(e) {
-        if (e.target.matches('select, input[type="text"], input[type="file"]')) {
-            setTimeout(adaptSubjectLessonFont, 100);
         }
     });
 });
