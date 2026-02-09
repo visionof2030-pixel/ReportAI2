@@ -1504,19 +1504,6 @@ button[title]:hover::before {
     <!-- التصنيف العام -->
     <select id="reportCategory" oninput="handleReportCategory()" style="margin-bottom:10px;">
         <option value="">اختر تصنيف التقرير</option>
-        <option value="التقارير التعليمية الصفية">أولا: التقارير التعليمية الصفية</option>
-        <option value="التقارير العلاجية والدعم الفردي">ثانيا: التقارير العلاجية والدعم الفردي</option>
-        <option value="التقارير التحفيزية والسلوكية">ثالثا: التقارير التحفيزية والسلوكية</option>
-        <option value="تقارير الأنشطة غير الصفية">رابعا: تقارير الأنشطة غير الصفية</option>
-        <option value="تقارير التواصل مع أولياء الأمور والمجتمع">سادسا: تقارير التواصل مع أولياء الأمور والمجتمع</option>
-        <option value="التقارير التخطيطية والتنظيمية">سادسا: التقارير التخطيطية والتنظيمية</option>
-        <option value="تقارير التقييم والمتابعة">سابعا: تقارير التقييم والمتابعة</option>
-        <option value="تقارير التدريب والتطوير المهني">ثامنا: تقارير التدريب والتطوير المهني</option>
-        <option value="تقارير توظيف التكنولوجيا">تاسعا: تقارير توظيف التكنولوجيا</option>
-        <option value="تقارير البحث والتطوير المناهجي">عاشرا: تقارير البحث والتطوير المناهجي</option>
-        <option value="تقارير الجودة واللجان">حادي عشر: تقارير الجودة واللجان</option>
-        <option value="تقارير الأمن والسلامة">ثاني عشر: تقارير الأمن والسلامة</option>
-        <option value="أخرى">تقارير أخرى (إدخال يدوي)</option>
     </select>
     
     <!-- حقل البحث -->
@@ -1544,22 +1531,7 @@ button[title]:hover::before {
   <div class="form-group">
     <label><i class="fas fa-university"></i>إدارة التعليم</label>
     <select id="education" oninput="updateReport()">
-      <option>الإدارة العامة للتعليم بمنطقة مكة المكرمة</option>
-      <option>الإدارة العامة للتعليم بمنطقة الرياض</option>
-      <option>الإدارة العامة للتعليم بمنطقة المدينة المنورة</option>
-      <option>الإدارة العامة للتعليم بالمنطقة الشرقية</option>
-      <option>الإدارة العامة للتعليم بمنطقة القصيم</option>
-      <option>الإدارة العامة للتعليم بمنطقة عسير</option>
-      <option>الإدارة العامة للتعليم بمنطقة تبوك</option>
-      <option>الإدارة العامة للتعليم بمنطقة حائل</option>
-      <option>الإدارة العامة للتعليم بمنطقة الحدود الشمالية</option>
-      <option>الإدارة العامة للتعليم بمنطقة جازان</option>
-      <option>الإدارة العامة للتعليم بمنطقة نجران</option>
-      <option>الإدارة العامة للتعليم بمنطقة الباحة</option>
-      <option>الإدارة العامة للتعليم بمنطقة الجوف</option>
-      <option>الإدارة العامة للتعليم بمحافظة الأحساء</option>
-      <option>الإدارة العامة للتعليم بمحافظة الطائف</option>
-      <option>الإدارة العامة للتعليم بمحافظة جدة</option>
+      <option>جارٍ تحميل إدارات التعليم...</option>
     </select>
   </div>
   
@@ -1681,58 +1653,9 @@ button[title]:hover::before {
   <!-- قسم الأدوات والوسائل التعليمية -->
   <div class="form-group">
     <label><i class="fas fa-tools"></i>الأدوات والوسائل التعليمية</label>
-    <div class="tools-section">
-      <div class="tools-grid">
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool1" value="سبورة" style="display:none;">
-          <span>سبورة</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool2" value="سبورة ذكية" style="display:none;">
-          <span>سبورة ذكية</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool3" value="جهاز عرض" style="display:none;">
-          <span>جهاز عرض</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool4" value="أوراق عمل" style="display:none;">
-          <span>أوراق عمل</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool5" value="حاسب" style="display:none;">
-          <span>حاسب</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool6" value="عرض تقديمي" style="display:none;">
-          <span>عرض تقديمي</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool7" value="بطاقات تعليمية" style="display:none;">
-          <span>بطاقات تعليمية</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool8" value="صور توضيحية" style="display:none;">
-          <span>صور توضيحية</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool9" value="كتاب" style="display:none;">
-          <span>كتاب</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool10" value="أدوات رياضية" style="display:none;">
-          <span>أدوات رياضية</span>
-          <span class="checkmark">✅</span>
-        </label>
+    <div class="tools-section" id="toolsSection">
+      <div class="tools-grid" id="toolsGrid">
+        <p style="text-align:center;color:#666;">جارٍ تحميل الأدوات التعليمية...</p>
       </div>
       <div style="text-align:center; margin-top:10px; font-size:11px; color:#666;">
         <i class="fas fa-info-circle"></i> اضغط على الأداة لتحديدها، ستظهر علامة ✅ عند التحديد
@@ -1894,6 +1817,8 @@ button[title]:hover::before {
 
 <script>
 window.__ACTIVATED__ = false;
+window.allReports = [];
+window.reportsByCategory = {};
 
 // ==================== متغيرات التفعيل ====================
 const ACTIVATION_KEY_NAME = "activation_code";
@@ -1987,222 +1912,76 @@ function contactForTrial() {
     window.open(`https://wa.me/966597077245?text=${message}`, '_blank');
 }
 
-// ==================== كائن التقارير ====================
-const allReportsByCategory = {
-  "التقارير التعليمية الصفية": [
-    "تقرير أنشطة صفية",
-    "تقرير توزيع وقت الحصة",
-    "تقرير درس تم تنفيذه",
-    "تقرير تعليم تعاوني بين الطلاب",
-    "تقرير المشاركات بين الطلاب",
-    "تقرير توزيع المنهج",
-    "تقرير الفصول المقلوبة",
-    "تقرير تنفيذ درس تطبيقي",
-    "تقرير تفعيل الفصول الافتراضية",
-    "تقرير التعليم المدمج",
-    "تقرير التعليم عن بعد",
-    "تقرير استخدام أنظمة إدارة التعلم",
-    "تقرير إدارة الوقت في الصف",
-    "تقرير تنظيم البيئة الصفية",
-    "تقرير إدارة الموارد التعليمية",
-    "تقرير إدارة السلوك الصفي",
-    "تقرير الأنشطة التفاعلية",
-    "تقرير العروض العملية",
-    "تقرير التعلم التعاوني",
-    "تقرير التعلم الذاتي الموجه",
-    "تقرير الألعاب التعليمية الرقمية",
-    "تقرير التعلم بالأقران",
-    "تقرير استراتيجيات التدريس المستخدمة",
-    "تقرير تنويع أساليب الشرح",
-    "تقرير مراعاة الفروق الفردية",
-    "تقرير تفعيل مهارات التفكير",
-    "تقرير دمج مهارات القرن الحادي والعشرين",
-    "تقرير توظيف الوسائل التعليمية",
-    "تقرير التهيئة الذهنية للدرس",
-    "تقرير ختام الدرس والتقويم الختامي",
-    "تقرير ربط الدرس بالحياة"
-  ],
-  "التقارير العلاجية والدعم الفردي": [
-    "تقرير خطة علاجية",
-    "تقرير سجل الخطط العلاجية",
-    "تقرير رعاية الطلاب المتأخرين دراسيًا",
-    "تقرير دراسة حالة",
-    "تقرير معرفة الميول والاتجاهات",
-    "تقرير التحليل الاحتياجات التدريبية",
-    "تقرير دعم الطلاب ذوي الإعاقة",
-    "تقرير خطة دعم فردية",
-    "تقرير متابعة التحسن الأكاديمي",
-    "تقرير تشخيص صعوبات التعلم",
-    "تقرير برامج التقوية",
-    "تقرير الإرشاد الأكاديمي الفردي",
-    "تقرير متابعة الخطط العلاجية",
-    "تقرير دعم الموهبة منخفضة التحصيل"
-  ],
-  "التقارير التحفيزية والسلوكية": [
-    "تقرير تحفيز الطلاب",
-    "تقرير تعزيز السلوك الإيجابي",
-    "تقرير نظام الحوافز والمكافآت",
-    "تقرير برنامج الدعم النفسي",
-    "تقرير تحسين نتائج العلوم في الاختبارات الوطنية (نافس)",
-    "تقرير تحسين نتائج الرياضيات في الاختبارات الوطنية (نافس)",
-    "تقرير تحسين نتائج اللغة العربية في الاختبارات الوطنية (نافس)",
-    "تقرير الانضباط المدرسي",
-    "تقرير معالجة السلوكيات السلبية",
-    "تقرير تعزيز الدافعية للتعلم",
-    "تقرير بناء الاتجاهات الإيجابية",
-    "تقرير متابعة السلوك الفردي",
-    "تقرير برامج تعديل السلوك",
-    "تقرير تعزيز القيم والاتجاهات"
-  ],
-  "تقارير الأنشطة غير الصفية": [
-    "تقرير نشاط إثرائي",
-    "تقرير رعاية الموهوبين",
-    "تقرير المبادرات والابتكار",
-    "تقرير تفعيل المنصات التعليمية",
-    "تقرير حصة النشاط",
-    "تقرير تفعيل حصص النشاط",
-    "تقرير تنفيذ إذاعة مدرسية",
-    "تقرير الزيارات الميدانية",
-    "تقرير مبادرة تطوعية",
-    "تقرير الاحتفال باليوم الوطني",
-    "تقرير المعلم الصغير",
-    "تقرير الأندية الطلابية",
-    "تقرير المسابقات التعليمية",
-    "تقرير الأنشطة الثقافية",
-    "تقرير الأنشطة العلمية",
-    "تقرير الأنشطة الرياضية",
-    "تقرير الأنشطة الفنية",
-    "تقرير المعارض المدرسية",
-    "تقرير الأيام العالمية",
-    "تقرير البرامج الموسمية"
-  ],
-  "تقارير التواصل مع أولياء الأمور والمجتمع": [
-    "تقرير التواصل مع ولي الأمر",
-    "تقرير إشعار ولي الأمر عن مستوى ابنه",
-    "تقرير سجل التواصل مع أولياء الأمور",
-    "تقرير حضور اجتماع أولياء الأمور",
-    "تقرير الشراكات المهنية",
-    "تقرير مجتمعات التعلم",
-    "تقرير المجتمعات المهنية",
-    "تقرير اللقاءات التربوية",
-    "تقرير المبادرات المجتمعية",
-    "تقرير التواصل الإلكتروني مع أولياء الأمور",
-    "تقرير الزيارات المنزلية",
-    "تقرير استطلاع رضا أولياء الأمور",
-    "تقرير التعاون مع الجهات الخارجية",
-    "تقرير العمل التطوعي المجتمعي"
-  ],
-  "التقارير التخطيطية والتنظيمية": [
-    "تقرير خطة أسبوعية",
-    "تقرير تفعيل الخطة الأسبوعية",
-    "تقرير تخطيط المشاريع التعليمية",
-    "تقرير تخطيط الرحلات التعليمية",
-    "تقرير إدارة الاجتماعات",
-    "تقرير المناوبة والفسحة",
-    "تقرير الإشراف اليومي",
-    "تقرير إدارة الأزمات",
-    "تقرير الخطة الفصلية",
-    "تقرير الخطة السنوية",
-    "تقرير تنظيم الجداول الدراسية",
-    "تقرير تنظيم المهام الإدارية",
-    "تقرير توزيع الأدوار",
-    "تقرير إدارة الوقت المدرسي",
-    "تقرير متابعة تنفيذ الخطط"
-  ],
-  "تقارير التقييم والمتابعة": [
-    "تقرير كشف المتابعة",
-    "تقرير تصنيف الطلاب",
-    "تقرير تنفيذ اختبار تحسن",
-    "تقرير سجل الدرجات الإلكتروني",
-    "تقرير تحليل النتائج",
-    "تقرير مقارنة السلاسل الزمنية",
-    "تقرير قياس الأثر التعليمي",
-    "تقرير مؤشرات الأداء التعليمي",
-    "تقرير تقييم المخرجات التعليمية",
-    "تقرير تقييم المشاريع الطلابية",
-    "تقرير تقييم الأداء العملي",
-    "تقرير تقييم المحافظ الإلكترونية",
-    "تقرير التقييم الإلكتروني",
-    "تقرير تحليل نتائج الاختبارات التشخيصية",
-    "تقرير تحليل الاختبارات التحصيلية",
-    "تقرير متابعة مستوى الإتقان",
-    "تقرير فجوات التعلم",
-    "تقرير تقدم الطلاب",
-    "تقرير تحليل بنود الاختبار",
-    "تقرير متابعة نواتج التعلم"
-  ],
-  "تقارير التدريب والتطوير المهني": [
-    "تقرير حضور دورات وورش تدريبية",
-    "تقرير الورش التدريبية التي قدمتها",
-    "تقرير التدريب على الاختبارات المعيارية",
-    "تقرير التدريب على المناهج الحديثة",
-    "تقرير نقل أثر التدريب",
-    "تقرير متابعة الدورات العالمية",
-    "تقرير التطوير المهني المستمر",
-    "تقرير المشاركة في المؤتمرات التعليمية",
-    "تقرير حضور الندوات العلمية",
-    "تقرير المشاركة في البحث التربوي",
-    "تقرير التعلم الذاتي المهني",
-    "تقرير مجتمعات التعلم المهنية",
-    "تقرير القراءة التربوية المتخصصة",
-    "تقرير تبادل الخبرات",
-    "تقرير بناء المسار المهني"
-  ],
-  "تقارير توظيف التكنولوجيا": [
-    "تقرير المحتوى الرقمي المنتج",
-    "تقرير إنتاج المحتوى الرقمي",
-    "تقرير استخدام أنظمة إدارة التعلم",
-    "تقرير التقييم الإلكتروني",
-    "تقرير الواقع المعزز في التعليم",
-    "تقرير الألعاب التعليمية الرقمية",
-    "تقرير توظيف الذكاء الاصطناعي",
-    "تقرير التعلم المتنقل",
-    "تقرير الصفوف الافتراضية",
-    "تقرير أدوات التعلم التفاعلي",
-    "تقرير الأمن الرقمي",
-    "تقرير الثقافة الرقمية",
-    "تقرير التحول الرقمي",
-    "تقرير استخدام التطبيقات التعليمية"
-  ],
-  "تقارير البحث والتطوير المناهجي": [
-    "تقرير تصميم الوحدات التعليمية",
-    "تقرير إعداد المواد التعليمية",
-    "تقرير تطوير المناهج الإثرائية",
-    "تقرير إعداد بنك الأسئلة",
-    "تقرير تصميم الأنشطة اللاصفية",
-    "تقرير تحليل محتوى المنهج",
-    "تقرير مواءمة المنهج مع نواتج التعلم",
-    "تقرير تحديث الخطط الدراسية",
-    "تقرير تطوير أدوات التقويم",
-    "تقرير البحث الإجرائي"
-  ],
-  "تقارير الجودة واللجان": [
-    "تقرير عضوية لجنة التميز والجودة",
-    "تقرير عضوية لجنة التدقيق",
-    "تقرير إدارة الموارد التعليمية",
-    "تقرير تحسين الجودة",
-    "تقرير متابعة مؤشرات الأداء",
-    "تقرير التقييم الذاتي",
-    "تقرير الاعتماد المدرسي",
-    "تقرير الخطط التحسينية"
-  ],
-  "تقارير الأمن والسلامة": [
-    "تقرير إجراءات السلامة في الصف",
-    "تقرير الرعاية الصحية في المدرسة",
-    "تقرير جرد المختبرات وغرف المصادر",
-    "تقرير خطط الإخلاء",
-    "تقرير السلامة المدرسية",
-    "تقرير إدارة المخاطر",
-    "تقرير الإسعافات الأولية",
-    "تقرير جاهزية المباني"
-  ]
-};
-
-const allReports = [];
-for (const category in allReportsByCategory) {
-    allReportsByCategory[category].forEach(report => {
-        allReports.push({name: report, category: category});
-    });
+// ==================== تحميل البيانات من الباك ====================
+async function loadDataFromBackend() {
+    try {
+        // تحميل التصنيفات والتقارير
+        const categoriesResponse = await fetch(BACKEND_URL + "/api/report-categories");
+        const categoriesData = await categoriesResponse.json();
+        
+        window.reportsByCategory = categoriesData.reports_by_category;
+        
+        // تحديث قائمة التصنيفات
+        const categorySelect = document.getElementById("reportCategory");
+        categorySelect.innerHTML = '<option value="">اختر تصنيف التقرير</option>';
+        
+        Object.keys(window.reportsByCategory).forEach(category => {
+            const option = document.createElement("option");
+            option.value = category;
+            option.textContent = category;
+            categorySelect.appendChild(option);
+        });
+        
+        // إضافة خيار "أخرى"
+        const otherOption = document.createElement("option");
+        otherOption.value = "أخرى";
+        otherOption.textContent = "تقارير أخرى (إدخال يدوي)";
+        categorySelect.appendChild(otherOption);
+        
+        // تحميل إدارات التعليم
+        const educationResponse = await fetch(BACKEND_URL + "/api/education-offices");
+        const educationOffices = await educationResponse.json();
+        
+        const educationSelect = document.getElementById("education");
+        educationSelect.innerHTML = "";
+        
+        educationOffices.forEach(office => {
+            const option = document.createElement("option");
+            option.value = office;
+            option.textContent = office;
+            educationSelect.appendChild(option);
+        });
+        
+        // تحميل الأدوات التعليمية
+        const toolsResponse = await fetch(BACKEND_URL + "/api/educational-tools");
+        const educationalTools = await toolsResponse.json();
+        
+        const toolsGrid = document.getElementById("toolsGrid");
+        toolsGrid.innerHTML = "";
+        
+        educationalTools.forEach((tool, index) => {
+            const toolId = `tool${index + 1}`;
+            const label = document.createElement("label");
+            label.className = "tool-checkbox";
+            label.setAttribute("onclick", "toggleTool(this)");
+            label.innerHTML = `
+                <input type="checkbox" id="${toolId}" value="${tool}" style="display:none;">
+                <span>${tool}</span>
+                <span class="checkmark">✅</span>
+            `;
+            toolsGrid.appendChild(label);
+        });
+        
+        // تحميل جميع التقارير للبحث
+        const allReportsResponse = await fetch(BACKEND_URL + "/api/all-reports");
+        window.allReports = await allReportsResponse.json();
+        
+        console.log("تم تحميل البيانات بنجاح من الباك");
+        
+    } catch (error) {
+        console.error("خطأ في تحميل البيانات من الباك:", error);
+        showNotification("حدث خطأ في تحميل البيانات. الرجاء تحديث الصفحة.");
+    }
 }
 
 // ==================== دالة التعبئة الذكية (الزر العائم) ====================
@@ -2228,12 +2007,14 @@ async function fillWithAI() {
     }
     
     // الحصول على معلومات إضافية
-    const subject = document.getElementById('subject').value || '';
-    const lesson = document.getElementById('lesson').value || '';
-    const grade = document.getElementById('grade').value || '';
-    const target = document.getElementById('target').value || '';
-    const place = document.getElementById('place').value || '';
-    const count = document.getElementById('count').value || '';
+    const reportData = {
+        subject: document.getElementById('subject').value || '',
+        lesson: document.getElementById('lesson').value || '',
+        grade: document.getElementById('grade').value || '',
+        target: document.getElementById('target').value || '',
+        place: document.getElementById('place').value || '',
+        count: document.getElementById('count').value || ''
+    };
     
     // عرض حالة التحميل على الزر العائم
     const aiButton = document.getElementById('aiFillFloatingBtn');
@@ -2246,63 +2027,15 @@ async function fillWithAI() {
     aiButton.disabled = true;
     
     try {
-        const prompt = `أنت خبير تربوي تعليمي محترف تمتلك خبرة ميدانية واسعة في التعليم العام.  
-اعتمد منظورًا تربويًا مهنيًا احترافيًا يركّز على تحسين جودة التعليم، ودعم المعلم، وتعزيز بيئة التعلّم، وخدمة القيادة المدرسية.  
-
-التقرير المطلوب: "${reportType}"
-${subject ? `المادة: ${subject}` : ''}
-${lesson ? `الدرس: ${lesson}` : ''}
-${grade ? `الصف: ${grade}` : ''}
-${target ? `المستهدفون: ${target}` : ''}
-${place ? `مكان التنفيذ: ${place}` : ''}
-${count ? `عدد الحضور: ${count}` : ''}
-
-**توجيهات مهنية:**
-- كن موضوعيًا ومتزنًا وبنّاءً  
-- قدّم الملاحظات بصيغة تطويرية غير نقدية  
-- راعِ واقع الميدان التعليمي وسياق المدرسة  
-- اربط بين المعلم والطالب والمنهج والبيئة الصفية والقيادة المدرسية  
-- ركّز على جودة التعليم وأثر الممارسات على تعلم الطلاب  
-- التزم بلغة عربية فصيحة سليمة وخالية من الأخطاء  
-
-**شروط المحتوى:**اكتب محتوى كل حقل بصيغة تقريرية مهنية وكأنه صادر عن المعلم.
-لا تكتب أبداً عنوان الحقل داخل المحتوى ولا تعِد صياغته بصيغة مباشرة (مثل: الهدف التربوي هو، النبذة المختصرة).
-يجب أن يحتوي كل حقل على ما يقارب 25 كلمة.
-ابدأ بالمضمون مباشرة دون تمهيد أو عبارات إنشائية.
-يمكن الاستفادة من معنى العنوان أو أحد مفاهيمه بشكل غير مباشر فقط عند الحاجة وبما يخدم الفكرة دون تكرار أو حشو.
-احرص على وجود ترابط منطقي بين الأهداف، النبذة المختصرة، الاستراتيجيات، إجراءات التنفيذ، نقاط القوة، نقاط التحسين، والتوصيات.
-اربط المحتوى بالمادة الدراسية وعنوان الدرس إن وُجد، وكذلك بمكان التنفيذ، بأسلوب مهني متوازن يجمع بين الإشارة المباشرة وغير المباشرة دون تكلف.
-اجعل الهدف النهائي للمحتوى تحسين الممارسة التعليمية ودعم التطوير المهني المستدام.
-راعِ الوضوح والترابط، واجعل كل جملة تضيف قيمة تعليمية فعلية.
-الحقول المطلوبة:**
-1. الهدف التربوي
-2. نبذة مختصرة  
-3. إجراءات التنفيذ
-4. الاستراتيجيات
-5. نقاط القوة
-6. نقاط التحسين
-7. التوصيات
-
-يرجى تقديم الإجابة باللغة العربية الفصحى، وتنظيمها بحيث يكون كل حقل في سطر منفصل يبدأ برقمه فقط دون ذكر العنوان.`;
-
-        const response = await fetch(BACKEND_URL + '/ask', {
+        const response = await fetch(BACKEND_URL + "/api/generate-report-content", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-Activation-Code': activationCode
             },
             body: JSON.stringify({
-                prompt: prompt,
-                model: "gemini-2.5-flash-lite",
-                reportData: {
-                    reportType: reportType,
-                    subject: subject,
-                    lesson: lesson,
-                    grade: grade,
-                    target: target,
-                    place: place,
-                    count: count
-                }
+                report_type: reportType,
+                report_data: reportData
             })
         });
 
@@ -2329,12 +2062,11 @@ ${count ? `عدد الحضور: ${count}` : ''}
 
         const data = await response.json();
         
-        if (!data || !data.answer) {
+        if (!data || !data.content) {
             throw new Error('لم يتم الحصول على إجابة من الذكاء الاصطناعي');
         }
         
-        const aiResponse = data.answer;
-        parseAIResponseProfessional(aiResponse);
+        parseAIResponseProfessional(data.content);
         showNotification('تم تعبئة الحقول باستخدام الذكاء الاصطناعي بنجاح! ✓');
         
     } catch (error) {
@@ -2377,7 +2109,7 @@ function handleReportCategory() {
         reportTypeInput.style.display = 'none';
         reportSearchContainer.style.display = 'block';
         manualTitleContainer.style.display = 'block';
-        const reports = allReportsByCategory[categorySelect.value] || [];
+        const reports = window.reportsByCategory[categorySelect.value] || [];
         updateReportTypeOptions(reports);
         document.getElementById('reportSearch').value = '';
         document.getElementById('searchResults').style.display = 'none';
@@ -2420,14 +2152,14 @@ function handleReportSearch() {
     let filteredReports = [];
     
     if (categorySelect.value && categorySelect.value !== "أخرى") {
-        const reports = allReportsByCategory[categorySelect.value] || [];
+        const reports = window.reportsByCategory[categorySelect.value] || [];
         filteredReports = reports.filter(report => 
             report.toLowerCase().includes(searchTerm)
         );
     } else if (categorySelect.value === "أخرى") {
         filteredReports = [];
     } else {
-        filteredReports = allReports.filter(item => 
+        filteredReports = window.allReports.filter(item => 
             item.name.toLowerCase().includes(searchTerm)
         );
     }
@@ -2455,7 +2187,7 @@ function handleReportSearch() {
                 
                 if (categorySelect.value !== selectedCategory && selectedCategory) {
                     categorySelect.value = selectedCategory;
-                    const reports = allReportsByCategory[selectedCategory] || [];
+                    const reports = window.reportsByCategory[selectedCategory] || [];
                     updateReportTypeOptions(reports);
                 }
                 
@@ -2629,12 +2361,13 @@ function updateToolsDisplay() {
     
     const selectedTools = [];
     
-    for (let i = 1; i <= 10; i++) {
-        const toolCheckbox = document.getElementById(`tool${i}`);
-        if (toolCheckbox && toolCheckbox.checked) {
-            selectedTools.push(toolCheckbox.value);
+    // البحث عن جميع الأدوات المختارة
+    const toolCheckboxes = document.querySelectorAll('.tool-checkbox input[type="checkbox"]');
+    toolCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            selectedTools.push(checkbox.value);
         }
-    }
+    });
     
     selectedTools.forEach(tool => {
         const toolElement = document.createElement('div');
@@ -2691,12 +2424,13 @@ function saveTeacherData(){
         tools: []
     };
     
-    for (let i = 1; i <= 10; i++) {
-        const toolCheckbox = document.getElementById(`tool${i}`);
-        if (toolCheckbox && toolCheckbox.checked) {
-            teacherData.tools.push(toolCheckbox.value);
+    // جمع الأدوات المختارة
+    const toolCheckboxes = document.querySelectorAll('.tool-checkbox input[type="checkbox"]');
+    toolCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            teacherData.tools.push(checkbox.value);
         }
-    }
+    });
     
     const textFields = ['goal', 'summary', 'steps', 'strategies', 'strengths', 'improve', 'recomm'];
     textFields.forEach(field => {
@@ -2754,19 +2488,15 @@ function loadTeacherData() {
         });
         
         if (teacherData.tools && Array.isArray(teacherData.tools)) {
-            for (let i = 1; i <= 10; i++) {
-                const toolCheckbox = document.getElementById(`tool${i}`);
-                if (toolCheckbox) {
-                    const toolElement = toolCheckbox.closest('.tool-checkbox');
-                    const isChecked = teacherData.tools.includes(toolCheckbox.value);
-                    toolCheckbox.checked = isChecked;
-                    if (isChecked) {
-                        toolElement.classList.add('checked');
-                    } else {
-                        toolElement.classList.remove('checked');
-                    }
+            // تحديد الأدوات المحفوظة
+            const toolCheckboxes = document.querySelectorAll('.tool-checkbox');
+            toolCheckboxes.forEach(toolElement => {
+                const checkbox = toolElement.querySelector('input[type="checkbox"]');
+                if (checkbox && teacherData.tools.includes(checkbox.value)) {
+                    checkbox.checked = true;
+                    toolElement.classList.add('checked');
                 }
-            }
+            });
         }
         
         updateReport();
@@ -3100,32 +2830,41 @@ function loadSavedReportDate() {
 }
 
 // ==================== تهيئة الصفحة ====================
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const code = localStorage.getItem(ACTIVATION_KEY_NAME);
 
     if (!code) {
         document.getElementById("activationScreen").style.display = "flex";
         document.body.style.overflow = "hidden";
     } else {
-        fetch(BACKEND_URL + "/health", {
-            headers: { "X-Activation-Code": code }
-        })
-        .then(r => {
-            if (!r.ok) throw new Error();
-            window.__ACTIVATED__ = true;
-            hideActivationScreen();
-        })
-        .catch(() => {
+        try {
+            const res = await fetch(BACKEND_URL + "/health", {
+                headers: { "X-Activation-Code": code }
+            });
+            
+            if (res.ok) {
+                window.__ACTIVATED__ = true;
+                hideActivationScreen();
+            } else {
+                throw new Error();
+            }
+        } catch {
             localStorage.removeItem(ACTIVATION_KEY_NAME);
             document.getElementById("activationScreen").style.display = "flex";
             document.body.style.overflow = "hidden";
-        });
+        }
     }
 
     // تحميل التواريخ عند فتح الصفحة
-    loadDates();
+    await loadDates();
     
+    // تحميل البيانات من الباك
+    await loadDataFromBackend();
+    
+    // تحميل بيانات المعلم المحفوظة
     loadTeacherData();
+    
+    // تحديث التقرير
     updateReport();
 
     document.getElementById('reportSearch').addEventListener('input', handleReportSearch);
