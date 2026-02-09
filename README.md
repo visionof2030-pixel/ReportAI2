@@ -164,7 +164,7 @@ color:#e8f4f0;font-weight:500;
 /* شبكة الأزرار العلوية */
 .top-buttons-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     width: 100%;
     max-width: 800px;
@@ -238,6 +238,19 @@ color:#e8f4f0;font-weight:500;
     background: linear-gradient(135deg, #1da851 0%, #179244 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(29, 168, 81, 0.3);
+}
+
+/* زر الضبط - رمادي */
+#settingsBtn {
+    background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+    color: white;
+    border-color: #4a5568;
+}
+
+#settingsBtn:hover {
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 85, 104, 0.3);
 }
 
 .top-btn-icon {
@@ -738,7 +751,7 @@ button[title]:hover::before {
     }
     
     .top-buttons-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 8px;
     }
     
@@ -807,6 +820,7 @@ button[title]:hover::before {
     }
     
     .top-buttons-grid {
+        grid-template-columns: repeat(2, 1fr);
         gap: 6px;
     }
     
@@ -1200,6 +1214,109 @@ button[title]:hover::before {
     padding: 0 5px;
     transition: all 0.3s ease;
 }
+
+/* ==================== نافذة الإعدادات ==================== */
+#settingsModal {
+    display:none;
+    position:fixed;
+    top:0; left:0; right:0; bottom:0;
+    background:rgba(0,0,0,0.5);
+    z-index:5000;
+    align-items:center;
+    justify-content:center;
+    font-family: 'Cairo', sans-serif;
+}
+
+#settingsModal > div {
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    width:90%;
+    max-width:400px;
+    max-height:80vh;
+    overflow-y:auto;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+    border:3px solid #ffd166;
+}
+
+#settingsModal h3 {
+    color:#044a35;
+    text-align:center;
+    margin-bottom:15px;
+    font-size:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+
+#settingsModal #subInfo {
+    font-size:14px;
+    line-height:2;
+    color:#333;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+#settingsModal label {
+    font-weight:700;
+    color:#044a35;
+    display:block;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+#settingsModal input[type="date"] {
+    width:100%;
+    margin-top:8px;
+    padding:10px;
+    border-radius:8px;
+    border:2px solid #d4ebe2;
+    font-family:'Cairo', sans-serif;
+    font-size:16px;
+}
+
+#settingsModal input[type="date"]:focus {
+    outline:none;
+    border-color:#066d4d;
+    box-shadow:0 0 0 3px rgba(6,109,77,0.15);
+}
+
+#settingsModal button {
+    width:100%;
+    padding:12px;
+    background:#066d4d;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+    font-family:'Cairo', sans-serif;
+    transition:all 0.3s;
+    margin-top:10px;
+}
+
+#settingsModal button:hover {
+    background:#05553d;
+    transform:translateY(-2px);
+}
+
+#settingsModal .btn-secondary {
+    background:#4f7bff;
+    margin-top:5px;
+}
+
+#settingsModal .btn-secondary:hover {
+    background:#3b5bdb;
+}
+
+#settingsModal hr {
+    margin:15px 0;
+    border:none;
+    border-top:1px solid #d4ebe2;
+}
 </style>
 </head>
 
@@ -1252,6 +1369,10 @@ button[title]:hover::before {
         <button class="top-btn" id="whatsappBtn" onclick="sharePDFWhatsApp()" title="مشاركة التقرير عبر واتساب">
             <i class="fab fa-whatsapp top-btn-icon"></i>
             <span class="top-btn-text">مشاركة واتساب</span>
+        </button>
+        <button class="top-btn" id="settingsBtn" onclick="openSettings()" title="إعدادات الاشتراك">
+            <i class="fas fa-cog top-btn-icon"></i>
+            <span class="top-btn-text">الضبط</span>
         </button>
     </div>
 </div>
@@ -1601,6 +1722,60 @@ button[title]:hover::before {
 </div>
 </div>
 
+<!-- نافذة الإعدادات -->
+<div id="settingsModal">
+  <div>
+    <h3><i class="fas fa-info-circle"></i> معلومات الاشتراك</h3>
+
+    <div id="subInfo" style="font-size:14px;line-height:2;color:#333;text-align:center;">
+      جارٍ التحميل...
+    </div>
+
+    <hr style="margin:15px 0;">
+
+    <label style="font-weight:700;color:#044a35;display:block;">
+      <i class="fas fa-calendar-alt"></i> تاريخ التقرير
+    </label>
+
+    <input type="date" id="customReportDate" style="
+      width:100%;
+      margin-top:8px;
+      padding:10px;
+      border-radius:8px;
+      border:2px solid #d4ebe2;
+      font-family:'Cairo';
+    ">
+
+    <button onclick="saveReportDate()" class="btn-secondary" style="
+      margin-top:10px;
+      width:100%;
+      padding:10px;
+      background:#4f7bff;
+      color:white;
+      border:none;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+    ">
+      حفظ تاريخ التقرير
+    </button>
+
+    <button onclick="closeSettings()" style="
+      margin-top:20px;
+      width:100%;
+      padding:12px;
+      background:#066d4d;
+      color:white;
+      border:none;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+    ">
+      إغلاق
+    </button>
+  </div>
+</div>
+
 <script>
 window.__ACTIVATED__ = false;
 
@@ -1617,6 +1792,13 @@ async function loadDates() {
     // التاريخ الميلادي
     let g = new Date();
     currentGregorianDate = `${g.getDate()}/${g.getMonth()+1}/${g.getFullYear()}`;
+
+    // تحقق من وجود تاريخ مخصص
+    const customDate = localStorage.getItem("custom_report_date");
+    if (customDate) {
+        g = new Date(customDate);
+        currentGregorianDate = `${g.getDate()}/${g.getMonth()+1}/${g.getFullYear()}`;
+    }
 
     try {
         // الحصول على التاريخ الهجري من API
@@ -2733,7 +2915,71 @@ async function sharePDFWhatsApp(){
     });
 }
 
-// عند تحميل الصفحة
+// ==================== دوال نافذة الإعدادات ====================
+function openSettings() {
+    document.getElementById("settingsModal").style.display = "flex";
+    loadSavedReportDate();
+    loadSubscriptionStatus();
+}
+
+function closeSettings() {
+    document.getElementById("settingsModal").style.display = "none";
+}
+
+async function loadSubscriptionStatus() {
+    const code = localStorage.getItem(ACTIVATION_KEY_NAME);
+    if (!code) {
+        document.getElementById("subInfo").innerHTML = 
+            "لم يتم تفعيل الأداة بعد<br>يرجى استخدام كود التفعيل";
+        return;
+    }
+
+    try {
+        const res = await fetch(BACKEND_URL + "/subscription/status", {
+            headers: { "X-Activation-Code": code }
+        });
+
+        if (!res.ok) throw new Error();
+
+        const data = await res.json();
+
+        const expires = data.expires_at
+            ? new Date(data.expires_at).toLocaleDateString('ar-SA')
+            : "غير محدد";
+
+        document.getElementById("subInfo").innerHTML = `
+        <div>📅 <strong>تاريخ الانتهاء:</strong> ${expires}</div>
+        <div>📊 <strong>الاستخدام:</strong> ${data.usage_used} / ${data.usage_limit}</div>
+        <div>🔋 <strong>المتبقي:</strong> ${data.usage_remaining}</div>
+        `;
+    } catch {
+        document.getElementById("subInfo").innerHTML =
+            "تعذر تحميل معلومات الاشتراك<br>يرجى التأكد من اتصال الإنترنت";
+    }
+}
+
+/* حفظ تاريخ التقرير */
+function saveReportDate() {
+    const date = document.getElementById("customReportDate").value;
+    if (date) {
+        localStorage.setItem("custom_report_date", date);
+        showNotification("تم حفظ تاريخ التقرير ✓");
+        closeSettings();
+        loadDates(); // تحديث التاريخ داخل التقرير
+    } else {
+        showNotification("يرجى اختيار تاريخ صحيح");
+    }
+}
+
+/* تحميل التاريخ المحفوظ عند فتح نافذة الإعدادات */
+function loadSavedReportDate() {
+    const saved = localStorage.getItem("custom_report_date");
+    if (saved) {
+        document.getElementById("customReportDate").value = saved;
+    }
+}
+
+// ==================== تهيئة الصفحة ====================
 document.addEventListener("DOMContentLoaded", () => {
     const code = localStorage.getItem(ACTIVATION_KEY_NAME);
 
