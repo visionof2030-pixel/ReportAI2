@@ -766,7 +766,7 @@ button[title]:hover::before {
     box-shadow: 0 0 0 2px rgba(6, 109, 77, 0.2);
 }
 
-/* ========== قسم الأدوات والوسائل التعليمية - معدل ========== */
+/* ========== قسم الأدوات والوسائل التعليمية - معدل باستخدام Grid ========== */
 .tools-section {
     background: #f8fdfa;
     padding: 18px;
@@ -774,13 +774,33 @@ button[title]:hover::before {
     border: 1px solid #d4ebe2;
     margin-top: 10px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    counter-reset: tool-counter;
 }
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-    counter-reset: tool-counter;
+}
+
+/* الجوال: عمودين */
+@media (max-width: 768px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* التابلت: ثلاثة أعمدة */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .tools-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* الكمبيوتر: أربعة أعمدة */
+@media (min-width: 1025px) {
+    .tools-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .tool-checkbox {
@@ -856,18 +876,6 @@ button[title]:hover::before {
 .tool-checkbox.checked .checkmark {
     display: inline-block;
 }
-
-/* تنسيق الأدوات في صفين */
-.tools-grid .tool-checkbox:nth-child(1)::before { content: "1"; }
-.tools-grid .tool-checkbox:nth-child(2)::before { content: "2"; }
-.tools-grid .tool-checkbox:nth-child(3)::before { content: "3"; }
-.tools-grid .tool-checkbox:nth-child(4)::before { content: "4"; }
-.tools-grid .tool-checkbox:nth-child(5)::before { content: "5"; }
-.tools-grid .tool-checkbox:nth-child(6)::before { content: "6"; }
-.tools-grid .tool-checkbox:nth-child(7)::before { content: "7"; }
-.tools-grid .tool-checkbox:nth-child(8)::before { content: "8"; }
-.tools-grid .tool-checkbox:nth-child(9)::before { content: "9"; }
-.tools-grid .tool-checkbox:nth-child(10)::before { content: "10"; }
 
 /* خانة عنوان التقرير اليدوية */
 .manual-title-container {
@@ -971,14 +979,6 @@ button[title]:hover::before {
     .form-row {
         grid-template-columns: 1fr;
         gap: 15px;
-    }
-    
-    .tools-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .tool-checkbox {
-        padding: 8px 8px 8px 28px;
     }
     
     .notification {
@@ -1114,8 +1114,13 @@ button[title]:hover::before {
     position:absolute;
     right:12px;
     top:45px;
-    font-size:18px;
-    font-weight:900;
+    font-size:16px; /* تم تخفيضه من 18px */
+    font-weight:700; /* تم تخفيضه من 900 */
+    max-width:70%; /* لمنع تجاوز الحدود */
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    text-align:right;
 }
 .header-education{
     position:absolute;
