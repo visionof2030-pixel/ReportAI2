@@ -31,12 +31,25 @@ color:#e8f4f0;font-weight:500;
 }
 .top-marquee:hover .marquee-inner{animation-play-state:paused;}
 
-/* ==================== نظام الأزرار الجديد ==================== */
+/* ==================== نظام الأزرار المحسّن ==================== */
+
+/* إعادة تعيين موحد لجميع الأزرار */
+.top-small-buttons button,
+.main-buttons-bar button,
+#aiFillFloatingBtn {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 /* المجموعة الأولى: الأزرار الصغيرة أعلى الهيدر */
 .top-small-buttons {
     position: fixed;
-    top: 45px; /* أسفل شريط الأخبار مباشرة */
+    top: 45px;
     left: 0;
     right: 0;
     width: 100%;
@@ -48,6 +61,7 @@ color:#e8f4f0;font-weight:500;
     align-items: center;
     border-bottom: 1px solid #e0f0ea;
     box-shadow: 0 2px 8px rgba(4, 74, 53, 0.08);
+    box-sizing: border-box;
 }
 
 .small-buttons-grid {
@@ -65,7 +79,7 @@ color:#e8f4f0;font-weight:500;
     font-size: 9px;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 700;
     display: flex;
     flex-direction: column;
@@ -76,6 +90,25 @@ color:#e8f4f0;font-weight:500;
     min-width: 80px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* إزالة تأثيرات الحركة والاهتزاز */
+.small-btn:active,
+.small-btn:focus,
+.small-btn:hover {
+    transform: none !important;
+    line-height: inherit !important;
+    font-weight: 700 !important;
+    height: auto !important;
+    width: auto !important;
+}
+
+/* تأثير الضغط الخفيف */
+.small-btn:active {
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.5), inset 0 3px 5px rgba(0,0,0,0.1) !important;
+    filter: brightness(0.95);
 }
 
 /* زر حفظ البيانات - أزرق */
@@ -87,8 +120,12 @@ color:#e8f4f0;font-weight:500;
 
 #saveTeacherBtn:hover {
     background: linear-gradient(135deg, #3b5bdb 0%, #2d4ac0 100%);
-    transform: translateY(-2px);
+    filter: brightness(1.05);
     box-shadow: 0 3px 8px rgba(59, 91, 219, 0.3);
+}
+
+#saveTeacherBtn:active {
+    filter: brightness(0.9);
 }
 
 /* زر مسح البيانات - أصفر */
@@ -100,8 +137,12 @@ color:#e8f4f0;font-weight:500;
 
 #clearBtn:hover {
     background: linear-gradient(135deg, #ffc145 0%, #ffb830 100%);
-    transform: translateY(-2px);
+    filter: brightness(1.05);
     box-shadow: 0 3px 8px rgba(255, 193, 69, 0.3);
+}
+
+#clearBtn:active {
+    filter: brightness(0.9);
 }
 
 /* زر الضبط - رمادي */
@@ -113,13 +154,18 @@ color:#e8f4f0;font-weight:500;
 
 #settingsBtn:hover {
     background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-    transform: translateY(-2px);
+    filter: brightness(1.05);
     box-shadow: 0 3px 8px rgba(74, 85, 104, 0.3);
+}
+
+#settingsBtn:active {
+    filter: brightness(0.9);
 }
 
 .small-btn-icon {
     font-size: 10px;
     color: white;
+    transition: none;
 }
 
 .small-btn .small-btn-text {
@@ -128,10 +174,7 @@ color:#e8f4f0;font-weight:500;
     text-align: center;
     line-height: 1.1;
     white-space: nowrap;
-}
-
-.small-btn:active {
-    transform: translateY(0);
+    transition: none;
 }
 
 /* المجموعة الثانية: الأزرار الكبيرة */
@@ -149,6 +192,7 @@ color:#e8f4f0;font-weight:500;
     align-items: center;
     box-shadow: 0 3px 10px rgba(4, 74, 53, 0.1);
     border-bottom: 1px solid #d4ebe2;
+    box-sizing: border-box;
 }
 
 .main-buttons-grid {
@@ -166,7 +210,7 @@ color:#e8f4f0;font-weight:500;
     font-size: 12px;
     border-radius: 12px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 700;
     display: flex;
     flex-direction: column;
@@ -177,6 +221,25 @@ color:#e8f4f0;font-weight:500;
     min-width: 120px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
     flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* إزالة تأثيرات الحركة والاهتزاز */
+.main-btn:active,
+.main-btn:focus,
+.main-btn:hover {
+    transform: none !important;
+    line-height: inherit !important;
+    font-weight: 700 !important;
+    height: auto !important;
+    width: auto !important;
+}
+
+/* تأثير الضغط الخفيف */
+.main-btn:active {
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.5), inset 0 4px 6px rgba(0,0,0,0.1) !important;
+    filter: brightness(0.95);
 }
 
 /* زر تنزيل PDF - أحمر */
@@ -188,8 +251,12 @@ color:#e8f4f0;font-weight:500;
 
 #pdfBtn:hover {
     background: linear-gradient(135deg, #ee5a52 0%, #d64545 100%);
-    transform: translateY(-3px);
+    filter: brightness(1.05);
     box-shadow: 0 5px 15px rgba(238, 90, 82, 0.4);
+}
+
+#pdfBtn:active {
+    filter: brightness(0.9);
 }
 
 /* زر مشاركة واتساب - أخضر */
@@ -201,13 +268,18 @@ color:#e8f4f0;font-weight:500;
 
 #whatsappBtn:hover {
     background: linear-gradient(135deg, #1da851 0%, #179244 100%);
-    transform: translateY(-3px);
+    filter: brightness(1.05);
     box-shadow: 0 5px 15px rgba(29, 168, 81, 0.4);
+}
+
+#whatsappBtn:active {
+    filter: brightness(0.9);
 }
 
 .main-btn-icon {
     font-size: 16px;
     color: white;
+    transition: none;
 }
 
 .main-btn .main-btn-text {
@@ -216,41 +288,74 @@ color:#e8f4f0;font-weight:500;
     text-align: center;
     line-height: 1.2;
     white-space: nowrap;
+    transition: none;
 }
 
-.main-btn:active {
-    transform: translateY(0);
-}
-
-/* ========== زر التعبئة الذكية العائم - تصميم جديد ومحسّن ========== */
+/* ========== زر التعبئة الذكية العائم - متكامل مع الثيمات ========== */
 #aiFillFloatingBtn {
     position: fixed;
     bottom: 30px;
     left: 30px;
     width: 100px;
     height: 100px;
-    background: linear-gradient(135deg, #9D50BB 0%, #6E48AA 25%, #533D8B 50%, #3A2569 100%);
     color: white;
     border: none;
     border-radius: 50%;
     font-size: 16px;
     font-weight: 900;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    box-shadow: 
-        0 12px 35px rgba(157, 80, 187, 0.6),
-        0 0 0 3px rgba(255, 215, 0, 0.3),
-        0 0 25px rgba(157, 80, 187, 0.5);
     border: 4px solid rgba(255, 255, 255, 0.7);
     z-index: 1000;
     overflow: hidden;
     transform: translateY(0);
-    animation: floatButton 3s ease-in-out infinite, magicalGlow 2s ease-in-out infinite;
+    animation: floatButton 3s ease-in-out infinite;
+}
+
+/* الثيم الافتراضي */
+#aiFillFloatingBtn {
+    background: linear-gradient(135deg, #9D50BB 0%, #6E48AA 25%, #533D8B 50%, #3A2569 100%);
+    box-shadow: 
+        0 12px 35px rgba(157, 80, 187, 0.6),
+        0 0 0 3px rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(157, 80, 187, 0.5);
+}
+
+#aiFillFloatingBtn .floating-ai-icon {
+    font-size: 38px;
+    animation: magicalPulse 2s infinite;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+    margin-bottom: 2px;
+    color: #FFFFFF;
+    transition: none;
+}
+
+#aiFillFloatingBtn .floating-ai-text {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    background: linear-gradient(45deg, #FFFFFF, #F0F0F0, #FFFFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: textShine 2s ease-in-out infinite;
+    white-space: nowrap;
+    transition: none;
+}
+
+/* إزالة تأثيرات الحركة والاهتزاز */
+#aiFillFloatingBtn:active,
+#aiFillFloatingBtn:focus {
+    transform: none !important;
+    animation-play-state: running !important;
 }
 
 /* تأثير الطفو */
@@ -261,87 +366,24 @@ color:#e8f4f0;font-weight:500;
     75% { transform: translateY(-8px) rotate(-3deg); }
 }
 
-/* تأثير التوهج السحري الجديد */
-@keyframes magicalGlow {
-    0%, 100% { 
-        box-shadow: 
-            0 12px 35px rgba(157, 80, 187, 0.6),
-            0 0 0 3px rgba(255, 215, 0, 0.3),
-            0 0 25px rgba(157, 80, 187, 0.5);
-    }
-    50% { 
-        box-shadow: 
-            0 18px 45px rgba(157, 80, 187, 0.8),
-            0 0 0 4px rgba(255, 215, 0, 0.5),
-            0 0 35px rgba(157, 80, 187, 0.7),
-            0 0 0 8px rgba(255, 255, 255, 0.1);
-    }
-}
-
-#aiFillFloatingBtn::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg, 
-        transparent 30%, 
-        rgba(255, 255, 255, 0.25) 50%, 
-        transparent 70%
-    );
-    transition: transform 0.8s;
-    transform: rotate(45deg) translate(-20%, -100%);
-}
-
-#aiFillFloatingBtn:hover::before {
-    transform: rotate(45deg) translate(20%, 100%);
-}
-
 #aiFillFloatingBtn:hover {
-    background: linear-gradient(135deg, #6E48AA 0%, #533D8B 25%, #3A2569 50%, #2A1B4E 100%);
-    transform: translateY(-10px) scale(1.12);
+    filter: brightness(1.15);
     box-shadow: 
-        0 25px 60px rgba(157, 80, 187, 0.9),
-        0 0 0 5px rgba(255, 215, 0, 0.5),
-        0 0 50px rgba(157, 80, 187, 0.8),
+        0 25px 60px rgba(0,0,0,0.4),
+        0 0 0 5px rgba(255, 255, 255, 0.5),
+        0 0 50px rgba(0,0,0,0.3),
         0 0 0 10px rgba(255, 255, 255, 0.15);
-    animation-play-state: paused;
 }
 
 #aiFillFloatingBtn:active {
-    transform: translateY(-5px) scale(1.06);
+    filter: brightness(0.85);
     box-shadow: 
-        0 15px 40px rgba(157, 80, 187, 0.7),
-        0 0 0 4px rgba(255, 215, 0, 0.4),
-        0 0 30px rgba(157, 80, 187, 0.6);
+        0 15px 40px rgba(0,0,0,0.3),
+        0 0 0 4px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(0,0,0,0.2);
 }
 
-#aiFillFloatingBtn .floating-ai-icon {
-    font-size: 38px;
-    animation: magicalPulse 2s infinite;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
-    margin-bottom: 2px;
-    color: #FFD700;
-}
-
-#aiFillFloatingBtn .floating-ai-text {
-    font-size: 14px;
-    font-weight: 900;
-    letter-spacing: 0.5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    color: #FFFFFF;
-    background: linear-gradient(45deg, #FFD700, #FFF8DC, #FFD700);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% auto;
-    animation: goldenTextShine 2s ease-in-out infinite;
-    white-space: nowrap;
-}
-
-/* تأثير النبض السحري الجديد للأيقونة */
+/* تأثير النبض السحري للأيقونة */
 @keyframes magicalPulse {
     0%, 100% { 
         transform: scale(1) rotate(0deg);
@@ -349,54 +391,52 @@ color:#e8f4f0;font-weight:500;
     }
     25% { 
         transform: scale(1.15) rotate(10deg);
-        filter: drop-shadow(0 5px 10px rgba(255, 215, 0, 0.6)) brightness(1.2);
+        filter: drop-shadow(0 5px 10px rgba(255, 255, 255, 0.6)) brightness(1.2);
     }
     50% { 
         transform: scale(1.1) rotate(-5deg);
-        filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.5)) brightness(1.1);
+        filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.5)) brightness(1.1);
     }
     75% { 
         transform: scale(1.18) rotate(5deg);
-        filter: drop-shadow(0 6px 12px rgba(255, 215, 0, 0.7)) brightness(1.3);
+        filter: drop-shadow(0 6px 12px rgba(255, 255, 255, 0.7)) brightness(1.3);
     }
 }
 
-/* تأثير تلميع النص الذهبي */
-@keyframes goldenTextShine {
+/* تأثير تلميع النص */
+@keyframes textShine {
     0%, 100% { 
         background-position: 0% 50%;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
     50% { 
         background-position: 100% 50%;
-        text-shadow: 0 3px 6px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.2);
+        text-shadow: 0 3px 6px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.2);
     }
 }
 
-/* حالة التحميل للزر العائم - تصميم محسّن */
+/* حالة التحميل للزر العائم */
 #aiFillFloatingBtn.loading {
-    background: linear-gradient(135deg, #9D50BB 0%, #6E48AA 25%, #533D8B 50%, #3A2569 100%);
     animation: loadingMagicalGlow 1.5s ease-in-out infinite;
 }
 
 @keyframes loadingMagicalGlow {
     0%, 100% { 
         box-shadow: 
-            0 12px 35px rgba(157, 80, 187, 0.6),
-            0 0 0 4px rgba(157, 80, 187, 0.4),
-            0 0 30px rgba(157, 80, 187, 0.6);
+            0 12px 35px rgba(0,0,0,0.4),
+            0 0 0 4px rgba(255, 255, 255, 0.4),
+            0 0 30px rgba(0,0,0,0.3);
     }
     50% { 
         box-shadow: 
-            0 18px 45px rgba(157, 80, 187, 0.9),
-            0 0 0 5px rgba(157, 80, 187, 0.7),
-            0 0 40px rgba(157, 80, 187, 0.8);
+            0 18px 45px rgba(0,0,0,0.6),
+            0 0 0 5px rgba(255, 255, 255, 0.7),
+            0 0 40px rgba(0,0,0,0.5);
     }
 }
 
 #aiFillFloatingBtn.loading .floating-ai-icon {
     animation: magicalSpin 1.2s linear infinite;
-    color: #FFD700;
 }
 
 @keyframes magicalSpin {
@@ -477,7 +517,7 @@ color:#e8f4f0;font-weight:500;
 
 #activationScreen button:hover {
     background: linear-gradient(135deg, #05553d 0%, #044a35 100%);
-    transform: translateY(-3px);
+    filter: brightness(1.05);
 }
 
 /* زر التواصل في شاشة التفعيل */
@@ -502,7 +542,7 @@ color:#e8f4f0;font-weight:500;
 
 #contactForTrialBtn:hover {
     background: linear-gradient(135deg, #4c51bf 0%, #434190 100%);
-    transform: translateY(-3px);
+    filter: brightness(1.05);
 }
 
 #activationError {
@@ -613,7 +653,6 @@ input:focus,select:focus,textarea:focus{
     border-color:#066d4d;
     box-shadow:0 0 0 4px rgba(6,109,77,0.15), inset 0 2px 8px rgba(0,0,0,0.05);
     background:#ffffff;
-    transform:translateY(-3px);
 }
 textarea{height:120px;resize:none;overflow:hidden;line-height:1.7;font-size:17px;}
 
@@ -727,7 +766,7 @@ button[title]:hover::before {
     box-shadow: 0 0 0 2px rgba(6, 109, 77, 0.2);
 }
 
-/* قسم الأدوات والوسائل التعليمية */
+/* ========== قسم الأدوات والوسائل التعليمية - معدل ========== */
 .tools-section {
     background: #f8fdfa;
     padding: 18px;
@@ -741,37 +780,63 @@ button[title]:hover::before {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+    counter-reset: tool-counter;
 }
 
 .tool-checkbox {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px;
+    padding: 10px 10px 10px 30px;
     background: white;
     border-radius: 10px;
     border: 2px solid #d4ebe2;
     transition: all 0.3s;
     cursor: pointer;
+    position: relative;
+    min-height: 50px;
+}
+
+/* ترقيم الأدوات */
+.tool-checkbox::before {
+    counter-increment: tool-counter;
+    content: counter(tool-counter);
+    position: absolute;
+    right: 8px;
+    background: #066d4d;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
 }
 
 .tool-checkbox:hover {
     border-color: #066d4d;
     background: #f0f9f6;
-    transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(6, 109, 77, 0.1);
+    transform: translateY(-2px);
 }
 
 .tool-checkbox input[type="checkbox"] {
     width: 20px;
     height: 20px;
     cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    z-index: 1;
 }
 
 .tool-checkbox span {
     font-size: 14px;
     font-weight: 700;
     color: #083024;
+    margin-right: 25px;
+    flex: 1;
 }
 
 .tool-checkbox.checked {
@@ -784,13 +849,25 @@ button[title]:hover::before {
 .checkmark {
     color: #066d4d;
     font-size: 16px;
-    margin-left: 5px;
+    margin-right: 5px;
     display: none;
 }
 
 .tool-checkbox.checked .checkmark {
     display: inline-block;
 }
+
+/* تنسيق الأدوات في صفين */
+.tools-grid .tool-checkbox:nth-child(1)::before { content: "1"; }
+.tools-grid .tool-checkbox:nth-child(2)::before { content: "2"; }
+.tools-grid .tool-checkbox:nth-child(3)::before { content: "3"; }
+.tools-grid .tool-checkbox:nth-child(4)::before { content: "4"; }
+.tools-grid .tool-checkbox:nth-child(5)::before { content: "5"; }
+.tools-grid .tool-checkbox:nth-child(6)::before { content: "6"; }
+.tools-grid .tool-checkbox:nth-child(7)::before { content: "7"; }
+.tools-grid .tool-checkbox:nth-child(8)::before { content: "8"; }
+.tools-grid .tool-checkbox:nth-child(9)::before { content: "9"; }
+.tools-grid .tool-checkbox:nth-child(10)::before { content: "10"; }
 
 /* خانة عنوان التقرير اليدوية */
 .manual-title-container {
@@ -900,6 +977,10 @@ button[title]:hover::before {
         grid-template-columns: 1fr;
     }
     
+    .tool-checkbox {
+        padding: 8px 8px 8px 28px;
+    }
+    
     .notification {
         top: 140px;
         padding: 10px 15px;
@@ -975,7 +1056,7 @@ button[title]:hover::before {
     }
     
     .tool-checkbox {
-        padding: 6px;
+        padding: 6px 6px 6px 26px;
     }
     
     .tool-checkbox span {
@@ -992,6 +1073,7 @@ button[title]:hover::before {
 :root{
     --main:#062f25;
     --border:#2f9e8f;
+    --bg:#ffffff;
 }
 
 #report-content{
@@ -1002,7 +1084,7 @@ button[title]:hover::before {
     box-sizing:border-box;
     display:none;
     font-family:'Cairo',sans-serif;
-    background:#fff;
+    background:var(--bg);
 }
 
 .header{
@@ -1016,7 +1098,11 @@ button[title]:hover::before {
     position:relative;
     margin-bottom:8px;
 }
-.header img{width:140px;}
+.header img{
+    width:260px;
+    filter: brightness(0) invert(1); /* جعل الصورة بيضاء */
+    transition: filter 0.3s ease;
+}
 .header-school-title{
     position:absolute;
     right:12px;
@@ -1071,6 +1157,7 @@ button[title]:hover::before {
     font-size:11px;
     min-height:34px;
     overflow:hidden;
+    background:var(--bg);
 }
 .info-title{
     position:absolute;
@@ -1104,6 +1191,7 @@ button[title]:hover::before {
     height: 48px;
     min-height: 48px;
     max-height: 48px;
+    background:var(--bg);
 }
 .subject-lesson-title{
     position:absolute;
@@ -1137,6 +1225,7 @@ button[title]:hover::before {
     display:flex;
     flex-direction:column;
     overflow:hidden;
+    background:var(--bg);
 }
 .box-objective .box-title{
     text-align:center;
@@ -1166,6 +1255,7 @@ button[title]:hover::before {
     display:flex;
     flex-direction:column;
     overflow:hidden;
+    background:var(--bg);
 }
 .box-title{
     text-align:center;
@@ -1193,6 +1283,7 @@ button[title]:hover::before {
     padding:6px;
     margin-bottom:6px;
     overflow:hidden;
+    background:var(--bg);
 }
 .tools-title{
     text-align:center;
@@ -1408,7 +1499,7 @@ button[title]:hover::before {
 
 #settingsModal button:hover {
     background:#05553d;
-    transform:translateY(-2px);
+    filter: brightness(1.05);
 }
 
 #settingsModal .btn-secondary {
@@ -1418,6 +1509,7 @@ button[title]:hover::before {
 
 #settingsModal .btn-secondary:hover {
     background:#3b5bdb;
+    filter: brightness(1.05);
 }
 
 #settingsModal hr {
@@ -1425,10 +1517,414 @@ button[title]:hover::before {
     border:none;
     border-top:1px solid #d4ebe2;
 }
+
+/* ==================== أنماط الثيمات الإضافية ==================== */
+
+/* ثيم الواجهة: الأزرق الفاتح */
+.theme-light-blue body {
+    background: linear-gradient(135deg, #e8f0ff 0%, #d6e4ff 50%, #c2d4ff 100%) !important;
+}
+
+.theme-light-blue .input-section {
+    background: #ffffff;
+    border: 2px solid #c2d4ff;
+    box-shadow: 0 10px 30px rgba(66, 133, 244, 0.15);
+}
+
+.theme-light-blue .input-section::before {
+    background: linear-gradient(to left, #4285f4, #34a853, #fbbc05);
+}
+
+.theme-light-blue .input-section h2 {
+    color: #4285f4;
+}
+
+.theme-light-blue .input-section h2::after {
+    background: linear-gradient(to left, #4285f4, #34a853);
+}
+
+.theme-light-blue .form-group label {
+    color: #1a73e8;
+}
+
+.theme-light-blue .form-group label i {
+    color: #4285f4;
+    background: #e8f0ff;
+    border: 1px solid #c2d4ff;
+}
+
+.theme-light-blue .top-marquee {
+    background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+    border-bottom: 3px solid #fbbc05;
+}
+
+.theme-light-blue .top-small-buttons {
+    background: linear-gradient(135deg, #ffffff 0%, #edf2ff 100%);
+}
+
+.theme-light-blue .main-buttons-bar {
+    background: linear-gradient(135deg, #f0f5ff 0%, #e8f0ff 100%);
+}
+
+.theme-light-blue .tools-section {
+    background: #f0f5ff;
+    border: 1px solid #c2d4ff;
+}
+
+.theme-light-blue .tool-checkbox {
+    background: white;
+    border: 2px solid #c2d4ff;
+}
+
+.theme-light-blue .tool-checkbox:hover {
+    border-color: #4285f4;
+    background: #e8f0ff;
+}
+
+.theme-light-blue .tool-checkbox.checked {
+    border-color: #4285f4;
+    background: #d6e4ff;
+}
+
+.theme-light-blue .tool-checkbox::before {
+    background: #4285f4;
+}
+
+/* زر التعبئة الذكية في ثيم الأزرق الفاتح */
+.theme-light-blue #aiFillFloatingBtn {
+    background: linear-gradient(135deg, #4285f4 0%, #34a853 25%, #fbbc05 50%, #ea4335 100%) !important;
+    box-shadow: 
+        0 12px 35px rgba(66, 133, 244, 0.6),
+        0 0 0 3px rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(66, 133, 244, 0.5) !important;
+}
+
+.theme-light-blue #aiFillFloatingBtn .floating-ai-icon {
+    color: #FFFFFF !important;
+}
+
+.theme-light-blue #aiFillFloatingBtn .floating-ai-text {
+    background: linear-gradient(45deg, #FFFFFF, #E8F0FF, #FFFFFF) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+/* ثيم الواجهة: الوضع المظلم */
+.theme-dark body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+    color: #e0e0e0;
+}
+
+.theme-dark .input-section {
+    background: #1e293b;
+    border: 2px solid #334155;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    color: #e0e0e0;
+}
+
+.theme-dark .input-section::before {
+    background: linear-gradient(to left, #3b82f6, #10b981, #f59e0b);
+}
+
+.theme-dark .input-section h2 {
+    color: #60a5fa;
+}
+
+.theme-dark .input-section h2::after {
+    background: linear-gradient(to left, #3b82f6, #10b981);
+}
+
+.theme-dark .form-group label {
+    color: #cbd5e1;
+}
+
+.theme-dark .form-group label i {
+    color: #60a5fa;
+    background: #1e293b;
+    border: 1px solid #475569;
+}
+
+.theme-dark input,
+.theme-dark select,
+.theme-dark textarea {
+    background: #1e293b;
+    border-color: #475569;
+    color: #e0e0e0;
+}
+
+.theme-dark input:focus,
+.theme-dark select:focus,
+.theme-dark textarea:focus {
+    border-color: #3b82f6;
+    background: #0f172a;
+    color: #e0e0e0;
+}
+
+.theme-dark .top-marquee {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-bottom: 3px solid #f59e0b;
+}
+
+.theme-dark .top-small-buttons {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-bottom: 1px solid #334155;
+}
+
+.theme-dark .main-buttons-bar {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-bottom: 1px solid #334155;
+}
+
+.theme-dark .tools-section {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+.theme-dark .tool-checkbox {
+    background: #0f172a;
+    border: 2px solid #334155;
+    color: #cbd5e1;
+}
+
+.theme-dark .tool-checkbox:hover {
+    border-color: #3b82f6;
+    background: #1e293b;
+}
+
+.theme-dark .tool-checkbox.checked {
+    border-color: #3b82f6;
+    background: #1e293b;
+}
+
+.theme-dark .tool-checkbox::before {
+    background: #3b82f6;
+}
+
+.theme-dark .manual-title-container {
+    background: #1e293b;
+    border: 2px solid #334155;
+}
+
+.theme-dark .manual-title-container input {
+    background: #0f172a;
+    border-color: #475569;
+    color: #e0e0e0;
+}
+
+/* زر التعبئة الذكية في الوضع المظلم */
+.theme-dark #aiFillFloatingBtn {
+    background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 25%, #8b5cf6 50%, #a78bfa 100%) !important;
+    box-shadow: 
+        0 12px 35px rgba(109, 40, 217, 0.6),
+        0 0 0 3px rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(109, 40, 217, 0.5) !important;
+}
+
+.theme-dark #aiFillFloatingBtn .floating-ai-icon {
+    color: #FFFFFF !important;
+}
+
+.theme-dark #aiFillFloatingBtn .floating-ai-text {
+    background: linear-gradient(45deg, #FFFFFF, #F3F4F6, #FFFFFF) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+/* ثيم الواجهة: الأخضر التربوي */
+.theme-green body {
+    background: linear-gradient(135deg, #e6f7ef 0%, #d4f0e4 50%, #c2e8d9 100%) !important;
+}
+
+.theme-green .input-section {
+    background: #ffffff;
+    border: 2px solid #2ecc71;
+    box-shadow: 0 10px 30px rgba(46, 204, 113, 0.15);
+}
+
+.theme-green .input-section::before {
+    background: linear-gradient(to left, #27ae60, #2ecc71, #3498db);
+}
+
+.theme-green .input-section h2 {
+    color: #27ae60;
+}
+
+.theme-green .input-section h2::after {
+    background: linear-gradient(to left, #27ae60, #2ecc71);
+}
+
+.theme-green .form-group label {
+    color: #229954;
+}
+
+.theme-green .form-group label i {
+    color: #27ae60;
+    background: #e6f7ef;
+    border: 1px solid #a3e4c2;
+}
+
+.theme-green .top-marquee {
+    background: linear-gradient(135deg, #1e8449 0%, #27ae60 100%);
+    border-bottom: 3px solid #3498db;
+}
+
+.theme-green .top-small-buttons {
+    background: linear-gradient(135deg, #ffffff 0%, #e6f7ef 100%);
+}
+
+.theme-green .main-buttons-bar {
+    background: linear-gradient(135deg, #e6f7ef 0%, #d4f0e4 100%);
+}
+
+.theme-green .tools-section {
+    background: #e6f7ef;
+    border: 1px solid #a3e4c2;
+}
+
+.theme-green .tool-checkbox {
+    background: white;
+    border: 2px solid #a3e4c2;
+}
+
+.theme-green .tool-checkbox:hover {
+    border-color: #27ae60;
+    background: #d4f0e4;
+}
+
+.theme-green .tool-checkbox.checked {
+    border-color: #27ae60;
+    background: #c2e8d9;
+}
+
+.theme-green .tool-checkbox::before {
+    background: #27ae60;
+}
+
+/* زر التعبئة الذكية في الثيم الأخضر */
+.theme-green #aiFillFloatingBtn {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 25%, #3498db 50%, #9b59b6 100%) !important;
+    box-shadow: 
+        0 12px 35px rgba(46, 204, 113, 0.6),
+        0 0 0 3px rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(46, 204, 113, 0.5) !important;
+}
+
+.theme-green #aiFillFloatingBtn .floating-ai-icon {
+    color: #FFFFFF !important;
+}
+
+.theme-green #aiFillFloatingBtn .floating-ai-text {
+    background: linear-gradient(45deg, #FFFFFF, #E6F7EF, #FFFFFF) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+/* الثيم الافتراضي - تدعيم */
+.theme-default #aiFillFloatingBtn .floating-ai-icon {
+    color: #FFFFFF !important;
+}
+
+.theme-default #aiFillFloatingBtn .floating-ai-text {
+    background: linear-gradient(45deg, #FFFFFF, #F0F9F6, #FFFFFF) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+/* ثيمات PDF */
+
+/* ثيم PDF: كلاسيكي (الافتراضي) */
+.pdf-theme-classic {
+    --main: #062f25;
+    --border: #2f9e8f;
+    --bg: #ffffff;
+}
+
+/* ثيم PDF: احترافي */
+.pdf-theme-professional {
+    --main: #1a365d;
+    --border: #4299e1;
+    --bg: #ffffff;
+}
+
+.pdf-theme-professional .header {
+    background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+}
+
+.pdf-theme-professional .tools-box .tool {
+    background: #ebf8ff;
+    border-color: #bee3f8;
+}
+
+/* إصلاح لون الشعار في الثيمات المختلفة */
+.pdf-theme-professional .header img,
+.pdf-theme-minimal .header img,
+.pdf-theme-tech .header img,
+.pdf-theme-educational .header img {
+    filter: brightness(0) invert(1);
+}
+
+/* ثيم PDF: ميني (بسيط) */
+.pdf-theme-minimal {
+    --main: #4a5568;
+    --border: #cbd5e0;
+    --bg: #ffffff;
+}
+
+.pdf-theme-minimal .header {
+    background: #4a5568;
+}
+
+.pdf-theme-minimal .box,
+.pdf-theme-minimal .info-box,
+.pdf-theme-minimal .subject-lesson-box,
+.pdf-theme-minimal .tools-box {
+    border: 1px solid #e2e8f0;
+}
+
+/* ثيم PDF: تقني */
+.pdf-theme-tech {
+    --main: #2d3748;
+    --border: #4fd1c7;
+    --bg: #ffffff;
+}
+
+.pdf-theme-tech .header {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+}
+
+.pdf-theme-tech .tools-box .tool {
+    background: #e6fffa;
+    border-color: #81e6d9;
+}
+
+/* ثيم PDF: تعليمي */
+.pdf-theme-educational {
+    --main: #2b6cb0;
+    --border: #4299e1;
+    --bg: #ffffff;
+}
+
+.pdf-theme-educational .header {
+    background: linear-gradient(135deg, #2b6cb0 0%, #3182ce 100%);
+}
+
+.pdf-theme-educational .tools-box .tool {
+    background: #ebf8ff;
+    border-color: #bee3f8;
+}
+
+/* الشعار في كلاسيكي يجب أن يبقى باللون الأصلي (أبيض على خلفية خضراء) */
+.pdf-theme-classic .header img {
+    filter: brightness(0) invert(1);
+}
 </style>
 </head>
 
-<body>
+<body class="theme-default">
 
 <!-- زر التعبئة الذكية العائم - تصميم جديد -->
 <button id="aiFillFloatingBtn" onclick="fillWithAI()" title="تعبئة الحقول تلقائياً باستخدام الذكاء الاصطناعي">
@@ -1681,7 +2177,7 @@ button[title]:hover::before {
 <!-- قسم PDF -->
 <div id="report-content" class="pdf-export" style="display:none;">
 <div class="header">
-  <img src="https://i.ibb.co/1fc5gB6v/9-C92-E57-B-23-FA-479-D-A024-1-D5-F871-B4-F8-D.png">
+  <img src="https://i.ibb.co/zH7k1s8c/IMG-2987.png">
   <div class="header-school-title">اسم المدرسة</div>
   <div class="header-school" id="schoolBox"></div>
   <div class="header-education" id="educationBox"></div>
@@ -1799,6 +2295,55 @@ button[title]:hover::before {
       حفظ تاريخ التقرير
     </button>
 
+    <hr style="margin:15px 0;">
+
+    <h4 style="color:#044a35; margin-bottom:10px;">
+        <i class="fas fa-palette"></i> تغيير الثيمات
+    </h4>
+
+    <div style="background:#f8fdfa; padding:15px; border-radius:10px; border:1px solid #d4ebe2; margin-bottom:15px;">
+        <label style="display:block; font-weight:700; margin-bottom:8px; color:#044a35;">
+            <i class="fas fa-desktop"></i> ثيم واجهة الأداة
+        </label>
+        <select id="appThemeSelect" style="width:100%; padding:10px; border-radius:8px; border:2px solid #d4ebe2; font-family:'Cairo'; background:white;">
+            <option value="default">الثيم الافتراضي (فاتح)</option>
+            <option value="light-blue">الأزرق الفاتح</option>
+            <option value="dark">الوضع المظلم</option>
+            <option value="green">الأخضر التربوي</option>
+        </select>
+    </div>
+
+    <div style="background:#f8fdfa; padding:15px; border-radius:10px; border:1px solid #d4ebe2; margin-bottom:15px;">
+        <label style="display:block; font-weight:700; margin-bottom:8px; color:#044a35;">
+            <i class="fas fa-file-pdf"></i> ثيم ملف PDF
+        </label>
+        <select id="pdfThemeSelect" style="width:100%; padding:10px; border-radius:8px; border:2px solid #d4ebe2; font-family:'Cairo'; background:white;">
+            <option value="classic">كلاسيكي (افتراضي)</option>
+            <option value="professional">احترافي</option>
+            <option value="minimal">ميني (بسيط)</option>
+            <option value="tech">تقني</option>
+            <option value="educational">تعليمي</option>
+        </select>
+    </div>
+
+    <button onclick="applyThemes()" style="
+      margin-top:5px;
+      width:100%;
+      padding:10px;
+      background:#9D50BB;
+      color:white;
+      border:none;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    ">
+      <i class="fas fa-check"></i> تطبيق الثيمات
+    </button>
+
     <button onclick="closeSettings()" style="
       margin-top:20px;
       width:100%;
@@ -1823,6 +2368,10 @@ window.reportsByCategory = {};
 // ==================== متغيرات التفعيل ====================
 const ACTIVATION_KEY_NAME = "activation_code";
 const BACKEND_URL = "https://deep-qphc.onrender.com";
+
+// ==================== متغيرات الثيمات ====================
+const APP_THEME_KEY = "app_theme";
+const PDF_THEME_KEY = "pdf_theme";
 
 // ==================== متغيرات التاريخ ====================
 let currentHijriDate = '';
@@ -1910,6 +2459,105 @@ async function activateTool() {
 function contactForTrial() {
     const message = encodeURIComponent("أرغب في تجربة أداة إصدار التقارير التربوية أو الاشتراك فيها.\n\nيرجى التواصل معي للمزيد من المعلومات.");
     window.open(`https://wa.me/966597077245?text=${message}`, '_blank');
+}
+
+// ==================== دوال إدارة الثيمات ====================
+function loadThemeSettings() {
+    // تحميل ثيم الواجهة
+    const savedAppTheme = localStorage.getItem(APP_THEME_KEY) || 'default';
+    const appThemeSelect = document.getElementById('appThemeSelect');
+    appThemeSelect.value = savedAppTheme;
+    applyAppTheme(savedAppTheme);
+    
+    // تحميل ثيم PDF
+    const savedPdfTheme = localStorage.getItem(PDF_THEME_KEY) || 'classic';
+    const pdfThemeSelect = document.getElementById('pdfThemeSelect');
+    pdfThemeSelect.value = savedPdfTheme;
+    applyPdfTheme(savedPdfTheme);
+}
+
+function applyAppTheme(themeName) {
+    // إزالة جميع ثيمات الواجهة السابقة
+    document.body.classList.remove('theme-light-blue', 'theme-dark', 'theme-green', 'theme-default');
+    
+    // تطبيق الثيم الجديد
+    document.body.classList.add('theme-' + themeName);
+    
+    // تحديث زر التعبئة الذكية حسب الثيم
+    updateAiButtonTheme(themeName);
+    
+    // حفظ التفضيل
+    localStorage.setItem(APP_THEME_KEY, themeName);
+}
+
+function updateAiButtonTheme(themeName) {
+    const aiButton = document.getElementById('aiFillFloatingBtn');
+    const aiIcon = aiButton.querySelector('.floating-ai-icon');
+    const aiText = aiButton.querySelector('.floating-ai-text');
+    
+    switch(themeName) {
+        case 'light-blue':
+            aiButton.style.background = 'linear-gradient(135deg, #4285f4 0%, #34a853 25%, #fbbc05 50%, #ea4335 100%)';
+            aiButton.style.boxShadow = '0 12px 35px rgba(66, 133, 244, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3), 0 0 25px rgba(66, 133, 244, 0.5)';
+            aiIcon.style.color = '#FFFFFF';
+            aiText.style.background = 'linear-gradient(45deg, #FFFFFF, #E8F0FF, #FFFFFF)';
+            break;
+            
+        case 'dark':
+            aiButton.style.background = 'linear-gradient(135deg, #6d28d9 0%, #7c3aed 25%, #8b5cf6 50%, #a78bfa 100%)';
+            aiButton.style.boxShadow = '0 12px 35px rgba(109, 40, 217, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3), 0 0 25px rgba(109, 40, 217, 0.5)';
+            aiIcon.style.color = '#FFFFFF';
+            aiText.style.background = 'linear-gradient(45deg, #FFFFFF, #F3F4F6, #FFFFFF)';
+            break;
+            
+        case 'green':
+            aiButton.style.background = 'linear-gradient(135deg, #27ae60 0%, #2ecc71 25%, #3498db 50%, #9b59b6 100%)';
+            aiButton.style.boxShadow = '0 12px 35px rgba(46, 204, 113, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3), 0 0 25px rgba(46, 204, 113, 0.5)';
+            aiIcon.style.color = '#FFFFFF';
+            aiText.style.background = 'linear-gradient(45deg, #FFFFFF, #E6F7EF, #FFFFFF)';
+            break;
+            
+        default: // الثيم الافتراضي
+            aiButton.style.background = 'linear-gradient(135deg, #9D50BB 0%, #6E48AA 25%, #533D8B 50%, #3A2569 100%)';
+            aiButton.style.boxShadow = '0 12px 35px rgba(157, 80, 187, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3), 0 0 25px rgba(157, 80, 187, 0.5)';
+            aiIcon.style.color = '#FFFFFF';
+            aiText.style.background = 'linear-gradient(45deg, #FFFFFF, #F0F9F6, #FFFFFF)';
+    }
+    
+    // إعادة تطبيق خاصية Webkit
+    aiText.style.webkitBackgroundClip = 'text';
+    aiText.style.webkitTextFillColor = 'transparent';
+    aiText.style.backgroundClip = 'text';
+}
+
+function applyPdfTheme(themeName) {
+    const reportContent = document.getElementById('report-content');
+    
+    // إزالة جميع ثيمات PDF السابقة
+    reportContent.classList.remove(
+        'pdf-theme-classic',
+        'pdf-theme-professional', 
+        'pdf-theme-minimal',
+        'pdf-theme-tech',
+        'pdf-theme-educational'
+    );
+    
+    // تطبيق الثيم الجديد
+    reportContent.classList.add('pdf-theme-' + themeName);
+    
+    // حفظ التفضيل
+    localStorage.setItem(PDF_THEME_KEY, themeName);
+}
+
+function applyThemes() {
+    const appTheme = document.getElementById('appThemeSelect').value;
+    const pdfTheme = document.getElementById('pdfThemeSelect').value;
+    
+    applyAppTheme(appTheme);
+    applyPdfTheme(pdfTheme);
+    
+    showNotification('تم تطبيق الثيمات بنجاح! ✓');
+    closeSettings();
 }
 
 // ==================== تحميل البيانات من الباك ====================
@@ -2082,10 +2730,9 @@ async function fillWithAI() {
         aiButton.querySelector('.floating-ai-icon').className = originalIcon;
         aiButton.disabled = false;
         
-        // إزالة أي تأثيرات بصرية متبقية
-        aiButton.style.background = 'linear-gradient(135deg, #9D50BB 0%, #6E48AA 100%)';
-        aiButton.style.transform = 'translateY(0)';
-        aiButton.style.boxShadow = '0 8px 25px rgba(157, 80, 187, 0.5)';
+        // تحديث لون الزر حسب الثيم الحالي
+        const currentTheme = localStorage.getItem(APP_THEME_KEY) || 'default';
+        updateAiButtonTheme(currentTheme);
     }
 }
 
@@ -2857,6 +3504,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // تحميل التواريخ عند فتح الصفحة
     await loadDates();
+    
+    // تحميل إعدادات الثيمات
+    loadThemeSettings();
     
     // تحميل البيانات من الباك
     await loadDataFromBackend();
