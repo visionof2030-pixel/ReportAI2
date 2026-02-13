@@ -8,32 +8,94 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
-*{margin:0;padding:0;box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
-html,body{font-family:'Cairo',sans-serif;background: linear-gradient(135deg, #f0f9f6 0%, #e8f4f0 50%, #d4ebe2 100%);direction:rtl;overflow-x:hidden;min-height:100vh;-webkit-text-size-adjust:100%; -moz-text-size-adjust:100%; -ms-text-size-adjust:100%; text-size-adjust:100%; touch-action: manipulation;}
-.wrapper{max-width:900px;margin:auto;padding:20px;width:100%;}
+
+/* ========== المتغيرات الأساسية ========== */
+:root {
+    --primary: #066d4d;
+    --primary-dark: #044a35;
+    --primary-light: #0a9d72;
+    --secondary: #ffd166;
+    --secondary-dark: #ffc145;
+    --danger: #ff6b6b;
+    --success: #25D366;
+    --gray-light: #f8fdfa;
+    --gray: #e0f0ea;
+    --text-dark: #083024;
+    --text-light: #666;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(4, 74, 53, 0.12);
+    --border: #d4ebe2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #f0f9f6 0%, #e8f4f0 50%, #d4ebe2 100%);
+    direction: rtl;
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    touch-action: manipulation;
+}
+
+.wrapper {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    width: 100%;
+}
 
 /* شريط الأخبار العلوي */
-.top-marquee{
-position:fixed;top:0;left:0;right:0;width:100%;background:linear-gradient(135deg, #022e22 0%, #044a35 100%);color:#fff;
-padding:10px 5px;font-size:12px;z-index:300;overflow:hidden;height:45px;
-white-space:nowrap;border-bottom:3px solid #ffd166;box-shadow:0 4px 12px rgba(2, 46, 34, 0.25);
-display:flex;align-items:center;
+.top-marquee {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #022e22 0%, #044a35 100%);
+    color: #fff;
+    padding: 10px 5px;
+    font-size: 14px;
+    z-index: 300;
+    overflow: hidden;
+    height: auto;
+    min-height: 45px;
+    white-space: nowrap;
+    border-bottom: 3px solid #ffd166;
+    box-shadow: 0 4px 12px rgba(2, 46, 34, 0.25);
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
 }
-.marquee-inner{
-display:inline-block;
-padding-left:2%;
-animation:newsScroll 30s linear infinite;
-color:#e8f4f0;font-weight:500;
-}
-@keyframes newsScroll{
-0%{transform:translateX(-100%);}
-100%{transform:translateX(100%);}
-}
-.top-marquee:hover .marquee-inner{animation-play-state:paused;}
 
-/* ==================== نظام الأزرار المحسّن ==================== */
+.marquee-inner {
+    display: inline-block;
+    padding-left: 2%;
+    animation: newsScroll 30s linear infinite;
+    color: #e8f4f0;
+    font-weight: 600;
+    white-space: nowrap;
+}
 
-/* إعادة تعيين موحد لجميع الأزرار */
+@keyframes newsScroll {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.top-marquee:hover .marquee-inner {
+    animation-play-state: paused;
+}
+
+/* نظام الأزرار المحسّن */
 .top-small-buttons button,
 .main-buttons-bar button,
 #aiFillFloatingBtn {
@@ -46,7 +108,7 @@ color:#e8f4f0;font-weight:500;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* المجموعة الأولى: الأزرار الصغيرة أعلى الهيدر */
+/* المجموعة الأولى: الأزرار الصغيرة */
 .top-small-buttons {
     position: fixed;
     top: 45px;
@@ -68,15 +130,14 @@ color:#e8f4f0;font-weight:500;
     display: flex;
     gap: 8px;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     justify-content: center;
 }
 
-/* تصميم الأزرار الصغيرة */
 .small-btn {
     border: 2px solid;
     padding: 6px 4px;
-    font-size: 9px;
+    font-size: 10px;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -86,90 +147,51 @@ color:#e8f4f0;font-weight:500;
     align-items: center;
     justify-content: center;
     gap: 3px;
-    min-height: 40px;
-    min-width: 80px;
+    min-height: 45px;
+    min-width: 90px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     flex: 1;
     position: relative;
     overflow: hidden;
 }
 
-/* إزالة تأثيرات الحركة والاهتزاز */
-.small-btn:active,
-.small-btn:focus,
-.small-btn:hover {
-    transform: none !important;
-    line-height: inherit !important;
-    font-weight: 700 !important;
-    height: auto !important;
-    width: auto !important;
-}
-
-/* تأثير الضغط الخفيف */
 .small-btn:active {
     box-shadow: 0 0 0 2px rgba(255,255,255,0.5), inset 0 3px 5px rgba(0,0,0,0.1) !important;
     filter: brightness(0.95);
 }
 
-/* زر حفظ البيانات - أزرق */
 #saveTeacherBtn {
     background: linear-gradient(135deg, #4f7bff 0%, #3b5bdb 100%);
     color: white;
     border-color: #3b5bdb;
 }
 
-#saveTeacherBtn:hover {
-    background: linear-gradient(135deg, #3b5bdb 0%, #2d4ac0 100%);
-    filter: brightness(1.05);
-    box-shadow: 0 3px 8px rgba(59, 91, 219, 0.3);
-}
-
-#saveTeacherBtn:active {
-    filter: brightness(0.9);
-}
-
-/* زر مسح البيانات - أصفر */
 #clearBtn {
     background: linear-gradient(135deg, #ffd166 0%, #ffc145 100%);
     color: #5a3e00;
     border-color: #ffc145;
 }
 
-#clearBtn:hover {
-    background: linear-gradient(135deg, #ffc145 0%, #ffb830 100%);
-    filter: brightness(1.05);
-    box-shadow: 0 3px 8px rgba(255, 193, 69, 0.3);
+#savedReportsBtn {
+    background: linear-gradient(135deg, #9D50BB 0%, #6E48AA 100%);
+    color: white;
+    border-color: #6E48AA;
 }
 
-#clearBtn:active {
-    filter: brightness(0.9);
-}
-
-/* زر الضبط - رمادي */
 #settingsBtn {
     background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
     color: white;
     border-color: #4a5568;
 }
 
-#settingsBtn:hover {
-    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-    filter: brightness(1.05);
-    box-shadow: 0 3px 8px rgba(74, 85, 104, 0.3);
-}
-
-#settingsBtn:active {
-    filter: brightness(0.9);
-}
-
 .small-btn-icon {
-    font-size: 10px;
+    font-size: 12px;
     color: white;
     transition: none;
 }
 
 .small-btn .small-btn-text {
-    font-size: 8px;
+    font-size: 9px;
     font-weight: 800;
     text-align: center;
     line-height: 1.1;
@@ -180,7 +202,7 @@ color:#e8f4f0;font-weight:500;
 /* المجموعة الثانية: الأزرار الكبيرة */
 .main-buttons-bar {
     position: fixed;
-    top: 93px; /* أسفل الأزرار الصغيرة */
+    top: 98px;
     left: 0;
     right: 0;
     width: 100%;
@@ -197,17 +219,16 @@ color:#e8f4f0;font-weight:500;
 
 .main-buttons-grid {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
     justify-content: center;
 }
 
-/* تصميم الأزرار الرئيسية */
 .main-btn {
     border: 2px solid;
-    padding: 12px 8px;
-    font-size: 12px;
+    padding: 12px 10px;
+    font-size: 13px;
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -217,73 +238,39 @@ color:#e8f4f0;font-weight:500;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    min-height: 60px;
-    min-width: 120px;
+    min-height: 65px;
+    min-width: 130px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
     flex: 1;
     position: relative;
     overflow: hidden;
 }
 
-/* إزالة تأثيرات الحركة والاهتزاز */
-.main-btn:active,
-.main-btn:focus,
-.main-btn:hover {
-    transform: none !important;
-    line-height: inherit !important;
-    font-weight: 700 !important;
-    height: auto !important;
-    width: auto !important;
-}
-
-/* تأثير الضغط الخفيف */
 .main-btn:active {
     box-shadow: 0 0 0 3px rgba(255,255,255,0.5), inset 0 4px 6px rgba(0,0,0,0.1) !important;
     filter: brightness(0.95);
 }
 
-/* زر تنزيل PDF - أحمر */
 #pdfBtn {
     background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
     color: white;
     border-color: #ee5a52;
 }
 
-#pdfBtn:hover {
-    background: linear-gradient(135deg, #ee5a52 0%, #d64545 100%);
-    filter: brightness(1.05);
-    box-shadow: 0 5px 15px rgba(238, 90, 82, 0.4);
-}
-
-#pdfBtn:active {
-    filter: brightness(0.9);
-}
-
-/* زر مشاركة واتساب - أخضر */
 #whatsappBtn {
     background: linear-gradient(135deg, #25D366 0%, #1da851 100%);
     color: white;
     border-color: #1da851;
 }
 
-#whatsappBtn:hover {
-    background: linear-gradient(135deg, #1da851 0%, #179244 100%);
-    filter: brightness(1.05);
-    box-shadow: 0 5px 15px rgba(29, 168, 81, 0.4);
-}
-
-#whatsappBtn:active {
-    filter: brightness(0.9);
-}
-
 .main-btn-icon {
-    font-size: 16px;
+    font-size: 18px;
     color: white;
     transition: none;
 }
 
 .main-btn .main-btn-text {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 800;
     text-align: center;
     line-height: 1.2;
@@ -291,7 +278,84 @@ color:#e8f4f0;font-weight:500;
     transition: none;
 }
 
-/* ========== زر التعبئة الذكية العائم - متكامل مع الثيمات ========== */
+/* شريط التقدم - أصبح ضمن التدفق الطبيعي */
+.progress-bar-container {
+    width: 100%;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fdfa 100%);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border: 2px solid #d4ebe2;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(4, 74, 53, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cairo', sans-serif;
+    box-sizing: border-box;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #044a35;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.progress-stats {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.progress-percentage {
+    background: linear-gradient(135deg, #ffd166, #ffc233);
+    color: #5a3e00;
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 800;
+    box-shadow: 0 2px 8px rgba(255, 209, 102, 0.3);
+    border: 1px solid #ffb830;
+}
+
+.progress-message {
+    color: #066d4d;
+    font-size: 12px;
+    font-weight: 600;
+    background: #e8f4f0;
+    padding: 4px 12px;
+    border-radius: 30px;
+    border: 1px solid #c0e0d6;
+}
+
+.progress-track {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    height: 16px;
+    background: #e0f0ea;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1px solid #c0e0d6;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #066d4d, #0a9d72);
+    border-radius: 30px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* زر التعبئة الذكية العائم */
 #aiFillFloatingBtn {
     position: fixed;
     bottom: 30px;
@@ -315,15 +379,8 @@ color:#e8f4f0;font-weight:500;
     overflow: hidden;
     transform: translateY(0);
     animation: floatButton 3s ease-in-out infinite;
-}
-
-/* الثيم الافتراضي */
-#aiFillFloatingBtn {
     background: linear-gradient(135deg, #9D50BB 0%, #6E48AA 25%, #533D8B 50%, #3A2569 100%);
-    box-shadow: 
-        0 12px 35px rgba(157, 80, 187, 0.6),
-        0 0 0 3px rgba(255, 255, 255, 0.3),
-        0 0 25px rgba(157, 80, 187, 0.5);
+    box-shadow: 0 12px 35px rgba(157, 80, 187, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3), 0 0 25px rgba(157, 80, 187, 0.5);
 }
 
 #aiFillFloatingBtn .floating-ai-icon {
@@ -351,14 +408,6 @@ color:#e8f4f0;font-weight:500;
     transition: none;
 }
 
-/* إزالة تأثيرات الحركة والاهتزاز */
-#aiFillFloatingBtn:active,
-#aiFillFloatingBtn:focus {
-    transform: none !important;
-    animation-play-state: running !important;
-}
-
-/* تأثير الطفو */
 @keyframes floatButton {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     25% { transform: translateY(-12px) rotate(3deg); }
@@ -366,24 +415,6 @@ color:#e8f4f0;font-weight:500;
     75% { transform: translateY(-8px) rotate(-3deg); }
 }
 
-#aiFillFloatingBtn:hover {
-    filter: brightness(1.15);
-    box-shadow: 
-        0 25px 60px rgba(0,0,0,0.4),
-        0 0 0 5px rgba(255, 255, 255, 0.5),
-        0 0 50px rgba(0,0,0,0.3),
-        0 0 0 10px rgba(255, 255, 255, 0.15);
-}
-
-#aiFillFloatingBtn:active {
-    filter: brightness(0.85);
-    box-shadow: 
-        0 15px 40px rgba(0,0,0,0.3),
-        0 0 0 4px rgba(255, 255, 255, 0.4),
-        0 0 30px rgba(0,0,0,0.2);
-}
-
-/* تأثير النبض السحري للأيقونة */
 @keyframes magicalPulse {
     0%, 100% { 
         transform: scale(1) rotate(0deg);
@@ -403,7 +434,6 @@ color:#e8f4f0;font-weight:500;
     }
 }
 
-/* تأثير تلميع النص */
 @keyframes textShine {
     0%, 100% { 
         background-position: 0% 50%;
@@ -415,23 +445,16 @@ color:#e8f4f0;font-weight:500;
     }
 }
 
-/* حالة التحميل للزر العائم */
 #aiFillFloatingBtn.loading {
     animation: loadingMagicalGlow 1.5s ease-in-out infinite;
 }
 
 @keyframes loadingMagicalGlow {
     0%, 100% { 
-        box-shadow: 
-            0 12px 35px rgba(0,0,0,0.4),
-            0 0 0 4px rgba(255, 255, 255, 0.4),
-            0 0 30px rgba(0,0,0,0.3);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.4), 0 0 0 4px rgba(255, 255, 255, 0.4), 0 0 30px rgba(0,0,0,0.3);
     }
     50% { 
-        box-shadow: 
-            0 18px 45px rgba(0,0,0,0.6),
-            0 0 0 5px rgba(255, 255, 255, 0.7),
-            0 0 40px rgba(0,0,0,0.5);
+        box-shadow: 0 18px 45px rgba(0,0,0,0.6), 0 0 0 5px rgba(255, 255, 255, 0.7), 0 0 40px rgba(0,0,0,0.5);
     }
 }
 
@@ -520,7 +543,6 @@ color:#e8f4f0;font-weight:500;
     filter: brightness(1.05);
 }
 
-/* زر التواصل في شاشة التفعيل */
 #contactForTrialBtn {
     width: 100%;
     padding: 15px;
@@ -556,116 +578,130 @@ color:#e8f4f0;font-weight:500;
     display: none;
 }
 
-/* ========== تحسين واجهة الإدخال ========== */
-.input-section{
-    background:#ffffff;
-    padding:25px;
-    border-radius:20px;
-    margin-top:170px; /* زيادة الهامش بسبب الأزرار الإضافية */
-    border:2px solid #e0f0ea;
-    box-shadow:0 10px 30px rgba(4, 74, 53, 0.12);
-    position:relative;
-    overflow:hidden;
-}
-.input-section::before{
-    content:'';
-    position:absolute;
-    top:0;
-    right:0;
-    width:100%;
-    height:5px;
-    background:linear-gradient(to left, #066d4d, #ffd166, #25D366);
+/* تحسين واجهة الإدخال */
+.input-section {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    border: 2px solid #e0f0ea;
+    box-shadow: 0 10px 30px rgba(4, 74, 53, 0.12);
+    position: relative;
+    overflow: hidden;
 }
 
-.input-section h2{
-    color:#044a35;
-    font-size:24px;
-    margin-bottom:30px;
-    padding-bottom:15px;
-    border-bottom:3px solid #e0f0ea;
-    text-align:center;
-    font-weight:900;
-    position:relative;
-}
-.input-section h2::after{
-    content:'';
-    position:absolute;
-    bottom:-3px;
-    right:50%;
-    transform:translateX(50%);
-    width:120px;
-    height:3px;
-    background:linear-gradient(to left, #066d4d, #ffd166);
-    border-radius:2px;
+.input-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to left, #066d4d, #ffd166, #25D366);
 }
 
-/* تصميم عصري للحقول */
-.form-group{margin-bottom:25px;position:relative;}
-.form-group label{
-    font-size:16px;
-    font-weight:800;
-    margin-bottom:10px;
-    display:block;
-    color:#083024;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding-right:8px;
-    position:relative;
-}
-.form-group label i{
-    color:#066d4d;
-    font-size:16px;
-    background:#f0f9f6;
-    padding:7px;
-    border-radius:10px;
-    border:1px solid #d4ebe2;
-    box-shadow:0 2px 5px rgba(0,0,0,0.05);
+.input-section h2 {
+    color: #044a35;
+    font-size: 24px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #e0f0ea;
+    text-align: center;
+    font-weight: 900;
+    position: relative;
 }
 
-.form-group label::before{
-    content:'';
-    width:8px;
-    height:8px;
-    background:#ffd166;
-    border-radius:50%;
-    display:inline-block;
-    margin-left:6px;
-    box-shadow:0 0 6px #ffd166;
+.input-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(to left, #066d4d, #ffd166);
+    border-radius: 2px;
 }
 
-input,select,textarea{
-    width:100%;
-    padding:16px;
-    margin-top:8px;
-    border:2px solid #d4ebe2;
-    border-radius:12px;
-    font-size:18px;
-    background:#f9fcfb;
-    transition:all 0.3s;
-    font-family:'Cairo', sans-serif;
-    color:#083024;
-    box-shadow:inset 0 2px 8px rgba(0,0,0,0.05);
-    -webkit-appearance:none;
+/* تصميم الحقول */
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
 }
-input:focus,select:focus,textarea:focus{
-    outline:none;
-    border-color:#066d4d;
-    box-shadow:0 0 0 4px rgba(6,109,77,0.15), inset 0 2px 8px rgba(0,0,0,0.05);
-    background:#ffffff;
-}
-textarea{height:120px;resize:none;overflow:hidden;line-height:1.7;font-size:17px;}
 
-.form-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+.form-group label {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-right: 8px;
+    position: relative;
+    color: #083024;
+}
+
+.form-group label i {
+    color: #066d4d;
+    font-size: 16px;
+    background: #f0f9f6;
+    padding: 7px;
+    border-radius: 10px;
+    border: 1px solid #d4ebe2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.form-group label::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #ffd166;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 6px;
+    box-shadow: 0 0 6px #ffd166;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 16px;
+    margin-top: 8px;
+    border: 2px solid #d4ebe2;
+    border-radius: 12px;
+    font-size: 18px;
+    background: #f9fcfb;
+    transition: all 0.3s;
+    font-family: 'Cairo', sans-serif;
+    color: #083024;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+    -webkit-appearance: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #066d4d;
+    box-shadow: 0 0 0 4px rgba(6,109,77,0.15), inset 0 2px 8px rgba(0,0,0,0.05);
+    background: #ffffff;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+    overflow: hidden;
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 /* تلميحات للأزرار */
 button[title] {
     position: relative;
 }
+
 button[title]:hover::after {
     content: attr(title);
     position: absolute;
@@ -684,6 +720,7 @@ button[title]:hover::after {
     max-width: 300px;
     min-width: 200px;
 }
+
 button[title]:hover::before {
     content: '';
     position: absolute;
@@ -714,19 +751,19 @@ button[title]:hover::before {
     transform: translateX(150%);
     transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     border-right: 5px solid #ffd166;
-    text-align:center;
-    justify-content:center;
+    text-align: center;
+    justify-content: center;
 }
+
 .notification.show {
     transform: translateX(0);
 }
+
 .notification i {
     font-size: 18px;
 }
 
-/* ========== أنماط القوائم الجديدة للمعايير والتصنيفات ========== */
-
-/* حاوية القوائم المتتالية */
+/* أنماط القوائم */
 .levels-container {
     background: #f8fdfa;
     border-radius: 12px;
@@ -757,7 +794,7 @@ button[title]:hover::before {
 }
 
 .level-select {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .level-select select {
@@ -819,10 +856,10 @@ button[title]:hover::before {
     font-size: 12px;
 }
 
-/* أنماط البحث والتصنيف */
+/* أنماط البحث */
 #reportSearchContainer {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 #searchResults {
@@ -887,7 +924,7 @@ button[title]:hover::before {
     font-size: 16px;
 }
 
-/* ========== قسم الأدوات والوسائل التعليمية - معدل باستخدام Grid ========== */
+/* قسم الأدوات - تصميم متجاوب باستخدام Grid */
 .tools-section {
     background: #f8fdfa;
     padding: 18px;
@@ -901,44 +938,32 @@ button[title]:hover::before {
 .tools-grid {
     display: grid;
     gap: 12px;
+    /* على الجوال: عنصرين في الصف */
+    grid-template-columns: repeat(2, 1fr);
 }
 
-/* الجوال: عمودين */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .tools-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* التابلت: ثلاثة أعمدة */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .tools-grid {
+        /* على الشاشات الأكبر: ثلاثة عناصر في الصف */
         grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* الكمبيوتر: أربعة أعمدة */
-@media (min-width: 1025px) {
-    .tools-grid {
-        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 .tool-checkbox {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 10px 10px 30px;
+    gap: 8px;
+    padding: 12px 8px 12px 8px;
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 2px solid #d4ebe2;
     transition: all 0.3s;
     cursor: pointer;
     position: relative;
-    min-height: 50px;
+    min-height: 55px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
 }
 
-/* ترقيم الأدوات */
 .tool-checkbox::before {
     counter-increment: tool-counter;
     content: counter(tool-counter);
@@ -946,20 +971,20 @@ button[title]:hover::before {
     right: 8px;
     background: #066d4d;
     color: white;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
 }
 
 .tool-checkbox:hover {
     border-color: #066d4d;
     background: #f0f9f6;
-    box-shadow: 0 4px 8px rgba(6, 109, 77, 0.1);
+    box-shadow: 0 6px 12px rgba(6, 109, 77, 0.1);
     transform: translateY(-2px);
 }
 
@@ -976,20 +1001,20 @@ button[title]:hover::before {
     font-size: 14px;
     font-weight: 700;
     color: #083024;
-    margin-right: 25px;
+    margin-right: 35px; /* مساحة للرقم */
     flex: 1;
+    line-height: 1.4;
 }
 
 .tool-checkbox.checked {
     border-color: #066d4d;
     background: #e8f4f0;
-    box-shadow: 0 4px 10px rgba(6, 109, 77, 0.15);
+    box-shadow: 0 4px 12px rgba(6, 109, 77, 0.15);
 }
 
-/* علامة ✅ */
 .checkmark {
     color: #066d4d;
-    font-size: 16px;
+    font-size: 18px;
     margin-right: 5px;
     display: none;
 }
@@ -998,629 +1023,315 @@ button[title]:hover::before {
     display: inline-block;
 }
 
-/* ==================== تحسينات للهواتف المحمولة ==================== */
-
-/* تحسينات للأجهزة المحمولة العامة */
-@media (max-width: 768px) {
-    .top-small-buttons {
-        padding: 6px 15px;
-    }
-    
-    .small-buttons-grid {
-        gap: 6px;
-    }
-    
-    .small-btn {
-        min-height: 35px;
-        min-width: 70px;
-        padding: 4px 3px;
-    }
-    
-    .small-btn-icon {
-        font-size: 9px;
-    }
-    
-    .small-btn .small-btn-text {
-        font-size: 7px;
-    }
-    
-    .main-buttons-bar {
-        padding: 8px 15px;
-    }
-    
-    .main-buttons-grid {
-        gap: 10px;
-        max-width: 250px;
-    }
-    
-    .main-btn {
-        min-height: 50px;
-        min-width: 100px;
-        padding: 8px 6px;
-    }
-    
-    .main-btn-icon {
-        font-size: 14px;
-    }
-    
-    .main-btn .main-btn-text {
-        font-size: 10px;
-    }
-    
-    #aiFillFloatingBtn {
-        width: 85px;
-        height: 85px;
-        bottom: 20px;
-        left: 20px;
-    }
-    
-    #aiFillFloatingBtn .floating-ai-icon {
-        font-size: 32px;
-    }
-    
-    #aiFillFloatingBtn .floating-ai-text {
-        font-size: 12px;
-    }
-    
-    .input-section {
-        margin-top: 160px;
-        padding: 15px;
-    }
-    
-    .input-section h2 {
-        font-size: 20px;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .notification {
-        top: 140px;
-        padding: 10px 15px;
-        font-size: 14px;
-    }
+/* نافذة التقارير المحفوظة */
+#savedReportsModal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 6000;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cairo', sans-serif;
 }
 
-/* تحسينات للشاشات الصغيرة جداً */
-@media (max-width: 480px) {
-    .top-marquee {
-        font-size: 11px;
-        height: 40px;
-    }
-    
-    .marquee-inner {
-        animation-duration: 35s;
-    }
-    
-    .small-btn {
-        min-height: 30px;
-        min-width: 60px;
-        padding: 3px 2px;
-    }
-    
-    .small-btn-icon {
-        font-size: 8px;
-    }
-    
-    .small-btn .small-btn-text {
-        font-size: 6px;
-    }
-    
-    .main-btn {
-        min-height: 45px;
-        min-width: 90px;
-    }
-    
-    .main-btn-icon {
-        font-size: 12px;
-    }
-    
-    .main-btn .main-btn-text {
-        font-size: 9px;
-    }
-    
-    #aiFillFloatingBtn {
-        width: 80px;
-        height: 80px;
-        bottom: 15px;
-        left: 15px;
-    }
-    
-    #aiFillFloatingBtn .floating-ai-icon {
-        font-size: 28px;
-    }
-    
-    #aiFillFloatingBtn .floating-ai-text {
-        font-size: 11px;
-    }
-    
-    .input-section {
-        margin-top: 155px;
-        padding: 12px;
-    }
-    
-    input, select, textarea {
-        padding: 12px;
-        font-size: 16px;
-    }
-    
-    .form-group label {
-        font-size: 13px;
-    }
-    
-    .tool-checkbox {
-        padding: 6px 6px 6px 26px;
-    }
-    
-    .tool-checkbox span {
-        font-size: 12px;
-    }
+#savedReportsModal > div {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    border: 3px solid #ffd166;
 }
 
-/* ==================== قسم PDF ==================== */
-@page{
-    size:A4;
-    margin:10mm;
-}
-
-:root{
-    --main:#062f25;
-    --border:#2f9e8f;
-    --bg:#ffffff;
-}
-
-#report-content{
-    width:100%;
-    max-width:210mm;
-    margin:4mm auto 0 auto;
-    padding:0 6mm;
-    box-sizing:border-box;
-    display:none;
-    font-family:'Cairo',sans-serif;
-    background:var(--bg);
-}
-
-.header{
-    background:var(--main);
-    height:150px;
-    border-radius:8px;
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    margin-bottom:8px;
-}
-.header img{
-    width:260px;
-    filter: brightness(0) invert(1); /* جعل الصورة بيضاء */
-    transition: filter 0.3s ease;
-}
-.header-school-title{
-    position:absolute;
-    right:12px;
-    top:20px;
-    font-size:14px;
-    font-weight:800;
-}
-.header-school{
-    position:absolute;
-    right:12px;
-    top:45px;
-    font-size:16px; /* تم تخفيضه من 18px */
-    font-weight:700; /* تم تخفيضه من 900 */
-    max-width:70%; /* لمنع تجاوز الحدود */
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    text-align:right;
-}
-.header-education{
-    position:absolute;
-    left:50%;
-    bottom:18px;
-    transform:translateX(-50%);
-    font-size:16px;
-    font-weight:800;
-    text-align:center;
-    width:100%;
-}
-.header-date{
-    position:absolute;
-    left:12px;
-    top:10px;
-    font-size:12px;
-    text-align:right;
-}
-
-.info-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:6px;
-    margin-bottom:6px;
-}
-.info-grid2{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:6px;
-    margin-bottom:6px;
-}
-
-.info-box{
-    border:1px solid var(--border);
-    border-radius:7px;
-    padding:14px 4px 6px;
-    position:relative;
-    text-align:center;
-    font-size:11px;
-    min-height:34px;
-    overflow:hidden;
-    background:var(--bg);
-}
-.info-title{
-    position:absolute;
-    top:4px;
-    right:50%;
-    transform:translateX(50%);
-    font-size:8px;
-    font-weight:800;
-    color:var(--main);
-    white-space:nowrap;
-}
-.info-value{
-    font-size:11px;
-    font-weight:600;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-}
-
-#reportTypeBox{
-    font-size: 9px;
-    font-weight: 600;
-}
-
-.subject-lesson-box{
-    border:1px solid var(--border);
-    border-radius:7px;
-    position:relative;
-    padding:14px 4px 6px;
-    overflow:hidden;
-    height: 48px;
-    min-height: 48px;
-    max-height: 48px;
-    background:var(--bg);
-}
-.subject-lesson-title{
-    position:absolute;
-    top:4px;
-    right:50%;
-    transform:translateX(50%);
-    font-size:8px;
-    font-weight:800;
-    color:var(--main);
-}
-.subject-lesson{
-    display:grid;
-    grid-template-columns:1fr 1px 1fr;
-    align-items:center;
-    text-align:center;
-    font-size:11px;
-    height: 100%;
-}
-.subject-divider{
-    background:var(--border);
-    height:60%;
-    margin:auto;
-}
-
-.box-objective{
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:8px;
-    margin-bottom:6px;
-    height:95px;
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
-    background:var(--bg);
-}
-.box-objective .box-title{
-    text-align:center;
-    color:var(--main);
-    font-weight:800;
-    font-size:8px;
-    margin-bottom:4px;
-}
-.box-objective .box-content{
-    font-size:14px;
-    line-height:1.5;
-    text-align:center;
-    overflow:hidden;
-}
-
-.box-objective .box-title{
-    font-size: 17px;
-    font-weight: 900;
-}
-
-.box{
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:8px;
-    margin-bottom:6px;
-    height:137px;
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
-    background:var(--bg);
-}
-.box-title{
-    text-align:center;
-    color:var(--main);
-    font-weight:800;
-    font-size:14px;
-    margin-bottom:4px;
-}
-.box-content{
-    font-size:14px;
-    line-height:1.5;
-    text-align:center;
-    overflow:hidden;
-}
-
-.row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:6px;
-}
-
-.tools-box{
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:6px;
-    margin-bottom:6px;
-    overflow:hidden;
-    background:var(--bg);
-}
-.tools-title{
-    text-align:center;
-    font-weight:800;
-    color:var(--main);
-    font-size:13px;
-    margin-bottom:4px;
-}
-.tools-list{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:6px;
-    font-size:12px;
-}
-.tool{
-    background:#eef7f4;
-    border:1px solid #cfe8df;
-    border-radius:16px;
-    padding:3px 8px;
-    display:flex;
-    align-items:center;
-    gap:5px;
-    white-space:nowrap;
-}
-.tool span{
-    background:var(--border);
-    color:#fff;
-    border-radius:50%;
-    width:12px;
-    height:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:8px;
-}
-
-.images{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:6px;
-    margin-bottom:6px;
-}
-.image-box{
-    border:1px dashed var(--border);
-    height:160px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    background:#f9fdfb;
-    position:relative;
-}
-.image-box::before{
-    content:'صورة توثيقية';
-    position:absolute;
-    top:4px;
-    right:4px;
-    font-size:12px;
-    background:rgba(255,255,255,.9);
-    padding:1px 5px;
-    border-radius:3px;
-    z-index:1;
-}
-
-.image-box img{
-    width: 65%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-.signatures{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:30px;
-    text-align:center;
-    font-size:13px;
-    margin-bottom:6px;
-}
-.signature-box{
-    padding-top:4px;
-}
-.signature-role{
-    font-size:12px;
-    color:var(--main);
-    font-weight:700;
-    margin-bottom:2px;
-}
-.signature-name{
-    font-size:14px;
-    font-weight:900;
-    color:#000;
-}
-.sign-line{
-    border-top:1px solid #000;
-    margin:6px auto 0;
-    width:70%;
-}
-
-.footer-box{
-    background:var(--main);
-    color:#fff;
-    text-align:center;
-    font-size:11px;
-    padding:3px 4px;
-    border-radius:6px;
-}
-
-.pdf-export * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    color-adjust: exact !important;
-}
-
-#subjectBox,
-#lessonBox{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+#savedReportsModal h3 {
+    color: #044a35;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    padding: 0 5px;
-    transition: all 0.3s ease;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    background: white;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #d4ebe2;
 }
 
-/* ==================== نافذة الإعدادات ==================== */
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.report-card {
+    background: #f8fdfa;
+    border: 2px solid #d4ebe2;
+    border-radius: 12px;
+    padding: 15px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.report-card:hover {
+    border-color: #066d4d;
+    box-shadow: 0 5px 15px rgba(6,109,77,0.15);
+    transform: translateY(-3px);
+}
+
+.report-card.completed {
+    border-right: 6px solid #066d4d;
+    background: #f0f9f6;
+}
+
+.report-card .report-title {
+    font-weight: 800;
+    color: #044a35;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-left: 25px;
+}
+
+.report-card .report-criterion {
+    font-size: 12px;
+    color: #066d4d;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.report-card .report-criterion i {
+    font-size: 10px;
+}
+
+.report-card .report-weight {
+    background: #ffd166;
+    color: #5a3e00;
+    padding: 2px 8px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.report-card .report-date {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.report-actions {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.report-actions button {
+    padding: 6px 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1 1 auto;
+    justify-content: center;
+}
+
+.report-actions .load-btn {
+    background: #066d4d;
+    color: white;
+}
+
+.report-actions .load-btn:hover {
+    background: #044a35;
+}
+
+.report-actions .pdf-btn {
+    background: #ff6b6b;
+    color: white;
+}
+
+.report-actions .pdf-btn:hover {
+    background: #ee5a52;
+}
+
+.report-actions .whatsapp-btn {
+    background: #25D366;
+    color: white;
+}
+
+.report-actions .whatsapp-btn:hover {
+    background: #1da851;
+}
+
+.report-actions .delete-btn {
+    background: #fee;
+    color: #d9534f;
+    border: 1px solid #fcc;
+}
+
+.report-actions .delete-btn:hover {
+    background: #fdd;
+    color: #b52b27;
+}
+
+.close-reports-btn {
+    width: 100%;
+    padding: 12px;
+    background: #066d4d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+    position: sticky;
+    bottom: 0;
+}
+
+.close-reports-btn:hover {
+    background: #044a35;
+}
+
+.empty-reports {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    font-size: 14px;
+    background: #f8fdfa;
+    border-radius: 10px;
+    border: 2px dashed #d4ebe2;
+}
+
+.empty-reports i {
+    font-size: 40px;
+    color: #c0e0d6;
+    margin-bottom: 10px;
+}
+
+/* نافذة الإعدادات */
 #settingsModal {
-    display:none;
-    position:fixed;
-    top:0; left:0; right:0; bottom:0;
-    background:rgba(0,0,0,0.5);
-    z-index:5000;
-    align-items:center;
-    justify-content:center;
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 5000;
+    align-items: center;
+    justify-content: center;
     font-family: 'Cairo', sans-serif;
 }
 
 #settingsModal > div {
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    width:90%;
-    max-width:400px;
-    max-height:80vh;
-    overflow-y:auto;
-    box-shadow:0 15px 40px rgba(0,0,0,0.3);
-    border:3px solid #ffd166;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    border: 3px solid #ffd166;
 }
 
 #settingsModal h3 {
-    color:#044a35;
-    text-align:center;
-    margin-bottom:15px;
-    font-size:22px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
+    color: #044a35;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 #settingsModal #subInfo {
-    font-size:14px;
-    line-height:2;
-    color:#333;
-    text-align:center;
-    margin-bottom:15px;
+    font-size: 14px;
+    line-height: 2;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 #settingsModal label {
-    font-weight:700;
-    color:#044a35;
-    display:block;
-    margin-bottom:8px;
-    display:flex;
-    align-items:center;
-    gap:8px;
+    font-weight: 700;
+    color: #044a35;
+    display: block;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 #settingsModal input[type="date"] {
-    width:100%;
-    margin-top:8px;
-    padding:10px;
-    border-radius:8px;
-    border:2px solid #d4ebe2;
-    font-family:'Cairo', sans-serif;
-    font-size:16px;
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #d4ebe2;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
 }
 
 #settingsModal input[type="date"]:focus {
-    outline:none;
-    border-color:#066d4d;
-    box-shadow:0 0 0 3px rgba(6,109,77,0.15);
+    outline: none;
+    border-color: #066d4d;
+    box-shadow: 0 0 0 3px rgba(6,109,77,0.15);
 }
 
 #settingsModal button {
-    width:100%;
-    padding:12px;
-    background:#066d4d;
-    color:white;
-    border:none;
-    border-radius:10px;
-    font-weight:700;
-    cursor:pointer;
-    font-family:'Cairo', sans-serif;
-    transition:all 0.3s;
-    margin-top:10px;
+    width: 100%;
+    padding: 12px;
+    background: #066d4d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.3s;
+    margin-top: 10px;
 }
 
 #settingsModal button:hover {
-    background:#05553d;
+    background: #05553d;
     filter: brightness(1.05);
 }
 
 #settingsModal .btn-secondary {
-    background:#4f7bff;
-    margin-top:5px;
+    background: #4f7bff;
+    margin-top: 5px;
 }
 
 #settingsModal .btn-secondary:hover {
-    background:#3b5bdb;
+    background: #3b5bdb;
     filter: brightness(1.05);
 }
 
 #settingsModal hr {
-    margin:15px 0;
-    border:none;
-    border-top:1px solid #d4ebe2;
+    margin: 15px 0;
+    border: none;
+    border-top: 1px solid #d4ebe2;
 }
 
-/* ==================== أنماط الثيمات الإضافية ==================== */
-
-/* ثيم الواجهة: الأزرق الفاتح */
+/* أنماط الثيمات */
 .theme-light-blue body {
     background: linear-gradient(135deg, #e8f0ff 0%, #d6e4ff 50%, #c2d4ff 100%) !important;
 }
@@ -1639,78 +1350,14 @@ button[title]:hover::before {
     color: #4285f4;
 }
 
-.theme-light-blue .input-section h2::after {
-    background: linear-gradient(to left, #4285f4, #34a853);
-}
-
-.theme-light-blue .form-group label {
-    color: #1a73e8;
-}
-
-.theme-light-blue .form-group label i {
-    color: #4285f4;
-    background: #e8f0ff;
-    border: 1px solid #c2d4ff;
-}
-
 .theme-light-blue .top-marquee {
     background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
-    border-bottom: 3px solid #fbbc05;
 }
 
-.theme-light-blue .top-small-buttons {
-    background: linear-gradient(135deg, #ffffff 0%, #edf2ff 100%);
-}
-
-.theme-light-blue .main-buttons-bar {
-    background: linear-gradient(135deg, #f0f5ff 0%, #e8f0ff 100%);
-}
-
-.theme-light-blue .tools-section {
-    background: #f0f5ff;
-    border: 1px solid #c2d4ff;
-}
-
-.theme-light-blue .tool-checkbox {
-    background: white;
-    border: 2px solid #c2d4ff;
-}
-
-.theme-light-blue .tool-checkbox:hover {
-    border-color: #4285f4;
-    background: #e8f0ff;
-}
-
-.theme-light-blue .tool-checkbox.checked {
-    border-color: #4285f4;
-    background: #d6e4ff;
-}
-
-.theme-light-blue .tool-checkbox::before {
-    background: #4285f4;
-}
-
-/* زر التعبئة الذكية في ثيم الأزرق الفاتح */
 .theme-light-blue #aiFillFloatingBtn {
     background: linear-gradient(135deg, #4285f4 0%, #34a853 25%, #fbbc05 50%, #ea4335 100%) !important;
-    box-shadow: 
-        0 12px 35px rgba(66, 133, 244, 0.6),
-        0 0 0 3px rgba(255, 255, 255, 0.3),
-        0 0 25px rgba(66, 133, 244, 0.5) !important;
 }
 
-.theme-light-blue #aiFillFloatingBtn .floating-ai-icon {
-    color: #FFFFFF !important;
-}
-
-.theme-light-blue #aiFillFloatingBtn .floating-ai-text {
-    background: linear-gradient(45deg, #FFFFFF, #E8F0FF, #FFFFFF) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-}
-
-/* ثيم الواجهة: الوضع المظلم */
 .theme-dark body {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
     color: #e0e0e0;
@@ -1719,30 +1366,11 @@ button[title]:hover::before {
 .theme-dark .input-section {
     background: #1e293b;
     border: 2px solid #334155;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     color: #e0e0e0;
-}
-
-.theme-dark .input-section::before {
-    background: linear-gradient(to left, #3b82f6, #10b981, #f59e0b);
 }
 
 .theme-dark .input-section h2 {
     color: #60a5fa;
-}
-
-.theme-dark .input-section h2::after {
-    background: linear-gradient(to left, #3b82f6, #10b981);
-}
-
-.theme-dark .form-group label {
-    color: #cbd5e1;
-}
-
-.theme-dark .form-group label i {
-    color: #60a5fa;
-    background: #1e293b;
-    border: 1px solid #475569;
 }
 
 .theme-dark input,
@@ -1753,86 +1381,14 @@ button[title]:hover::before {
     color: #e0e0e0;
 }
 
-.theme-dark input:focus,
-.theme-dark select:focus,
-.theme-dark textarea:focus {
-    border-color: #3b82f6;
-    background: #0f172a;
-    color: #e0e0e0;
-}
-
 .theme-dark .top-marquee {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    border-bottom: 3px solid #f59e0b;
 }
 
-.theme-dark .top-small-buttons {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border-bottom: 1px solid #334155;
-}
-
-.theme-dark .main-buttons-bar {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border-bottom: 1px solid #334155;
-}
-
-.theme-dark .tools-section {
-    background: #1e293b;
-    border: 1px solid #334155;
-}
-
-.theme-dark .tool-checkbox {
-    background: #0f172a;
-    border: 2px solid #334155;
-    color: #cbd5e1;
-}
-
-.theme-dark .tool-checkbox:hover {
-    border-color: #3b82f6;
-    background: #1e293b;
-}
-
-.theme-dark .tool-checkbox.checked {
-    border-color: #3b82f6;
-    background: #1e293b;
-}
-
-.theme-dark .tool-checkbox::before {
-    background: #3b82f6;
-}
-
-.theme-dark .manual-title-container {
-    background: #1e293b;
-    border: 2px solid #334155;
-}
-
-.theme-dark .manual-title-container input {
-    background: #0f172a;
-    border-color: #475569;
-    color: #e0e0e0;
-}
-
-/* زر التعبئة الذكية في الوضع المظلم */
 .theme-dark #aiFillFloatingBtn {
     background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 25%, #8b5cf6 50%, #a78bfa 100%) !important;
-    box-shadow: 
-        0 12px 35px rgba(109, 40, 217, 0.6),
-        0 0 0 3px rgba(255, 255, 255, 0.3),
-        0 0 25px rgba(109, 40, 217, 0.5) !important;
 }
 
-.theme-dark #aiFillFloatingBtn .floating-ai-icon {
-    color: #FFFFFF !important;
-}
-
-.theme-dark #aiFillFloatingBtn .floating-ai-text {
-    background: linear-gradient(45deg, #FFFFFF, #F3F4F6, #FFFFFF) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-}
-
-/* ثيم الواجهة: الأخضر التربوي */
 .theme-green body {
     background: linear-gradient(135deg, #e6f7ef 0%, #d4f0e4 50%, #c2e8d9 100%) !important;
 }
@@ -1843,107 +1399,573 @@ button[title]:hover::before {
     box-shadow: 0 10px 30px rgba(46, 204, 113, 0.15);
 }
 
-.theme-green .input-section::before {
-    background: linear-gradient(to left, #27ae60, #2ecc71, #3498db);
-}
-
 .theme-green .input-section h2 {
     color: #27ae60;
 }
 
-.theme-green .input-section h2::after {
-    background: linear-gradient(to left, #27ae60, #2ecc71);
-}
-
-.theme-green .form-group label {
-    color: #229954;
-}
-
-.theme-green .form-group label i {
-    color: #27ae60;
-    background: #e6f7ef;
-    border: 1px solid #a3e4c2;
-}
-
 .theme-green .top-marquee {
     background: linear-gradient(135deg, #1e8449 0%, #27ae60 100%);
-    border-bottom: 3px solid #3498db;
 }
 
-.theme-green .top-small-buttons {
-    background: linear-gradient(135deg, #ffffff 0%, #e6f7ef 100%);
-}
-
-.theme-green .main-buttons-bar {
-    background: linear-gradient(135deg, #e6f7ef 0%, #d4f0e4 100%);
-}
-
-.theme-green .tools-section {
-    background: #e6f7ef;
-    border: 1px solid #a3e4c2;
-}
-
-.theme-green .tool-checkbox {
-    background: white;
-    border: 2px solid #a3e4c2;
-}
-
-.theme-green .tool-checkbox:hover {
-    border-color: #27ae60;
-    background: #d4f0e4;
-}
-
-.theme-green .tool-checkbox.checked {
-    border-color: #27ae60;
-    background: #c2e8d9;
-}
-
-.theme-green .tool-checkbox::before {
-    background: #27ae60;
-}
-
-/* زر التعبئة الذكية في الثيم الأخضر */
 .theme-green #aiFillFloatingBtn {
     background: linear-gradient(135deg, #27ae60 0%, #2ecc71 25%, #3498db 50%, #9b59b6 100%) !important;
-    box-shadow: 
-        0 12px 35px rgba(46, 204, 113, 0.6),
-        0 0 0 3px rgba(255, 255, 255, 0.3),
-        0 0 25px rgba(46, 204, 113, 0.5) !important;
 }
 
-.theme-green #aiFillFloatingBtn .floating-ai-icon {
-    color: #FFFFFF !important;
+/* قسم PDF */
+@page {
+    size: A4;
+    margin: 10mm;
 }
 
-.theme-green #aiFillFloatingBtn .floating-ai-text {
-    background: linear-gradient(45deg, #FFFFFF, #E6F7EF, #FFFFFF) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
+:root {
+    --main: #062f25;
+    --border: #2f9e8f;
+    --bg: #ffffff;
 }
 
-/* الثيم الافتراضي - تدعيم */
-.theme-default #aiFillFloatingBtn .floating-ai-icon {
-    color: #FFFFFF !important;
+#report-content {
+    width: 100%;
+    max-width: 210mm;
+    margin: 4mm auto 0 auto;
+    padding: 0 6mm;
+    box-sizing: border-box;
+    display: none;
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
 }
 
-.theme-default #aiFillFloatingBtn .floating-ai-text {
-    background: linear-gradient(45deg, #FFFFFF, #F0F9F6, #FFFFFF) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
+.header {
+    background: var(--main);
+    height: 150px;
+    border-radius: 8px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.header img {
+    width: 260px;
+    filter: brightness(0) invert(1);
+}
+
+.header-school-title {
+    position: absolute;
+    right: 12px;
+    top: 20px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.header-school {
+    position: absolute;
+    right: 12px;
+    top: 45px;
+    font-size: 16px;
+    font-weight: 700;
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.header-education {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 800;
+    text-align: center;
+    width: 100%;
+}
+
+.header-date {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    font-size: 12px;
+    text-align: right;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.info-grid2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.info-box {
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 14px 4px 6px;
+    position: relative;
+    text-align: center;
+    font-size: 11px;
+    min-height: 34px;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.info-title {
+    position: absolute;
+    top: 4px;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--main);
+    white-space: nowrap;
+}
+
+.info-value {
+    font-size: 11px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.subject-lesson-box {
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    position: relative;
+    padding: 14px 4px 6px;
+    overflow: hidden;
+    height: 48px;
+    min-height: 48px;
+    max-height: 48px;
+    background: var(--bg);
+}
+
+.subject-lesson-title {
+    position: absolute;
+    top: 4px;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--main);
+}
+
+.subject-lesson {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    align-items: center;
+    text-align: center;
+    font-size: 11px;
+    height: 100%;
+}
+
+.subject-divider {
+    background: var(--border);
+    height: 60%;
+    margin: auto;
+}
+
+.box-objective {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 6px;
+    height: 95px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.box-objective .box-title {
+    text-align: center;
+    color: var(--main);
+    font-weight: 800;
+    font-size: 8px;
+    margin-bottom: 4px;
+}
+
+.box-objective .box-content {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    overflow: hidden;
+}
+
+.box {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 6px;
+    height: 137px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.box-title {
+    text-align: center;
+    color: var(--main);
+    font-weight: 800;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.box-content {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    overflow: hidden;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.tools-box {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px;
+    margin-bottom: 6px;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.tools-title {
+    text-align: center;
+    font-weight: 800;
+    color: var(--main);
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12px;
+}
+
+.tool {
+    background: #eef7f4;
+    border: 1px solid #cfe8df;
+    border-radius: 16px;
+    padding: 3px 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.tool span {
+    background: var(--border);
+    color: #fff;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+}
+
+.images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.image-box {
+    border: 1px dashed var(--border);
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #f9fdfb;
+    position: relative;
+}
+
+.image-box::before {
+    content: 'صورة توثيقية';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 12px;
+    background: rgba(255,255,255,.9);
+    padding: 1px 5px;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.image-box img {
+    width: 65%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.signatures {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.signature-box {
+    padding-top: 4px;
+}
+
+.signature-role {
+    font-size: 12px;
+    color: var(--main);
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.signature-name {
+    font-size: 14px;
+    font-weight: 900;
+    color: #000;
+}
+
+.sign-line {
+    border-top: 1px solid #000;
+    margin: 6px auto 0;
+    width: 70%;
+}
+
+.footer-box {
+    background: var(--main);
+    color: #fff;
+    text-align: center;
+    font-size: 11px;
+    padding: 3px 4px;
+    border-radius: 6px;
+}
+
+.pdf-export * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+}
+
+#subjectBox, #lessonBox {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 5px;
+    transition: all 0.3s ease;
+}
+
+/* تحسينات للهواتف المحمولة */
+@media (max-width: 768px) {
+    .top-small-buttons {
+        padding: 6px 15px;
+    }
+    
+    .small-buttons-grid {
+        gap: 6px;
+    }
+    
+    .small-btn {
+        min-height: 38px;
+        min-width: 70px;
+        padding: 4px 3px;
+        font-size: 9px;
+    }
+    
+    .small-btn-icon {
+        font-size: 10px;
+    }
+    
+    .small-btn .small-btn-text {
+        font-size: 8px;
+    }
+    
+    .main-buttons-bar {
+        padding: 8px 15px;
+    }
+    
+    .main-buttons-grid {
+        gap: 12px;
+        max-width: 280px;
+    }
+    
+    .main-btn {
+        min-height: 55px;
+        min-width: 110px;
+        padding: 8px 6px;
+    }
+    
+    .main-btn-icon {
+        font-size: 16px;
+    }
+    
+    .main-btn .main-btn-text {
+        font-size: 11px;
+    }
+    
+    .progress-bar-container {
+        padding: 12px 15px;
+    }
+    
+    .progress-header {
+        font-size: 13px;
+    }
+    
+    .progress-percentage {
+        padding: 3px 10px;
+        font-size: 12px;
+    }
+    
+    .progress-message {
+        padding: 3px 10px;
+        font-size: 11px;
+    }
+    
+    #aiFillFloatingBtn {
+        width: 85px;
+        height: 85px;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    #aiFillFloatingBtn .floating-ai-icon {
+        font-size: 32px;
+    }
+    
+    #aiFillFloatingBtn .floating-ai-text {
+        font-size: 12px;
+    }
+    
+    .input-section {
+        padding: 15px;
+    }
+    
+    .input-section h2 {
+        font-size: 20px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* الأدوات: يبقى عنصرين حتى على الشاشات الصغيرة */
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .top-marquee {
+        font-size: 12px;
+        min-height: 40px;
+    }
+    
+    .marquee-inner {
+        animation-duration: 35s;
+    }
+    
+    .small-btn {
+        min-height: 35px;
+        min-width: 60px;
+        padding: 3px 2px;
+        font-size: 8px;
+    }
+    
+    .small-btn-icon {
+        font-size: 9px;
+    }
+    
+    .small-btn .small-btn-text {
+        font-size: 7px;
+    }
+    
+    .main-btn {
+        min-height: 50px;
+        min-width: 95px;
+    }
+    
+    .main-btn-icon {
+        font-size: 14px;
+    }
+    
+    .main-btn .main-btn-text {
+        font-size: 10px;
+    }
+    
+    #aiFillFloatingBtn {
+        width: 75px;
+        height: 75px;
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    #aiFillFloatingBtn .floating-ai-icon {
+        font-size: 28px;
+    }
+    
+    #aiFillFloatingBtn .floating-ai-text {
+        font-size: 11px;
+    }
+    
+    .input-section {
+        padding: 12px;
+    }
+    
+    input, select, textarea {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+    }
+    
+    .tool-checkbox {
+        padding: 10px 5px;
+    }
+    
+    .tool-checkbox span {
+        font-size: 12px;
+        margin-right: 32px;
+    }
+    
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* ثيمات PDF */
-
-/* ثيم PDF: كلاسيكي (الافتراضي) */
 .pdf-theme-classic {
     --main: #062f25;
     --border: #2f9e8f;
     --bg: #ffffff;
 }
 
-/* ثيم PDF: احترافي */
 .pdf-theme-professional {
     --main: #1a365d;
     --border: #4299e1;
@@ -1954,20 +1976,6 @@ button[title]:hover::before {
     background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
 }
 
-.pdf-theme-professional .tools-box .tool {
-    background: #ebf8ff;
-    border-color: #bee3f8;
-}
-
-/* إصلاح لون الشعار في الثيمات المختلفة */
-.pdf-theme-professional .header img,
-.pdf-theme-minimal .header img,
-.pdf-theme-tech .header img,
-.pdf-theme-educational .header img {
-    filter: brightness(0) invert(1);
-}
-
-/* ثيم PDF: ميني (بسيط) */
 .pdf-theme-minimal {
     --main: #4a5568;
     --border: #cbd5e0;
@@ -1978,14 +1986,6 @@ button[title]:hover::before {
     background: #4a5568;
 }
 
-.pdf-theme-minimal .box,
-.pdf-theme-minimal .info-box,
-.pdf-theme-minimal .subject-lesson-box,
-.pdf-theme-minimal .tools-box {
-    border: 1px solid #e2e8f0;
-}
-
-/* ثيم PDF: تقني */
 .pdf-theme-tech {
     --main: #2d3748;
     --border: #4fd1c7;
@@ -1996,12 +1996,6 @@ button[title]:hover::before {
     background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
 }
 
-.pdf-theme-tech .tools-box .tool {
-    background: #e6fffa;
-    border-color: #81e6d9;
-}
-
-/* ثيم PDF: تعليمي */
 .pdf-theme-educational {
     --main: #2b6cb0;
     --border: #4299e1;
@@ -2011,22 +2005,12 @@ button[title]:hover::before {
 .pdf-theme-educational .header {
     background: linear-gradient(135deg, #2b6cb0 0%, #3182ce 100%);
 }
-
-.pdf-theme-educational .tools-box .tool {
-    background: #ebf8ff;
-    border-color: #bee3f8;
-}
-
-/* الشعار في كلاسيكي يجب أن يبقى باللون الأصلي (أبيض على خلفية خضراء) */
-.pdf-theme-classic .header img {
-    filter: brightness(0) invert(1);
-}
 </style>
 </head>
 
 <body class="theme-default">
 
-<!-- زر التعبئة الذكية العائم - تصميم جديد بأيقونة أجمل -->
+<!-- زر التعبئة الذكية العائم -->
 <button id="aiFillFloatingBtn" onclick="fillWithAI()" title="تعبئة الحقول تلقائياً باستخدام الذكاء الاصطناعي">
     <i class="fas fa-wand-magic-sparkles floating-ai-icon"></i>
     <span class="floating-ai-text">تعبئة ذكية</span>
@@ -2047,24 +2031,29 @@ button[title]:hover::before {
     </div>
 </div>
 
-<!-- شريط الأخبار العلوي -->
+<!-- شريط الأخبار العلوي (مطوّر) -->
 <div class="top-marquee">
 <div class="marquee-inner">
-<i class="fas fa-bullhorn" style="margin-left:10px;"></i>
-اختر معيار الاداء الوظيفي، ثم التصنيف الفرعي، ثم التقرير المناسب، ثم اضغط زر التعبئة لتوليد محتوى التقرير تلقائيًا.
+<i class="fas fa-star" style="margin-left:8px;"></i> 
+✨ نظام تقاريرك المتكامل: أنشئ تقارير تربوية احترافية بسهولة - حفظ تلقائي - تعبئة ذكية بالذكاء الاصطناعي - معايير أداء محدثة - مشاركة PDF وواتساب - دعم كامل للهواتف - تقارير غير محدودة للمشتركين ✨
+<i class="fas fa-gem" style="margin-right:8px;"></i>
 </div>
 </div>
 
-<!-- ========== المجموعة الأولى: الأزرار الصغيرة (أعلى الهيدر) ========== -->
+<!-- ========== المجموعة الأولى: الأزرار الصغيرة ========== -->
 <div class="top-small-buttons">
     <div class="small-buttons-grid">
         <button class="small-btn" id="saveTeacherBtn" onclick="saveTeacherData()" title="حفظ بيانات المعلم والمدرسة">
             <i class="fas fa-save small-btn-icon"></i>
             <span class="small-btn-text">حفظ البيانات</span>
         </button>
-        <button class="small-btn" id="clearBtn" onclick="clearData()" title="مسح جميع البيانات المدخلة">
+        <button class="small-btn" id="clearBtn" onclick="clearData()" title="مسح بيانات المعلم والنصوص المولدة فقط">
             <i class="fas fa-trash-alt small-btn-icon"></i>
             <span class="small-btn-text">مسح البيانات</span>
+        </button>
+        <button class="small-btn" id="savedReportsBtn" onclick="openSavedReports()" title="عرض التقارير المحفوظة">
+            <i class="fas fa-folder-open small-btn-icon"></i>
+            <span class="small-btn-text">التقارير المحفوظة</span>
         </button>
         <button class="small-btn" id="settingsBtn" onclick="openSettings()" title="إعدادات الاشتراك">
             <i class="fas fa-cog small-btn-icon"></i>
@@ -2089,15 +2078,29 @@ button[title]:hover::before {
 
 <!-- المحتوى الرئيسي -->
 <div class="wrapper">
+    <!-- ========== شريط التقدم ========== -->
+    <div class="progress-bar-container" id="progressBarContainer">
+        <div class="progress-header">
+            <div><i class="fas fa-chart-line"></i> تقدم إنجاز التقارير</div>
+            <div class="progress-stats">
+                <span class="progress-percentage" id="progressPercentage">0%</span>
+                <span class="progress-message" id="progressMessage">0 من 0 معايير مكتملة</span>
+            </div>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+    </div>
+
 <div class="input-section">
   
   <h2><i class="fas fa-tools" style="margin-left:10px;"></i>تقاريرك - النظام المتكامل</h2>
   
-  <!-- ========== نظام القوائم المتتالية الجديد ========== -->
+  <!-- ========== القوائم المتتالية (اختيارية) ========== -->
   <div class="levels-container">
     <div class="level-indicator">
-      <span>اختر المعايير والتصنيفات</span>
-      <span><i class="fas fa-layer-group"></i> قوائم متتالية</span>
+      <span>اختر المعايير والتصنيفات (اختياري)</span>
+      <span><i class="fas fa-layer-group"></i> للمساعدة</span>
     </div>
     
     <!-- المستوى الأول: المعايير التربوية -->
@@ -2118,7 +2121,7 @@ button[title]:hover::before {
     <div class="level-select">
       <label><i class="fas fa-list-ul"></i> التصنيف الفرعي</label>
       <select id="subcategorySelect" onchange="loadReports()" disabled>
-        <option value="">اختر التصنيف الفرعي أولاً</option>
+        <option value="">اختر التصنيف الفرعي</option>
       </select>
     </div>
     
@@ -2126,48 +2129,48 @@ button[title]:hover::before {
     <div class="level-select">
       <label><i class="fas fa-file-alt"></i> التقرير</label>
       <select id="reportSelect" onchange="updateReportFromSelection()" disabled>
-        <option value="">اختر التصنيف الفرعي أولاً</option>
+        <option value="">اختر التقرير</option>
       </select>
     </div>
     
     <!-- البحث المتقدم -->
-    <div id="reportSearchContainer" style="display:block; margin-top:15px; position:relative;">
-        <input type="text" id="reportSearch" placeholder="ابحث عن تقرير مباشر..." style="width:100%; padding:12px; border:1px solid #d4ebe2; border-radius:6px; font-size:14px;">
-        <div id="searchResults" style="display:none; position:absolute; top:100%; left:0; right:0; background:white; border:1px solid #ddd; border-radius:6px; max-height:200px; overflow-y:auto; z-index:1000; box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
+    <div id="reportSearchContainer">
+        <input type="text" id="reportSearch" placeholder="ابحث عن تقرير (اختياري)..." style="width:100%; padding:12px; border:2px solid #d4ebe2; border-radius:8px; font-size:14px;">
+        <div id="searchResults"></div>
     </div>
     
-    <!-- خانة عنوان التقرير اليدوية -->
+    <!-- خانة عنوان التقرير اليدوية (إلزامي) -->
     <div class="manual-title-container">
-        <label><i class="fas fa-heading"></i>عنوان التقرير (يدوي)</label>
-        <input type="text" id="manualReportTitle" placeholder="أدخل عنوان التقرير يدوياً..." oninput="updateReport()">
+        <label><i class="fas fa-heading"></i> عنوان التقرير <span style="color:#ff6b6b;">*</span></label>
+        <input type="text" id="manualReportTitle" placeholder="أدخل عنوان التقرير (مثال: تقرير زيارة صفية)" oninput="updateReport()" required>
     </div>
   </div>
   
-  <!-- بقية حقول الإدخال -->
+  <!-- حقول الإدخال الأساسية -->
   <div class="form-group">
     <label><i class="fas fa-university"></i>إدارة التعليم</label>
     <select id="education" oninput="updateReport()">
-      <option>جارٍ تحميل إدارات التعليم...</option>
+      <option value="">اختر إدارة التعليم</option>
     </select>
   </div>
   
   <div class="form-group">
     <label><i class="fas fa-school"></i>اسم المدرسة</label>
-    <input id="school" value="سعيد بن العاص" placeholder="أدخل اسم المدرسة" oninput="updateReport()">
+    <input id="school" placeholder="اسم المدرسة" oninput="updateReport()">
   </div>
   
   <div class="form-row">
     <div class="form-group">
       <label><i class="fas fa-chalkboard-teacher"></i>صفة المعلّم</label>
       <select id="teacherType" oninput="updateReport()">
-        <option selected>المعلم</option>
-        <option>المعلمة</option>
+        <option value="المعلم">المعلم</option>
+        <option value="المعلمة">المعلمة</option>
       </select>
     </div>
     
     <div class="form-group">
       <label><i class="fas fa-user"></i>اسم المعلّم</label>
-      <input id="teacher" value="فهد الخالدي" placeholder="اسم المعلم" oninput="updateReport()">
+      <input id="teacher" placeholder="اسم المعلم" oninput="updateReport()">
     </div>
   </div>
   
@@ -2175,14 +2178,14 @@ button[title]:hover::before {
     <div class="form-group">
       <label><i class="fas fa-user-tie"></i>صفة المدير</label>
       <select id="principalType" oninput="updateReport()">
-        <option selected>المدير</option>
-        <option>المديرة</option>
+        <option value="المدير">المدير</option>
+        <option value="المديرة">المديرة</option>
       </select>
     </div>
     
     <div class="form-group">
       <label><i class="fas fa-user-cog"></i>اسم المدير</label>
-      <input id="principal" value="نايف اللحياني" placeholder="اسم مدير المدرسة" oninput="updateReport()">
+      <input id="principal" placeholder="اسم المدير" oninput="updateReport()">
     </div>
   </div>
   
@@ -2195,7 +2198,10 @@ button[title]:hover::before {
     <div class="form-group">
       <label><i class="fas fa-calendar-alt"></i>الفصل الدراسي</label>
       <select id="term" oninput="updateReport()">
-        <option></option><option>الأول</option><option>الثاني</option>
+        <option value="">اختر الفصل</option>
+        <option value="الأول">الأول</option>
+        <option value="الثاني">الثاني</option>
+        <option value="الثالث">الثالث</option>
       </select>
     </div>
   </div>
@@ -2203,12 +2209,12 @@ button[title]:hover::before {
   <div class="form-row">
     <div class="form-group">
       <label><i class="fas fa-book"></i>المادة</label>
-      <input id="subject" placeholder="مثال: لغتي – علوم – رياضيات" oninput="updateReport()">
+      <input id="subject" placeholder="مثال: لغتي" oninput="updateReport()">
     </div>
     
     <div class="form-group">
       <label><i class="fas fa-book-open"></i>الدرس</label>
-      <input id="lesson" placeholder="مثال: درس الضرب - درس النباتات" oninput="updateReport()">
+      <input id="lesson" placeholder="مثال: درس الضرب" oninput="updateReport()">
     </div>
   </div>
   
@@ -2226,7 +2232,7 @@ button[title]:hover::before {
   
   <div class="form-group">
     <label><i class="fas fa-map-marker-alt"></i>مكان التنفيذ</label>
-    <input id="place" placeholder="مثال: داخل الصف – المختبر" oninput="updateReport()">
+    <input id="place" placeholder="مثال: داخل الصف" oninput="updateReport()">
   </div>
   
   <div class="form-group">
@@ -2236,7 +2242,7 @@ button[title]:hover::before {
   
   <div class="form-group">
     <label><i class="fas fa-file-signature"></i>نبذة مختصرة</label>
-    <textarea id="summary" placeholder="أدخل نبذة مختصرة" oninput="updateReport()"></textarea>
+    <textarea id="summary" placeholder="أدخل نبذة مختصرة عن التقرير" oninput="updateReport()"></textarea>
   </div>
   
   <div class="form-group">
@@ -2246,13 +2252,13 @@ button[title]:hover::before {
   
   <div class="form-group">
     <label><i class="fas fa-chess-board"></i>الاستراتيجيات</label>
-    <textarea id="strategies" placeholder="ما هي الاستراتيجيات" oninput="updateReport()"></textarea>
+    <textarea id="strategies" placeholder="ما هي الاستراتيجيات المستخدمة" oninput="updateReport()"></textarea>
   </div>
   
   <div class="form-row">
     <div class="form-group">
       <label><i class="fas fa-thumbs-up"></i>نقاط القوة</label>
-      <textarea id="strengths" placeholder="نقاط القوة" oninput="updateReport()"></textarea>
+      <textarea id="strengths" placeholder="نقاط القوة في الحصة" oninput="updateReport()"></textarea>
     </div>
     
     <div class="form-group">
@@ -2274,7 +2280,7 @@ button[title]:hover::before {
         <p style="text-align:center;color:#666;">جارٍ تحميل الأدوات التعليمية...</p>
       </div>
       <div style="text-align:center; margin-top:10px; font-size:11px; color:#666;">
-        <i class="fas fa-info-circle"></i> اضغط على الأداة لتحديدها، ستظهر علامة ✅ عند التحديد
+        <i class="fas fa-info-circle"></i> اضغط على الأداة لتحديدها
       </div>
     </div>
   </div>
@@ -2282,12 +2288,12 @@ button[title]:hover::before {
   <div class="form-row">
     <div class="form-group">
       <label><i class="fas fa-camera"></i>الصورة 1</label>
-      <input type="file" accept="image/*" placeholder="ارفع صورة" onchange="loadImage(this,'imgBox1')">
+      <input type="file" accept="image/*" onchange="loadImage(this,'imgBox1')">
     </div>
     
     <div class="form-group">
       <label><i class="fas fa-camera"></i>الصورة 2</label>
-      <input type="file" accept="image/*" placeholder="ارفع صورة" onchange="loadImage(this,'imgBox2')">
+      <input type="file" accept="image/*" onchange="loadImage(this,'imgBox2')">
     </div>
   </div>
 
@@ -2297,7 +2303,7 @@ button[title]:hover::before {
 <!-- قسم PDF -->
 <div id="report-content" class="pdf-export" style="display:none;">
 <div class="header">
-  <img src="https://i.ibb.co/zH7k1s8c/IMG-2987.png">
+  <img src="https://i.ibb.co/zH7k1s8c/IMG-2987.png" alt="شعار وزارة التعليم">
   <div class="header-school-title">اسم المدرسة</div>
   <div class="header-school" id="schoolBox"></div>
   <div class="header-education" id="educationBox"></div>
@@ -2375,6 +2381,21 @@ button[title]:hover::before {
 <div class="footer-box">
   وزارة التعليم – المملكة العربية السعودية
 </div>
+</div>
+
+<!-- نافذة التقارير المحفوظة -->
+<div id="savedReportsModal">
+  <div>
+    <h3><i class="fas fa-folder-open"></i> التقارير المحفوظة</h3>
+    
+    <div id="savedReportsList" class="reports-grid">
+      <!-- سيتم تعبئتها ديناميكياً -->
+    </div>
+    
+    <button class="close-reports-btn" onclick="closeSavedReports()">
+      <i class="fas fa-times"></i> إغلاق
+    </button>
+  </div>
 </div>
 
 <!-- نافذة الإعدادات -->
@@ -2481,65 +2502,32 @@ button[title]:hover::before {
 </div>
 
 <script>
+// ==================== المتغيرات العامة ====================
 window.__ACTIVATED__ = false;
 window.allCriteria = [];
 window.subcategoriesByCriterion = {};
 window.reportsBySubcategory = {};
 window.allReportsList = [];
 
-// ==================== متغيرات التفعيل ====================
 const ACTIVATION_KEY_NAME = "activation_code";
 const BACKEND_URL = "https://deep-qphc.onrender.com";
-
-// ==================== متغيرات الثيمات ====================
 const APP_THEME_KEY = "app_theme";
 const PDF_THEME_KEY = "pdf_theme";
+const REPORTS_STORAGE_KEY = "saved_educational_reports";
 
-// ==================== متغيرات التاريخ ====================
 let currentHijriDate = '';
 let currentGregorianDate = '';
+let educationalCriteria = [];
 
-// ==================== دالة تحميل التاريخ ====================
-async function loadDates() {
-    // التاريخ الميلادي
-    let g = new Date();
-    currentGregorianDate = `${g.getDate()}/${g.getMonth()+1}/${g.getFullYear()}`;
-
-    // تحقق من وجود تاريخ مخصص
-    const customDate = localStorage.getItem("custom_report_date");
-    if (customDate) {
-        g = new Date(customDate);
-        currentGregorianDate = `${g.getDate()}/${g.getMonth()+1}/${g.getFullYear()}`;
-    }
-
-    try {
-        // الحصول على التاريخ الهجري من API
-        const response = await fetch(
-            `https://api.aladhan.com/v1/gToH?date=${g.getDate()}-${g.getMonth()+1}-${g.getFullYear()}`
-        );
-        const data = await response.json();
-        const hijri = data.data.hijri;
-
-        // تحويل الأرقام إلى عربية
-        const toArabic = n =>
-            n.toString().replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
-
-        currentHijriDate =
-            `${toArabic(hijri.year)}/${toArabic(hijri.month.number)}/${toArabic(hijri.day)}`;
-
-        // تحديث العرض في PDF
-        document.getElementById('hDate').innerHTML = currentHijriDate + " هـ";
-        document.getElementById('gDate').innerHTML = currentGregorianDate + " م";
-
-    } catch (error) {
-        // تاريخ افتراضي في حالة الخطأ
-        console.error("خطأ في تحميل التاريخ:", error);
-        currentHijriDate = "١٤٤٦/٠٦/٠١";
-        document.getElementById('hDate').innerHTML = currentHijriDate + " هـ";
-        document.getElementById('gDate').innerHTML = currentGregorianDate + " م";
-    }
+// دالة مساعدة لتنسيق الوزن مع % واحدة فقط
+function formatWeight(weight) {
+    if (weight === undefined || weight === null) return '0%';
+    // إزالة أي رموز % موجودة والحصول على الرقم
+    let num = parseFloat(String(weight).replace(/%/g, '')) || 0;
+    return num + '%';
 }
 
+// ==================== دوال التفعيل ====================
 function hideActivationScreen() {
     if (window.__ACTIVATED__) {
         document.getElementById("activationScreen").style.display = "none";
@@ -2560,9 +2548,7 @@ async function activateTool() {
 
     try {
         const res = await fetch(BACKEND_URL + "/health", {
-            headers: {
-                "X-Activation-Code": code
-            }
+            headers: { "X-Activation-Code": code }
         });
 
         if (!res.ok) throw new Error("Invalid");
@@ -2577,21 +2563,51 @@ async function activateTool() {
     }
 }
 
-// زر التواصل للتجربة أو الاشتراك
 function contactForTrial() {
     const message = encodeURIComponent("أرغب في تجربة أداة إصدار التقارير التربوية أو الاشتراك فيها.\n\nيرجى التواصل معي للمزيد من المعلومات.");
     window.open(`https://wa.me/966597077245?text=${message}`, '_blank');
 }
 
-// ==================== دوال إدارة الثيمات ====================
+// ==================== دوال التاريخ ====================
+async function loadDates() {
+    let g = new Date();
+    currentGregorianDate = `${g.getDate()}/${g.getMonth()+1}/${g.getFullYear()}`;
+
+    const customDate = localStorage.getItem("custom_report_date");
+    if (customDate) {
+        g = new Date(customDate);
+        currentGregorianDate = `${g.getDate()}/${g.getMonth()+1}/${g.getFullYear()}`;
+    }
+
+    try {
+        const response = await fetch(
+            `https://api.aladhan.com/v1/gToH?date=${g.getDate()}-${g.getMonth()+1}-${g.getFullYear()}`
+        );
+        const data = await response.json();
+        const hijri = data.data.hijri;
+
+        const toArabic = n => n.toString().replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+
+        currentHijriDate = `${toArabic(hijri.year)}/${toArabic(hijri.month.number)}/${toArabic(hijri.day)}`;
+
+        document.getElementById('hDate').innerHTML = currentHijriDate + " هـ";
+        document.getElementById('gDate').innerHTML = currentGregorianDate + " م";
+
+    } catch (error) {
+        console.error("خطأ في تحميل التاريخ:", error);
+        currentHijriDate = "١٤٤٦/٠٦/٠١";
+        document.getElementById('hDate').innerHTML = currentHijriDate + " هـ";
+        document.getElementById('gDate').innerHTML = currentGregorianDate + " م";
+    }
+}
+
+// ==================== دوال الثيمات ====================
 function loadThemeSettings() {
-    // تحميل ثيم الواجهة
     const savedAppTheme = localStorage.getItem(APP_THEME_KEY) || 'default';
     const appThemeSelect = document.getElementById('appThemeSelect');
     appThemeSelect.value = savedAppTheme;
     applyAppTheme(savedAppTheme);
     
-    // تحميل ثيم PDF
     const savedPdfTheme = localStorage.getItem(PDF_THEME_KEY) || 'classic';
     const pdfThemeSelect = document.getElementById('pdfThemeSelect');
     pdfThemeSelect.value = savedPdfTheme;
@@ -2599,16 +2615,9 @@ function loadThemeSettings() {
 }
 
 function applyAppTheme(themeName) {
-    // إزالة جميع ثيمات الواجهة السابقة
     document.body.classList.remove('theme-light-blue', 'theme-dark', 'theme-green', 'theme-default');
-    
-    // تطبيق الثيم الجديد
     document.body.classList.add('theme-' + themeName);
-    
-    // تحديث زر التعبئة الذكية حسب الثيم
     updateAiButtonTheme(themeName);
-    
-    // حفظ التفضيل
     localStorage.setItem(APP_THEME_KEY, themeName);
 }
 
@@ -2621,32 +2630,22 @@ function updateAiButtonTheme(themeName) {
         case 'light-blue':
             aiButton.style.background = 'linear-gradient(135deg, #4285f4 0%, #34a853 25%, #fbbc05 50%, #ea4335 100%)';
             aiButton.style.boxShadow = '0 12px 35px rgba(66, 133, 244, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3), 0 0 25px rgba(66, 133, 244, 0.5)';
-            aiIcon.style.color = '#FFFFFF';
-            aiText.style.background = 'linear-gradient(45deg, #FFFFFF, #E8F0FF, #FFFFFF)';
             break;
-            
         case 'dark':
             aiButton.style.background = 'linear-gradient(135deg, #6d28d9 0%, #7c3aed 25%, #8b5cf6 50%, #a78bfa 100%)';
             aiButton.style.boxShadow = '0 12px 35px rgba(109, 40, 217, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3), 0 0 25px rgba(109, 40, 217, 0.5)';
-            aiIcon.style.color = '#FFFFFF';
-            aiText.style.background = 'linear-gradient(45deg, #FFFFFF, #F3F4F6, #FFFFFF)';
             break;
-            
         case 'green':
             aiButton.style.background = 'linear-gradient(135deg, #27ae60 0%, #2ecc71 25%, #3498db 50%, #9b59b6 100%)';
             aiButton.style.boxShadow = '0 12px 35px rgba(46, 204, 113, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3), 0 0 25px rgba(46, 204, 113, 0.5)';
-            aiIcon.style.color = '#FFFFFF';
-            aiText.style.background = 'linear-gradient(45deg, #FFFFFF, #E6F7EF, #FFFFFF)';
             break;
-            
-        default: // الثيم الافتراضي
+        default:
             aiButton.style.background = 'linear-gradient(135deg, #9D50BB 0%, #6E48AA 25%, #533D8B 50%, #3A2569 100%)';
             aiButton.style.boxShadow = '0 12px 35px rgba(157, 80, 187, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3), 0 0 25px rgba(157, 80, 187, 0.5)';
-            aiIcon.style.color = '#FFFFFF';
-            aiText.style.background = 'linear-gradient(45deg, #FFFFFF, #F0F9F6, #FFFFFF)';
     }
     
-    // إعادة تطبيق خاصية Webkit
+    aiIcon.style.color = '#FFFFFF';
+    aiText.style.background = 'linear-gradient(45deg, #FFFFFF, #F0F9F6, #FFFFFF)';
     aiText.style.webkitBackgroundClip = 'text';
     aiText.style.webkitTextFillColor = 'transparent';
     aiText.style.backgroundClip = 'text';
@@ -2654,66 +2653,267 @@ function updateAiButtonTheme(themeName) {
 
 function applyPdfTheme(themeName) {
     const reportContent = document.getElementById('report-content');
-    
-    // إزالة جميع ثيمات PDF السابقة
     reportContent.classList.remove(
-        'pdf-theme-classic',
-        'pdf-theme-professional', 
-        'pdf-theme-minimal',
-        'pdf-theme-tech',
-        'pdf-theme-educational'
+        'pdf-theme-classic', 'pdf-theme-professional', 'pdf-theme-minimal', 'pdf-theme-tech', 'pdf-theme-educational'
     );
-    
-    // تطبيق الثيم الجديد
     reportContent.classList.add('pdf-theme-' + themeName);
-    
-    // حفظ التفضيل
     localStorage.setItem(PDF_THEME_KEY, themeName);
 }
 
 function applyThemes() {
     const appTheme = document.getElementById('appThemeSelect').value;
     const pdfTheme = document.getElementById('pdfThemeSelect').value;
-    
     applyAppTheme(appTheme);
     applyPdfTheme(pdfTheme);
-    
     showNotification('تم تطبيق الثيمات بنجاح! ✓');
     closeSettings();
 }
 
-// ==================== تحميل البيانات من الباك إند الجديد ====================
+// ==================== دوال حفظ واستعراض التقارير ====================
+function calculateProgress() {
+    const savedReports = JSON.parse(localStorage.getItem(REPORTS_STORAGE_KEY)) || {};
+    const criteria = educationalCriteria.length > 0 ? educationalCriteria : window.allCriteria || [];
+    
+    if (criteria.length === 0) {
+        document.getElementById('progressBarContainer').style.display = 'none';
+        return;
+    }
+    
+    document.getElementById('progressBarContainer').style.display = 'flex';
+    
+    const totalWeight = criteria.reduce((sum, c) => sum + (parseFloat(c.weight) || 0), 0);
+    let completedWeight = 0;
+    let completedCount = 0;
+    
+    criteria.forEach(criterion => {
+        const criterionId = criterion.id;
+        const criterionWeight = parseFloat(criterion.weight) || 0;
+        
+        if (savedReports[criterionId]) {
+            completedWeight += criterionWeight;
+            completedCount++;
+        }
+    });
+    
+    const percentage = totalWeight > 0 ? Math.round((completedWeight / totalWeight) * 100) : 0;
+    
+    document.getElementById('progressPercentage').textContent = percentage + '%';
+    document.getElementById('progressFill').style.width = percentage + '%';
+    document.getElementById('progressMessage').textContent = 
+        `${completedCount} من ${criteria.length} معايير مكتملة (${completedWeight} من ${totalWeight} نقطة)`;
+}
+
+function saveCurrentReport() {
+    const reportTitle = document.getElementById('manualReportTitle').value.trim();
+    if (!reportTitle) {
+        showNotification('الرجاء إدخال عنوان التقرير');
+        return false;
+    }
+    
+    const criterionId = document.getElementById('criterionSelect').value || 'manual_' + Date.now();
+    const criterionName = document.getElementById('selectedCriterionName')?.textContent || 'تقرير يدوي';
+    const criterionWeight = document.getElementById('selectedCriterionWeight')?.textContent || '0%';
+    
+    const savedReports = JSON.parse(localStorage.getItem(REPORTS_STORAGE_KEY)) || {};
+    
+    const reportData = {
+        id: Date.now().toString(),
+        title: reportTitle,
+        criterionId: criterionId,
+        criterionName: criterionName,
+        weight: criterionWeight,
+        date: currentGregorianDate,
+        hijriDate: currentHijriDate,
+        data: {
+            education: document.getElementById('education').value,
+            school: document.getElementById('school').value,
+            teacherType: document.getElementById('teacherType').value,
+            teacher: document.getElementById('teacher').value,
+            principalType: document.getElementById('principalType').value,
+            principal: document.getElementById('principal').value,
+            grade: document.getElementById('grade').value,
+            term: document.getElementById('term').value,
+            subject: document.getElementById('subject').value,
+            lesson: document.getElementById('lesson').value,
+            target: document.getElementById('target').value,
+            count: document.getElementById('count').value,
+            place: document.getElementById('place').value,
+            goal: document.getElementById('goal').value,
+            summary: document.getElementById('summary').value,
+            steps: document.getElementById('steps').value,
+            strategies: document.getElementById('strategies').value,
+            strengths: document.getElementById('strengths').value,
+            improve: document.getElementById('improve').value,
+            recomm: document.getElementById('recomm').value,
+            tools: []
+        }
+    };
+    
+    const toolCheckboxes = document.querySelectorAll('.tool-checkbox input[type="checkbox"]');
+    toolCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            reportData.data.tools.push(checkbox.value);
+        }
+    });
+    
+    savedReports[criterionId] = reportData;
+    localStorage.setItem(REPORTS_STORAGE_KEY, JSON.stringify(savedReports));
+    
+    calculateProgress();
+    showNotification('تم حفظ التقرير بنجاح!');
+    return true;
+}
+
+function loadSavedReport(criterionId) {
+    const savedReports = JSON.parse(localStorage.getItem(REPORTS_STORAGE_KEY)) || {};
+    const report = savedReports[criterionId];
+    
+    if (!report) return false;
+    
+    document.getElementById('education').value = report.data.education || '';
+    document.getElementById('school').value = report.data.school || '';
+    document.getElementById('teacherType').value = report.data.teacherType || 'المعلم';
+    document.getElementById('teacher').value = report.data.teacher || '';
+    document.getElementById('principalType').value = report.data.principalType || 'المدير';
+    document.getElementById('principal').value = report.data.principal || '';
+    document.getElementById('grade').value = report.data.grade || '';
+    document.getElementById('term').value = report.data.term || '';
+    document.getElementById('subject').value = report.data.subject || '';
+    document.getElementById('lesson').value = report.data.lesson || '';
+    document.getElementById('target').value = report.data.target || '';
+    document.getElementById('count').value = report.data.count || '';
+    document.getElementById('place').value = report.data.place || '';
+    document.getElementById('goal').value = report.data.goal || '';
+    document.getElementById('summary').value = report.data.summary || '';
+    document.getElementById('steps').value = report.data.steps || '';
+    document.getElementById('strategies').value = report.data.strategies || '';
+    document.getElementById('strengths').value = report.data.strengths || '';
+    document.getElementById('improve').value = report.data.improve || '';
+    document.getElementById('recomm').value = report.data.recomm || '';
+    document.getElementById('manualReportTitle').value = report.title || '';
+    
+    if (report.data.tools && Array.isArray(report.data.tools)) {
+        const toolCheckboxes = document.querySelectorAll('.tool-checkbox');
+        toolCheckboxes.forEach(toolElement => {
+            const checkbox = toolElement.querySelector('input[type="checkbox"]');
+            if (checkbox && report.data.tools.includes(checkbox.value)) {
+                checkbox.checked = true;
+                toolElement.classList.add('checked');
+            } else {
+                checkbox.checked = false;
+                toolElement.classList.remove('checked');
+            }
+        });
+    }
+    
+    updateReport();
+    updateToolsDisplay();
+    showNotification('تم تحميل التقرير بنجاح!');
+    return true;
+}
+
+// دوال جديدة لتنزيل ومشاركة تقرير محفوظ مباشرة
+async function downloadSavedReport(criterionId) {
+    if (loadSavedReport(criterionId)) {
+        // تأخير بسيط لضمان تحديث النموذج
+        await new Promise(resolve => setTimeout(resolve, 100));
+        await downloadPDF();
+    }
+}
+
+async function shareSavedReportWhatsApp(criterionId) {
+    if (loadSavedReport(criterionId)) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        await sharePDFWhatsApp();
+    }
+}
+
+function deleteSavedReport(criterionId) {
+    if (!confirm('هل أنت متأكد من حذف هذا التقرير؟')) return;
+    
+    const savedReports = JSON.parse(localStorage.getItem(REPORTS_STORAGE_KEY)) || {};
+    delete savedReports[criterionId];
+    localStorage.setItem(REPORTS_STORAGE_KEY, JSON.stringify(savedReports));
+    
+    calculateProgress();
+    
+    if (document.getElementById('savedReportsModal').style.display === 'flex') {
+        closeSavedReports();
+        setTimeout(openSavedReports, 300);
+    }
+    
+    showNotification('تم حذف التقرير بنجاح!');
+}
+
+function openSavedReports() {
+    const savedReports = JSON.parse(localStorage.getItem(REPORTS_STORAGE_KEY)) || {};
+    const reportsList = document.getElementById('savedReportsList');
+    
+    if (Object.keys(savedReports).length === 0) {
+        reportsList.innerHTML = `
+            <div class="empty-reports">
+                <i class="fas fa-folder-open"></i>
+                <p>لا توجد تقارير محفوظة</p>
+                <p style="font-size:12px; margin-top:10px;">قم بإنشاء تقرير وحفظه ليظهر هنا</p>
+            </div>
+        `;
+    } else {
+        reportsList.innerHTML = '';
+        
+        const reports = Object.values(savedReports).sort((a, b) => b.id - a.id);
+        
+        reports.forEach(report => {
+            const card = document.createElement('div');
+            card.className = 'report-card completed';
+            card.innerHTML = `
+                <div class="report-title">${report.title}</div>
+                <div class="report-criterion"><i class="fas fa-star"></i> ${report.criterionName}</div>
+                <div class="report-weight">الوزن: ${formatWeight(report.weight)}</div>
+                <div class="report-date"><i class="fas fa-calendar"></i> ${report.date} | ${report.hijriDate} هـ</div>
+                <div class="report-actions">
+                    <button class="load-btn" onclick="loadSavedReport('${report.criterionId}'); closeSavedReports();" title="فتح في النموذج"><i class="fas fa-download"></i> فتح</button>
+                    <button class="pdf-btn" onclick="downloadSavedReport('${report.criterionId}')" title="تنزيل PDF"><i class="fas fa-file-pdf"></i> PDF</button>
+                    <button class="whatsapp-btn" onclick="shareSavedReportWhatsApp('${report.criterionId}')" title="مشاركة عبر واتساب"><i class="fab fa-whatsapp"></i></button>
+                    <button class="delete-btn" onclick="deleteSavedReport('${report.criterionId}')" title="حذف"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+            reportsList.appendChild(card);
+        });
+    }
+    
+    document.getElementById('savedReportsModal').style.display = 'flex';
+}
+
+function closeSavedReports() {
+    document.getElementById('savedReportsModal').style.display = 'none';
+}
+
+// ==================== دوال تحميل البيانات ====================
 async function loadDataFromBackend() {
     try {
-        // تحميل الهيكل الكامل للمعايير والتصنيفات والتقارير
         const structureResponse = await fetch(BACKEND_URL + "/api/full-structure");
         const structureData = await structureResponse.json();
         
         const structure = structureData.structure;
         
-        // بناء القوائم
+        window.allCriteria = structure;
+        educationalCriteria = structure;
+        
         const criterionSelect = document.getElementById("criterionSelect");
         criterionSelect.innerHTML = '<option value="">اختر معيار الاداء الوظيفي</option>';
         
-        // تخزين البيانات في المتغيرات العالمية
-        window.allCriteria = structure;
-        
-        // إضافة المعايير إلى القائمة
         structure.forEach(criterion => {
             const option = document.createElement("option");
             option.value = criterion.id;
-            option.textContent = `${criterion.name} (${criterion.weight})`;
+            option.textContent = `${criterion.name} (${formatWeight(criterion.weight)})`;
             criterionSelect.appendChild(option);
             
-            // تخزين التصنيفات الفرعية لكل معيار
             window.subcategoriesByCriterion[criterion.id] = criterion.subcategories || [];
             
-            // تخزين التقارير لكل تصنيف فرعي
             if (criterion.subcategories) {
                 criterion.subcategories.forEach(sub => {
                     window.reportsBySubcategory[sub.id] = sub.reports || [];
                     
-                    // إضافة التقارير إلى القائمة الكاملة للبحث
                     if (sub.reports) {
                         sub.reports.forEach(report => {
                             window.allReportsList.push({
@@ -2730,12 +2930,11 @@ async function loadDataFromBackend() {
             }
         });
         
-        // تحميل إدارات التعليم
         const educationResponse = await fetch(BACKEND_URL + "/api/education-offices");
         const educationOffices = await educationResponse.json();
         
         const educationSelect = document.getElementById("education");
-        educationSelect.innerHTML = "";
+        educationSelect.innerHTML = '<option value="">اختر إدارة التعليم</option>';
         
         educationOffices.forEach(office => {
             const option = document.createElement("option");
@@ -2744,7 +2943,6 @@ async function loadDataFromBackend() {
             educationSelect.appendChild(option);
         });
         
-        // تحميل الأدوات التعليمية
         const toolsResponse = await fetch(BACKEND_URL + "/api/educational-tools");
         const educationalTools = await toolsResponse.json();
         
@@ -2764,11 +2962,12 @@ async function loadDataFromBackend() {
             toolsGrid.appendChild(label);
         });
         
-        console.log("تم تحميل البيانات بنجاح من الباك إند الجديد");
+        calculateProgress();
+        console.log("تم تحميل البيانات بنجاح");
         
     } catch (error) {
-        console.error("خطأ في تحميل البيانات من الباك:", error);
-        showNotification("حدث خطأ في تحميل البيانات. الرجاء تحديث الصفحة.");
+        console.error("خطأ في تحميل البيانات:", error);
+        showNotification("حدث خطأ في تحميل البيانات. سيتم استخدام البيانات المحفوظة محلياً.");
     }
 }
 
@@ -2780,19 +2979,18 @@ function loadSubcategories() {
     const criterionInfo = document.getElementById('criterionInfo');
     
     if (!criterionId) {
-        subcategorySelect.innerHTML = '<option value="">اختر التصنيف الفرعي أولاً</option>';
+        subcategorySelect.innerHTML = '<option value="">اختر التصنيف الفرعي</option>';
         subcategorySelect.disabled = true;
-        reportSelect.innerHTML = '<option value="">اختر التصنيف الفرعي أولاً</option>';
+        reportSelect.innerHTML = '<option value="">اختر التقرير</option>';
         reportSelect.disabled = true;
         criterionInfo.style.display = 'none';
         return;
     }
     
-    // عرض معلومات المعيار
     const criterion = window.allCriteria.find(c => c.id === criterionId);
     if (criterion) {
         document.getElementById('selectedCriterionName').textContent = criterion.name;
-        document.getElementById('selectedCriterionWeight').textContent = criterion.weight;
+        document.getElementById('selectedCriterionWeight').textContent = formatWeight(criterion.weight);
         criterionInfo.style.display = 'flex';
     }
     
@@ -2807,7 +3005,7 @@ function loadSubcategories() {
     });
     
     subcategorySelect.disabled = false;
-    reportSelect.innerHTML = '<option value="">اختر التصنيف الفرعي أولاً</option>';
+    reportSelect.innerHTML = '<option value="">اختر التقرير</option>';
     reportSelect.disabled = true;
 }
 
@@ -2816,7 +3014,7 @@ function loadReports() {
     const reportSelect = document.getElementById('reportSelect');
     
     if (!subcategoryId) {
-        reportSelect.innerHTML = '<option value="">اختر التصنيف الفرعي أولاً</option>';
+        reportSelect.innerHTML = '<option value="">اختر التقرير</option>';
         reportSelect.disabled = true;
         return;
     }
@@ -2839,7 +3037,6 @@ function updateReportFromSelection() {
     const manualTitleInput = document.getElementById('manualReportTitle');
     
     if (reportSelect.value && reportSelect.selectedOptions[0]) {
-        // تحديث العنوان اليدوي بالتقرير المختار
         manualTitleInput.value = reportSelect.selectedOptions[0].textContent;
     }
     
@@ -2875,18 +3072,15 @@ function handleReportSearch() {
             div.onmouseover = () => div.style.backgroundColor = '#f0f9f6';
             div.onmouseout = () => div.style.backgroundColor = 'white';
             div.onclick = () => {
-                // تحديد المعيار
                 const criterionSelect = document.getElementById('criterionSelect');
                 criterionSelect.value = report.criterion_id;
                 loadSubcategories();
                 
-                // تحديد التصنيف الفرعي
                 setTimeout(() => {
                     const subcategorySelect = document.getElementById('subcategorySelect');
                     subcategorySelect.value = report.subcategory_id;
                     loadReports();
                     
-                    // تحديد التقرير
                     setTimeout(() => {
                         const reportSelect = document.getElementById('reportSelect');
                         reportSelect.value = report.id;
@@ -2908,49 +3102,29 @@ function handleReportSearch() {
     }
 }
 
-// ==================== دالة التعبئة الذكية (الزر العائم) ====================
+// ==================== دوال التعبئة الذكية ====================
 async function fillWithAI() {
-    // التحقق من كود التفعيل
     const activationCode = localStorage.getItem(ACTIVATION_KEY_NAME);
     if (!activationCode) {
         alert('الرجاء تفعيل الأداة أولاً باستخدام كود التفعيل');
         return;
     }
     
-    // التحقق من اتصال الإنترنت
     if (!navigator.onLine) {
         alert('لا يوجد اتصال بالإنترنت. الرجاء التأكد من الاتصال');
         return;
     }
     
-    // الحصول على نوع التقرير
-    const reportName = document.getElementById('manualReportTitle').value.trim();
-    if (!reportName) {
-        alert('الرجاء اختيار أو إدخال عنوان التقرير أولاً');
+    const reportTitle = document.getElementById('manualReportTitle').value.trim();
+    if (!reportTitle) {
+        alert('الرجاء إدخال عنوان التقرير أولاً');
         return;
     }
     
-    // الحصول على معرفات المعيار والتصنيف والتقرير
     const criterionId = document.getElementById('criterionSelect').value;
     const subcategoryId = document.getElementById('subcategorySelect').value;
     const reportId = document.getElementById('reportSelect').value;
     
-    if (!criterionId || !subcategoryId || !reportId) {
-        alert('الرجاء اختيار المعيار التربوي والتصنيف الفرعي والتقرير بشكل كامل');
-        return;
-    }
-    
-    // الحصول على معلومات إضافية
-    const reportData = {
-        subject: document.getElementById('subject').value || '',
-        lesson: document.getElementById('lesson').value || '',
-        grade: document.getElementById('grade').value || '',
-        target: document.getElementById('target').value || '',
-        place: document.getElementById('place').value || '',
-        count: document.getElementById('count').value || ''
-    };
-    
-    // عرض حالة التحميل على الزر العائم
     const aiButton = document.getElementById('aiFillFloatingBtn');
     const originalText = aiButton.querySelector('.floating-ai-text').textContent;
     const originalIcon = aiButton.querySelector('.floating-ai-icon').className;
@@ -2968,33 +3142,21 @@ async function fillWithAI() {
                 'X-Activation-Code': activationCode
             },
             body: JSON.stringify({
-                criterion_id: criterionId,
-                subcategory_id: subcategoryId,
-                report_id: reportId,
-                report_data: reportData
+                criterion_id: criterionId || 'default',
+                subcategory_id: subcategoryId || 'default',
+                report_id: reportId || 'default',
+                report_data: {
+                    subject: document.getElementById('subject').value || 'الموضوع',
+                    lesson: document.getElementById('lesson').value || 'الدرس',
+                    grade: document.getElementById('grade').value || 'الصف',
+                    target: document.getElementById('target').value || 'الطلاب',
+                    place: document.getElementById('place').value || 'المدرسة',
+                    count: document.getElementById('count').value || 'عدد الطلاب'
+                }
             })
         });
 
-        if (!response.ok) {
-            let errorMessage = "تعذر تنفيذ الطلب";
-
-            try {
-                const errData = await response.json();
-
-                if (errData.detail) {
-                    const map = {
-                        "Usage limit reached": "تم استهلاك عدد الاستخدامات المسموح بها لهذا الكود",
-                        "Activation code expired": "انتهت صلاحية كود التفعيل",
-                        "Activation code disabled": "كود التفعيل غير مفعل",
-                        "Invalid activation code": "كود التفعيل غير صحيح"
-                    };
-
-                    errorMessage = map[errData.detail] || errData.detail;
-                }
-            } catch (_) {}
-
-            throw new Error(errorMessage);
-        }
+        if (!response.ok) throw new Error("تعذر تنفيذ الطلب");
 
         const data = await response.json();
         
@@ -3004,106 +3166,95 @@ async function fillWithAI() {
         
         parseAIResponseProfessional(data.content);
         showNotification('تم تعبئة الحقول باستخدام الذكاء الاصطناعي بنجاح! ✓');
+        saveCurrentReport();
         
     } catch (error) {
         console.error('خطأ في الذكاء الاصطناعي:', error);
-        alert(
-            error.message ||
-            "تعذر تنفيذ الطلب.\n\nيرجى التأكد من صلاحية كود التفعيل وعدم استهلاك عدد الاستخدامات."
-        );
+        alert(error.message || "تعذر تنفيذ الطلب.");
     } finally {
-        // إزالة حالة التحميل وإعادة الزر إلى حالته الأصلية
         aiButton.classList.remove('loading');
         aiButton.querySelector('.floating-ai-text').textContent = originalText;
         aiButton.querySelector('.floating-ai-icon').className = originalIcon;
         aiButton.disabled = false;
-        
-        // تحديث لون الزر حسب الثيم الحالي
-        const currentTheme = localStorage.getItem(APP_THEME_KEY) || 'default';
-        updateAiButtonTheme(currentTheme);
+        updateAiButtonTheme(localStorage.getItem(APP_THEME_KEY) || 'default');
     }
 }
 
 // ==================== دوال مساعدة ====================
-function updateManualTitle() {
-    updateReport();
-}
-
 function adaptSubjectLessonFont() {
-  const elements = [
-    document.getElementById('subjectBox'),
-    document.getElementById('lessonBox')
-  ];
+    const elements = [
+        document.getElementById('subjectBox'),
+        document.getElementById('lessonBox')
+    ];
 
-  elements.forEach(el => {
-    if (!el || !el.parentElement) return;
+    elements.forEach(el => {
+        if (!el || !el.parentElement) return;
 
-    const text = el.innerText.trim();
-    const textLength = text.length;
-    const container = el.parentElement;
-    const containerWidth = container.clientWidth - 30;
-    const containerHeight = container.clientHeight - 20;
+        const text = el.innerText.trim();
+        const textLength = text.length;
+        const container = el.parentElement;
+        const containerWidth = container.clientWidth - 30;
+        const containerHeight = container.clientHeight - 20;
 
-    el.style.whiteSpace = 'nowrap';
-    el.style.overflow = 'hidden';
-    el.style.textOverflow = 'ellipsis';
-    el.style.textAlign = 'center';
-    el.style.display = 'flex';
-    el.style.alignItems = 'center';
-    el.style.justifyContent = 'center';
-    el.style.padding = '0 5px';
-    el.style.width = '100%';
-    el.style.height = '100%';
+        el.style.whiteSpace = 'nowrap';
+        el.style.overflow = 'hidden';
+        el.style.textOverflow = 'ellipsis';
+        el.style.textAlign = 'center';
+        el.style.display = 'flex';
+        el.style.alignItems = 'center';
+        el.style.justifyContent = 'center';
+        el.style.padding = '0 5px';
+        el.style.width = '100%';
+        el.style.height = '100%';
 
-    if (!text || text === 'غير محدد' || textLength === 0) {
-      el.style.fontSize = '11px';
-      el.style.fontWeight = '600';
-      el.style.lineHeight = '1.2';
-      return;
-    }
+        if (!text || text === 'غير محدد' || textLength === 0) {
+            el.style.fontSize = '11px';
+            el.style.fontWeight = '600';
+            el.style.lineHeight = '1.2';
+            return;
+        }
 
-    const approxCharWidth = 7;
-    const approxTextWidth = textLength * approxCharWidth;
-    const widthRatio = approxTextWidth / containerWidth;
-    
-    let fontSize, fontWeight, lineHeight;
-    
-    if (widthRatio > 2.0) {
-      fontSize = '7px';
-      fontWeight = '600';
-      lineHeight = '1.0';
-      el.style.whiteSpace = 'normal';
-      el.style.overflow = 'hidden';
-      el.style.display = '-webkit-box';
-      el.style.WebkitLineClamp = '2';
-      el.style.WebkitBoxOrient = 'vertical';
-    } else if (widthRatio > 1.2) {
-      fontSize = '8px';
-      fontWeight = '600';
-      lineHeight = '1.1';
-    } else if (widthRatio > 0.8) {
-      fontSize = '9px';
-      fontWeight = '700';
-      lineHeight = '1.2';
-    } else if (widthRatio > 0.5) {
-      fontSize = '10px';
-      fontWeight = '800';
-      lineHeight = '1.3';
-    } else {
-      fontSize = '12px';
-      fontWeight = '900';
-      lineHeight = '1.4';
-    }
+        const approxCharWidth = 7;
+        const approxTextWidth = textLength * approxCharWidth;
+        const widthRatio = approxTextWidth / containerWidth;
+        
+        let fontSize, fontWeight, lineHeight;
+        
+        if (widthRatio > 2.0) {
+            fontSize = '7px';
+            fontWeight = '600';
+            lineHeight = '1.0';
+            el.style.whiteSpace = 'normal';
+            el.style.display = '-webkit-box';
+            el.style.WebkitLineClamp = '2';
+            el.style.WebkitBoxOrient = 'vertical';
+        } else if (widthRatio > 1.2) {
+            fontSize = '8px';
+            fontWeight = '600';
+            lineHeight = '1.1';
+        } else if (widthRatio > 0.8) {
+            fontSize = '9px';
+            fontWeight = '700';
+            lineHeight = '1.2';
+        } else if (widthRatio > 0.5) {
+            fontSize = '10px';
+            fontWeight = '800';
+            lineHeight = '1.3';
+        } else {
+            fontSize = '12px';
+            fontWeight = '900';
+            lineHeight = '1.4';
+        }
 
-    if (containerHeight < 30) {
-      fontSize = Math.min(parseInt(fontSize), 9) + 'px';
-      lineHeight = '1.1';
-    }
+        if (containerHeight < 30) {
+            fontSize = Math.min(parseInt(fontSize), 9) + 'px';
+            lineHeight = '1.1';
+        }
 
-    el.style.fontSize = fontSize;
-    el.style.fontWeight = fontWeight;
-    el.style.lineHeight = lineHeight;
-  });
+        el.style.fontSize = fontSize;
+        el.style.fontWeight = fontWeight;
+        el.style.lineHeight = lineHeight;
+    });
 }
 
 function adaptSubjectLessonFontWithRetry() {
@@ -3111,9 +3262,9 @@ function adaptSubjectLessonFontWithRetry() {
     setTimeout(adaptSubjectLessonFont, 100);
 }
 
-function updateReport(){
-    document.getElementById('educationBox').innerText = document.getElementById('education').value;
-    document.getElementById('schoolBox').innerText = document.getElementById('school').value;
+function updateReport() {
+    document.getElementById('educationBox').innerText = document.getElementById('education').value || 'غير محدد';
+    document.getElementById('schoolBox').innerText = document.getElementById('school').value || 'غير محدد';
     
     const termValue = document.getElementById('term').value;
     document.getElementById('termBox').innerText = termValue ? `الفصل الدراسي ${termValue}` : 'غير محدد';
@@ -3125,10 +3276,10 @@ function updateReport(){
     document.getElementById('subjectBox').innerText = document.getElementById('subject').value || 'غير محدد';
     document.getElementById('lessonBox').innerText = document.getElementById('lesson').value || 'غير محدد';
     
-    document.getElementById('teacherBox').innerText = document.getElementById('teacher').value;
-    document.getElementById('principalBox').innerText = document.getElementById('principal').value;
-    document.getElementById('teacherTypeBox').innerText = document.getElementById('teacherType').value;
-    document.getElementById('principalTypeBox').innerText = document.getElementById('principalType').value;
+    document.getElementById('teacherBox').innerText = document.getElementById('teacher').value || 'غير محدد';
+    document.getElementById('principalBox').innerText = document.getElementById('principal').value || 'غير محدد';
+    document.getElementById('teacherTypeBox').innerText = document.getElementById('teacherType').value || 'المعلم';
+    document.getElementById('principalTypeBox').innerText = document.getElementById('principalType').value || 'المدير';
     
     document.getElementById('goalBox').innerText = document.getElementById('goal').value || 'لم يتم تحديد الهدف التربوي';
     document.getElementById('summaryBox').innerText = document.getElementById('summary').value || 'لم يتم إضافة نبذة مختصرة';
@@ -3159,7 +3310,6 @@ function updateToolsDisplay() {
     
     const selectedTools = [];
     
-    // البحث عن جميع الأدوات المختارة
     const toolCheckboxes = document.querySelectorAll('.tool-checkbox input[type="checkbox"]');
     toolCheckboxes.forEach(checkbox => {
         if (checkbox.checked) {
@@ -3191,19 +3341,17 @@ function loadImage(input, target) {
         reader.onload = function(e) {
             const imgBox = document.getElementById(target);
             imgBox.innerHTML = '';
-
             const img = document.createElement('img');
             img.src = e.target.result;
-            img.loading = "eager";
-            img.decoding = "sync";
-
             imgBox.appendChild(img);
         };
         reader.readAsDataURL(input.files[0]);
     }
 }
 
-function saveTeacherData(){
+function saveTeacherData() {
+    saveCurrentReport();
+    
     const teacherData = {
         education: document.getElementById('education').value,
         school: document.getElementById('school').value,
@@ -3225,7 +3373,6 @@ function saveTeacherData(){
         tools: []
     };
     
-    // جمع الأدوات المختارة
     const toolCheckboxes = document.querySelectorAll('.tool-checkbox input[type="checkbox"]');
     toolCheckboxes.forEach(checkbox => {
         if (checkbox.checked) {
@@ -3289,7 +3436,6 @@ function loadTeacherData() {
         });
         
         if (teacherData.tools && Array.isArray(teacherData.tools)) {
-            // تحديد الأدوات المحفوظة
             const toolCheckboxes = document.querySelectorAll('.tool-checkbox');
             toolCheckboxes.forEach(toolElement => {
                 const checkbox = toolElement.querySelector('input[type="checkbox"]');
@@ -3309,13 +3455,8 @@ function parseAIResponseProfessional(response) {
     const lines = response.split('\n').filter(line => line.trim());
     
     const fieldMapping = {
-        '1': 'goal',
-        '2': 'summary', 
-        '3': 'steps',
-        '4': 'strategies',
-        '5': 'strengths',
-        '6': 'improve',
-        '7': 'recomm'
+        '1': 'goal', '2': 'summary', '3': 'steps', '4': 'strategies',
+        '5': 'strengths', '6': 'improve', '7': 'recomm'
     };
     
     let foundFields = 0;
@@ -3331,7 +3472,6 @@ function parseAIResponseProfessional(response) {
             if (fieldMapping[fieldNumber]) {
                 const fieldId = fieldMapping[fieldNumber];
                 content = ensureWordCount(content, 25);
-                
                 document.getElementById(fieldId).value = content;
                 foundFields++;
             }
@@ -3347,16 +3487,9 @@ function parseAIResponseProfessional(response) {
 
 function removeFieldTitles(content) {
     const fieldTitles = [
-        'الهدف التربوي', 'الهدف التربوي',
-        'نبذة مختصرة', 'نبذة مختصرة',
-        'إجراءات التنفيذ', 'إجراءات التنفيذ',
-        'الاستراتيجيات', 'الاستراتيجيات',
-        'نقاط القوة', 'نقاط القوة',
-        'نقاط التحسين', 'نقاط تحسين',
-        'التوصيات', 'التوصيات',
-        'هو:', 'تشمل:', 'تشمل', 'يتضمن:', 'يتضمن',
-        'يتمثل في', 'يتمثل', 'يمثل', 'يتم',
-        'يشمل', 'تحتوي', 'تتضمن'
+        'الهدف التربوي', 'نبذة مختصرة', 'إجراءات التنفيذ', 'الاستراتيجيات',
+        'نقاط القوة', 'نقاط التحسين', 'التوصيات', 'هو:', 'تشمل:', 'يتضمن:',
+        'يتمثل في', 'يشمل', 'تحتوي', 'تتضمن'
     ];
     
     let cleanedContent = content;
@@ -3364,14 +3497,11 @@ function removeFieldTitles(content) {
     fieldTitles.forEach(title => {
         const regex = new RegExp(`^${title}[:\\.\\-]?\\s*`, 'i');
         cleanedContent = cleanedContent.replace(regex, '');
-        
         const regex2 = new RegExp(`\\s*${title}[:\\.\\-]?\\s*`, 'gi');
         cleanedContent = cleanedContent.replace(regex2, ' ');
     });
     
-    cleanedContent = cleanedContent.trim().replace(/\s+/g, ' ');
-    
-    return cleanedContent || content;
+    return cleanedContent.trim().replace(/\s+/g, ' ') || content;
 }
 
 function ensureWordCount(content, targetWords) {
@@ -3385,11 +3515,9 @@ function ensureWordCount(content, targetWords) {
         const professionalPhrases = [
             'مع التركيز على تحقيق أهداف التعلم وتنمية المهارات الأساسية',
             'بما يسهم في رفع مستوى التحصيل الدراسي وتحسين المخرجات التعليمية',
-            'وذلك لتحقيق التكامل بين الجوانب المعرفية والمهارية والوجدانية',
-            'مع مراعاة الفروق الفردية وتنويع أساليب التدريس لتناسب جميع الطلاب',
-            'لضمان تحقيق رؤية التعليم وتطوير العملية التعليمية بصورة شاملة',
-            'مع الاستفادة من أفضل الممارسات التربوية والتقنيات التعليمية الحديثة',
-            'بما يعزز من دور المعلم كميسر للتعلم وموجه للطالب نحو التميز'
+            'مع مراعاة الفروق الفردية وتنويع أساليب التدريس',
+            'لضمان تحقيق رؤية التعليم وتطوير العملية التعليمية',
+            'مع الاستفادة من أفضل الممارسات التربوية والتقنيات التعليمية الحديثة'
         ];
     
         let extendedContent = content;
@@ -3398,26 +3526,17 @@ function ensureWordCount(content, targetWords) {
             extendedContent += ' ' + randomPhrase;
         }
         
-        const extendedWords = extendedContent.split(' ');
-        if (extendedWords.length > targetWords + 5) {
-            return extendedWords.slice(0, targetWords).join(' ');
-        }
-        
         return extendedContent;
     }
     
-    if (words.length > targetWords + 5) {
-        return words.slice(0, targetWords).join(' ');
-    }
-    
-    return content;
+    return words.slice(0, targetWords).join(' ');
 }
 
 function fallbackProfessionalAIParsing(response) {
     const sentences = response.split(/[\.\n]/).filter(s => {
         const trimmed = s.trim();
         return trimmed.length > 20 && 
-               !trimmed.match(/الهدف التربوي|نبذة مختصرة|إجراءات التنفيذ|الاستراتيجيات|نقاط القوة|نقاط التحسين|التوصيات|الحقل|المطلوب|يجب|يرجى/i);
+               !trimmed.match(/الهدف التربوي|نبذة مختصرة|إجراءات التنفيذ|الاستراتيجيات|نقاط القوة|نقاط التحسين|التوصيات/i);
     });
     
     const fields = ['goal', 'summary', 'steps', 'strategies', 'strengths', 'improve', 'recomm'];
@@ -3428,34 +3547,64 @@ function fallbackProfessionalAIParsing(response) {
             let content = sentences[sentenceIndex].trim();
             content = removeFieldTitles(content);
             content = ensureWordCount(content, 25);
-            
             document.getElementById(field).value = content;
             sentenceIndex++;
-        } else if (sentenceIndex > 0) {
-            const previousContent = document.getElementById(fields[sentenceIndex-1]).value;
-            if (previousContent) {
-                const words = previousContent.split(' ');
-                const modifiedContent = words.slice(5).join(' ') + ' مع التركيز على تطوير الممارسات التعليمية وتحسين جودة التعلم';
-                document.getElementById(field).value = ensureWordCount(modifiedContent, 25);
-            }
         }
     });
 }
 
-function clearData(){
-    if(confirm("هل أنت متأكد من مسح جميع البيانات؟")){
-        localStorage.clear();
-        location.reload();
+// دالة مسح البيانات المعدلة (تحتفظ بالتفعيل والإعدادات)
+function clearData() {
+    if (confirm("هل أنت متأكد من مسح بيانات المعلم والنصوص المولدة؟")) {
+        // الحقول الأساسية المراد مسحها
+        document.getElementById('education').value = '';
+        document.getElementById('school').value = '';
+        document.getElementById('teacher').value = '';
+        document.getElementById('principal').value = '';
+        document.getElementById('grade').value = '';
+        document.getElementById('term').value = '';
+        document.getElementById('subject').value = '';
+        document.getElementById('lesson').value = '';
+        document.getElementById('target').value = '';
+        document.getElementById('count').value = '';
+        document.getElementById('place').value = '';
+        document.getElementById('manualReportTitle').value = '';
+
+        // الحقول النصية
+        const textFields = ['goal', 'summary', 'steps', 'strategies', 'strengths', 'improve', 'recomm'];
+        textFields.forEach(field => {
+            document.getElementById(field).value = '';
+        });
+
+        // إلغاء تحديد الأدوات
+        const toolCheckboxes = document.querySelectorAll('.tool-checkbox input[type="checkbox"]');
+        toolCheckboxes.forEach(checkbox => {
+            checkbox.checked = false;
+            checkbox.closest('.tool-checkbox')?.classList.remove('checked');
+        });
+
+        // إعادة تعيين القوائم المنسدلة للمعايير
+        document.getElementById('criterionSelect').value = '';
+        document.getElementById('subcategorySelect').innerHTML = '<option value="">اختر التصنيف الفرعي</option>';
+        document.getElementById('subcategorySelect').disabled = true;
+        document.getElementById('reportSelect').innerHTML = '<option value="">اختر التقرير</option>';
+        document.getElementById('reportSelect').disabled = true;
+        document.getElementById('criterionInfo').style.display = 'none';
+
+        // تحديث عرض التقرير
+        updateReport();
+        updateToolsDisplay();
+        showNotification('تم مسح بيانات المعلم والنصوص المولدة.');
     }
 }
 
-async function downloadPDF(){
-    // ⚠️ مهم: تحميل التاريخ أولاً
+async function downloadPDF() {
     await loadDates();
     
     document.querySelector('.top-small-buttons').style.visibility = 'hidden';
     document.querySelector('.main-buttons-bar').style.visibility = 'hidden';
     document.querySelector('.top-marquee').style.visibility = 'hidden';
+    document.querySelector('.progress-bar-container').style.visibility = 'hidden';
     document.getElementById('aiFillFloatingBtn').style.visibility = 'hidden';
     document.body.style.margin = "0";
     document.body.style.background = "white";
@@ -3495,6 +3644,7 @@ async function downloadPDF(){
         document.querySelector('.top-small-buttons').style.visibility = 'visible';
         document.querySelector('.main-buttons-bar').style.visibility = 'visible';
         document.querySelector('.top-marquee').style.visibility = 'visible';
+        document.querySelector('.progress-bar-container').style.visibility = 'visible';
         document.getElementById('aiFillFloatingBtn').style.visibility = 'visible';
         document.body.style.margin = "";
         document.body.style.background = "#f9fcfb";
@@ -3503,13 +3653,13 @@ async function downloadPDF(){
     });
 }
 
-async function sharePDFWhatsApp(){
-    // ⚠️ مهم: تحميل التاريخ أولاً
+async function sharePDFWhatsApp() {
     await loadDates();
     
     document.querySelector('.top-small-buttons').style.visibility = 'hidden';
     document.querySelector('.main-buttons-bar').style.visibility = 'hidden';
     document.querySelector('.top-marquee').style.visibility = 'visible';
+    document.querySelector('.progress-bar-container').style.visibility = 'hidden';
     document.getElementById('aiFillFloatingBtn').style.visibility = 'hidden';
     document.body.style.margin = "0";
     document.body.style.background = "white";
@@ -3547,13 +3697,14 @@ async function sharePDFWhatsApp(){
         document.querySelector('.top-small-buttons').style.visibility = 'visible';
         document.querySelector('.main-buttons-bar').style.visibility = 'visible';
         document.querySelector('.top-marquee').style.visibility = 'visible';
+        document.querySelector('.progress-bar-container').style.visibility = 'visible';
         document.getElementById('aiFillFloatingBtn').style.visibility = 'visible';
         document.body.style.margin = "";
         document.body.style.background = "#f9fcfb";
         reportContent.style.display = 'none';
 
         let file = new File([pdfBlob], reportName + ".pdf", {type: "application/pdf"});
-        if(navigator.canShare && navigator.canShare({files:[file]})){
+        if (navigator.canShare && navigator.canShare({files:[file]})) {
             navigator.share({
                 files:[file], 
                 title: reportName,
@@ -3580,8 +3731,7 @@ function closeSettings() {
 async function loadSubscriptionStatus() {
     const code = localStorage.getItem(ACTIVATION_KEY_NAME);
     if (!code) {
-        document.getElementById("subInfo").innerHTML = 
-            "لم يتم تفعيل الأداة بعد<br>يرجى استخدام كود التفعيل";
+        document.getElementById("subInfo").innerHTML = "لم يتم تفعيل الأداة بعد<br>يرجى استخدام كود التفعيل";
         return;
     }
 
@@ -3593,36 +3743,30 @@ async function loadSubscriptionStatus() {
         if (!res.ok) throw new Error();
 
         const data = await res.json();
-
-        const expires = data.expires_at
-            ? new Date(data.expires_at).toLocaleDateString('ar-SA')
-            : "غير محدد";
+        const expires = data.expires_at ? new Date(data.expires_at).toLocaleDateString('ar-SA') : "غير محدد";
 
         document.getElementById("subInfo").innerHTML = `
-        <div>📅 <strong>تاريخ الانتهاء:</strong> ${expires}</div>
-        <div>📊 <strong>الاستخدام:</strong> ${data.usage_used} / ${data.usage_limit}</div>
-        <div>🔋 <strong>المتبقي:</strong> ${data.usage_remaining}</div>
+            <div>📅 <strong>تاريخ الانتهاء:</strong> ${expires}</div>
+            <div>📊 <strong>الاستخدام:</strong> ${data.usage_used} / ${data.usage_limit}</div>
+            <div>🔋 <strong>المتبقي:</strong> ${data.usage_remaining}</div>
         `;
     } catch {
-        document.getElementById("subInfo").innerHTML =
-            "تعذر تحميل معلومات الاشتراك<br>يرجى التأكد من اتصال الإنترنت";
+        document.getElementById("subInfo").innerHTML = "تعذر تحميل معلومات الاشتراك<br>يرجى التأكد من اتصال الإنترنت";
     }
 }
 
-/* حفظ تاريخ التقرير */
 function saveReportDate() {
     const date = document.getElementById("customReportDate").value;
     if (date) {
         localStorage.setItem("custom_report_date", date);
         showNotification("تم حفظ تاريخ التقرير ✓");
         closeSettings();
-        loadDates(); // تحديث التاريخ داخل التقرير
+        loadDates();
     } else {
         showNotification("يرجى اختيار تاريخ صحيح");
     }
 }
 
-/* تحميل التاريخ المحفوظ عند فتح نافذة الإعدادات */
 function loadSavedReportDate() {
     const saved = localStorage.getItem("custom_report_date");
     if (saved) {
@@ -3630,7 +3774,7 @@ function loadSavedReportDate() {
     }
 }
 
-// ==================== تهيئة الصفحة ====================
+// ==================== التهيئة ====================
 document.addEventListener("DOMContentLoaded", async () => {
     const code = localStorage.getItem(ACTIVATION_KEY_NAME);
 
@@ -3656,19 +3800,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    // تحميل التواريخ عند فتح الصفحة
     await loadDates();
-    
-    // تحميل إعدادات الثيمات
     loadThemeSettings();
-    
-    // تحميل البيانات من الباك
     await loadDataFromBackend();
-    
-    // تحميل بيانات المعلم المحفوظة
     loadTeacherData();
-    
-    // تحديث التقرير
     updateReport();
 
     document.getElementById('reportSearch').addEventListener('input', handleReportSearch);
