@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<title>أداة إصدار التقارير التربوية</title>
+<title>تقاريرك - النظام المتكامل</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -724,6 +724,101 @@ button[title]:hover::before {
     font-size: 18px;
 }
 
+/* ========== أنماط القوائم الجديدة للمعايير والتصنيفات ========== */
+
+/* حاوية القوائم المتتالية */
+.levels-container {
+    background: #f8fdfa;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #d4ebe2;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.level-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 8px;
+    background: linear-gradient(135deg, #066d4d 0%, #044a35 100%);
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.level-indicator span {
+    background: rgba(255,255,255,0.2);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.level-select {
+    margin-bottom: 10px;
+}
+
+.level-select select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d4ebe2;
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+}
+
+.level-select select:focus {
+    border-color: #066d4d;
+    outline: none;
+}
+
+.level-select label {
+    font-size: 12px;
+    color: #044a35;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.level-select label i {
+    color: #066d4d;
+    font-size: 12px;
+}
+
+/* معلومات المعيار المحدد */
+.criterion-info {
+    background: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin: 15px 0;
+    border-right: 4px solid #ffd166;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.criterion-name {
+    font-weight: 800;
+    color: #044a35;
+    font-size: 14px;
+}
+
+.criterion-weight {
+    background: #ffd166;
+    color: #5a3e00;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
 /* أنماط البحث والتصنيف */
 #reportSearchContainer {
     position: relative;
@@ -764,6 +859,32 @@ button[title]:hover::before {
     outline: none;
     border-color: #066d4d;
     box-shadow: 0 0 0 2px rgba(6, 109, 77, 0.2);
+}
+
+/* خانة عنوان التقرير اليدوية */
+.manual-title-container {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8fdfa;
+    border-radius: 12px;
+    border: 2px solid #d4ebe2;
+}
+
+.manual-title-container label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #044a35;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.manual-title-container input {
+    background: white;
+    border: 2px solid #d4ebe2;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
 /* ========== قسم الأدوات والوسائل التعليمية - معدل باستخدام Grid ========== */
@@ -875,32 +996,6 @@ button[title]:hover::before {
 
 .tool-checkbox.checked .checkmark {
     display: inline-block;
-}
-
-/* خانة عنوان التقرير اليدوية */
-.manual-title-container {
-    margin-top: 15px;
-    padding: 15px;
-    background: #f8fdfa;
-    border-radius: 12px;
-    border: 2px solid #d4ebe2;
-}
-
-.manual-title-container label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #044a35;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.manual-title-container input {
-    background: white;
-    border: 2px solid #d4ebe2;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 16px;
 }
 
 /* ==================== تحسينات للهواتف المحمولة ==================== */
@@ -1931,7 +2026,7 @@ button[title]:hover::before {
 
 <body class="theme-default">
 
-<!-- زر التعبئة الذكية العائم - تصميم جديد -->
+<!-- زر التعبئة الذكية العائم - تصميم جديد بأيقونة أجمل -->
 <button id="aiFillFloatingBtn" onclick="fillWithAI()" title="تعبئة الحقول تلقائياً باستخدام الذكاء الاصطناعي">
     <i class="fas fa-wand-magic-sparkles floating-ai-icon"></i>
     <span class="floating-ai-text">تعبئة ذكية</span>
@@ -1956,8 +2051,7 @@ button[title]:hover::before {
 <div class="top-marquee">
 <div class="marquee-inner">
 <i class="fas fa-bullhorn" style="margin-left:10px;"></i>
-اختر نوع التقرير من التصنيفات المتاحة وحدّد الأدوات التعليمية المستخدمة في الدرس،
-ثم اضغط زر التعبئة لتوليد محتوى البنود تلقائيًا.
+اختر معيار الاداء الوظيفي، ثم التصنيف الفرعي، ثم التقرير المناسب، ثم اضغط زر التعبئة لتوليد محتوى التقرير تلقائيًا.
 </div>
 </div>
 
@@ -1997,34 +2091,55 @@ button[title]:hover::before {
 <div class="wrapper">
 <div class="input-section">
   
-  <h2><i class="fas fa-tools" style="margin-left:10px;"></i>أداة إصدار التقارير التربوية</h2>
+  <h2><i class="fas fa-tools" style="margin-left:10px;"></i>تقاريرك - النظام المتكامل</h2>
   
-  <div class="form-group">
-    <label><i class="fas fa-file-alt"></i>اسم التقرير</label>
-    
-    <!-- التصنيف العام -->
-    <select id="reportCategory" oninput="handleReportCategory()" style="margin-bottom:10px;">
-        <option value="">اختر تصنيف التقرير</option>
-    </select>
-    
-    <!-- حقل البحث -->
-    <div id="reportSearchContainer" style="display:block; margin-bottom:10px; position:relative;">
-        <input type="text" id="reportSearch" placeholder="ابحث عن تقرير..." style="width:100%; padding:12px; border:1px solid #d4ebe2; border-radius:6px; font-size:14px;">
-        <div id="searchResults" style="display:none; position:absolute; top:100%; left:0; right:0; background:white; border:1px solid #ddd; border-radius:6px; max-height:200px; overflow-y:auto; z-index:1000; box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
+  <!-- ========== نظام القوائم المتتالية الجديد ========== -->
+  <div class="levels-container">
+    <div class="level-indicator">
+      <span>اختر المعايير والتصنيفات</span>
+      <span><i class="fas fa-layer-group"></i> قوائم متتالية</span>
     </div>
     
-    <!-- قائمة التقارير المنسدلة -->
-    <select id="reportType" oninput="handleReportType()" style="display:none;">
-        <option value="">اختر تقريرًا</option>
-    </select>
+    <!-- المستوى الأول: المعايير التربوية -->
+    <div class="level-select">
+      <label><i class="fas fa-star"></i> معيار الاداء الوظيفي</label>
+      <select id="criterionSelect" onchange="loadSubcategories()">
+        <option value="">اختر معيار الاداء الوظيفي</option>
+      </select>
+    </div>
     
-    <!-- حقل الإدخال للنوع "أخرى" -->
-    <input id="reportTypeInput" placeholder="أدخل اسم التقرير" oninput="updateReport()" style="display:none; margin-top:8px;">
+    <!-- معلومات المعيار المحدد -->
+    <div id="criterionInfo" class="criterion-info" style="display: none;">
+      <span id="selectedCriterionName" class="criterion-name"></span>
+      <span id="selectedCriterionWeight" class="criterion-weight"></span>
+    </div>
+    
+    <!-- المستوى الثاني: التصنيفات الفرعية -->
+    <div class="level-select">
+      <label><i class="fas fa-list-ul"></i> التصنيف الفرعي</label>
+      <select id="subcategorySelect" onchange="loadReports()" disabled>
+        <option value="">اختر التصنيف الفرعي أولاً</option>
+      </select>
+    </div>
+    
+    <!-- المستوى الثالث: التقارير -->
+    <div class="level-select">
+      <label><i class="fas fa-file-alt"></i> التقرير</label>
+      <select id="reportSelect" onchange="updateReportFromSelection()" disabled>
+        <option value="">اختر التصنيف الفرعي أولاً</option>
+      </select>
+    </div>
+    
+    <!-- البحث المتقدم -->
+    <div id="reportSearchContainer" style="display:block; margin-top:15px; position:relative;">
+        <input type="text" id="reportSearch" placeholder="ابحث عن تقرير مباشر..." style="width:100%; padding:12px; border:1px solid #d4ebe2; border-radius:6px; font-size:14px;">
+        <div id="searchResults" style="display:none; position:absolute; top:100%; left:0; right:0; background:white; border:1px solid #ddd; border-radius:6px; max-height:200px; overflow-y:auto; z-index:1000; box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
+    </div>
     
     <!-- خانة عنوان التقرير اليدوية -->
     <div class="manual-title-container">
         <label><i class="fas fa-heading"></i>عنوان التقرير (يدوي)</label>
-        <input type="text" id="manualReportTitle" placeholder="أدخل عنوان التقرير يدوياً..." oninput="updateManualTitle()">
+        <input type="text" id="manualReportTitle" placeholder="أدخل عنوان التقرير يدوياً..." oninput="updateReport()">
     </div>
   </div>
   
@@ -2367,8 +2482,10 @@ button[title]:hover::before {
 
 <script>
 window.__ACTIVATED__ = false;
-window.allReports = [];
-window.reportsByCategory = {};
+window.allCriteria = [];
+window.subcategoriesByCriterion = {};
+window.reportsBySubcategory = {};
+window.allReportsList = [];
 
 // ==================== متغيرات التفعيل ====================
 const ACTIVATION_KEY_NAME = "activation_code";
@@ -2565,31 +2682,53 @@ function applyThemes() {
     closeSettings();
 }
 
-// ==================== تحميل البيانات من الباك ====================
+// ==================== تحميل البيانات من الباك إند الجديد ====================
 async function loadDataFromBackend() {
     try {
-        // تحميل التصنيفات والتقارير
-        const categoriesResponse = await fetch(BACKEND_URL + "/api/report-categories");
-        const categoriesData = await categoriesResponse.json();
+        // تحميل الهيكل الكامل للمعايير والتصنيفات والتقارير
+        const structureResponse = await fetch(BACKEND_URL + "/api/full-structure");
+        const structureData = await structureResponse.json();
         
-        window.reportsByCategory = categoriesData.reports_by_category;
+        const structure = structureData.structure;
         
-        // تحديث قائمة التصنيفات
-        const categorySelect = document.getElementById("reportCategory");
-        categorySelect.innerHTML = '<option value="">اختر تصنيف التقرير</option>';
+        // بناء القوائم
+        const criterionSelect = document.getElementById("criterionSelect");
+        criterionSelect.innerHTML = '<option value="">اختر معيار الاداء الوظيفي</option>';
         
-        Object.keys(window.reportsByCategory).forEach(category => {
+        // تخزين البيانات في المتغيرات العالمية
+        window.allCriteria = structure;
+        
+        // إضافة المعايير إلى القائمة
+        structure.forEach(criterion => {
             const option = document.createElement("option");
-            option.value = category;
-            option.textContent = category;
-            categorySelect.appendChild(option);
+            option.value = criterion.id;
+            option.textContent = `${criterion.name} (${criterion.weight})`;
+            criterionSelect.appendChild(option);
+            
+            // تخزين التصنيفات الفرعية لكل معيار
+            window.subcategoriesByCriterion[criterion.id] = criterion.subcategories || [];
+            
+            // تخزين التقارير لكل تصنيف فرعي
+            if (criterion.subcategories) {
+                criterion.subcategories.forEach(sub => {
+                    window.reportsBySubcategory[sub.id] = sub.reports || [];
+                    
+                    // إضافة التقارير إلى القائمة الكاملة للبحث
+                    if (sub.reports) {
+                        sub.reports.forEach(report => {
+                            window.allReportsList.push({
+                                id: report.id,
+                                name: report.name,
+                                subcategory_id: sub.id,
+                                subcategory_name: sub.name,
+                                criterion_id: criterion.id,
+                                criterion_name: criterion.name
+                            });
+                        });
+                    }
+                });
+            }
         });
-        
-        // إضافة خيار "أخرى"
-        const otherOption = document.createElement("option");
-        otherOption.value = "أخرى";
-        otherOption.textContent = "تقارير أخرى (إدخال يدوي)";
-        categorySelect.appendChild(otherOption);
         
         // تحميل إدارات التعليم
         const educationResponse = await fetch(BACKEND_URL + "/api/education-offices");
@@ -2625,15 +2764,147 @@ async function loadDataFromBackend() {
             toolsGrid.appendChild(label);
         });
         
-        // تحميل جميع التقارير للبحث
-        const allReportsResponse = await fetch(BACKEND_URL + "/api/all-reports");
-        window.allReports = await allReportsResponse.json();
-        
-        console.log("تم تحميل البيانات بنجاح من الباك");
+        console.log("تم تحميل البيانات بنجاح من الباك إند الجديد");
         
     } catch (error) {
         console.error("خطأ في تحميل البيانات من الباك:", error);
         showNotification("حدث خطأ في تحميل البيانات. الرجاء تحديث الصفحة.");
+    }
+}
+
+// ==================== دوال القوائم المتتالية ====================
+function loadSubcategories() {
+    const criterionId = document.getElementById('criterionSelect').value;
+    const subcategorySelect = document.getElementById('subcategorySelect');
+    const reportSelect = document.getElementById('reportSelect');
+    const criterionInfo = document.getElementById('criterionInfo');
+    
+    if (!criterionId) {
+        subcategorySelect.innerHTML = '<option value="">اختر التصنيف الفرعي أولاً</option>';
+        subcategorySelect.disabled = true;
+        reportSelect.innerHTML = '<option value="">اختر التصنيف الفرعي أولاً</option>';
+        reportSelect.disabled = true;
+        criterionInfo.style.display = 'none';
+        return;
+    }
+    
+    // عرض معلومات المعيار
+    const criterion = window.allCriteria.find(c => c.id === criterionId);
+    if (criterion) {
+        document.getElementById('selectedCriterionName').textContent = criterion.name;
+        document.getElementById('selectedCriterionWeight').textContent = criterion.weight;
+        criterionInfo.style.display = 'flex';
+    }
+    
+    const subcategories = window.subcategoriesByCriterion[criterionId] || [];
+    
+    subcategorySelect.innerHTML = '<option value="">اختر التصنيف الفرعي</option>';
+    subcategories.forEach(sub => {
+        const option = document.createElement("option");
+        option.value = sub.id;
+        option.textContent = sub.name;
+        subcategorySelect.appendChild(option);
+    });
+    
+    subcategorySelect.disabled = false;
+    reportSelect.innerHTML = '<option value="">اختر التصنيف الفرعي أولاً</option>';
+    reportSelect.disabled = true;
+}
+
+function loadReports() {
+    const subcategoryId = document.getElementById('subcategorySelect').value;
+    const reportSelect = document.getElementById('reportSelect');
+    
+    if (!subcategoryId) {
+        reportSelect.innerHTML = '<option value="">اختر التصنيف الفرعي أولاً</option>';
+        reportSelect.disabled = true;
+        return;
+    }
+    
+    const reports = window.reportsBySubcategory[subcategoryId] || [];
+    
+    reportSelect.innerHTML = '<option value="">اختر التقرير</option>';
+    reports.forEach(report => {
+        const option = document.createElement("option");
+        option.value = report.id;
+        option.textContent = report.name;
+        reportSelect.appendChild(option);
+    });
+    
+    reportSelect.disabled = false;
+}
+
+function updateReportFromSelection() {
+    const reportSelect = document.getElementById('reportSelect');
+    const manualTitleInput = document.getElementById('manualReportTitle');
+    
+    if (reportSelect.value && reportSelect.selectedOptions[0]) {
+        // تحديث العنوان اليدوي بالتقرير المختار
+        manualTitleInput.value = reportSelect.selectedOptions[0].textContent;
+    }
+    
+    updateReport();
+}
+
+function handleReportSearch() {
+    const reportSearch = document.getElementById('reportSearch');
+    const searchResults = document.getElementById('searchResults');
+    
+    const searchTerm = reportSearch.value.trim().toLowerCase();
+    
+    if (searchTerm === '') {
+        searchResults.style.display = 'none';
+        searchResults.innerHTML = '';
+        return;
+    }
+    
+    const filteredReports = window.allReportsList.filter(report => 
+        report.name.toLowerCase().includes(searchTerm)
+    );
+    
+    if (filteredReports.length > 0) {
+        searchResults.innerHTML = '';
+        
+        filteredReports.slice(0, 15).forEach(report => {
+            const div = document.createElement('div');
+            div.textContent = `${report.name} (${report.criterion_name})`;
+            div.style.padding = '8px 12px';
+            div.style.cursor = 'pointer';
+            div.style.borderBottom = '1px solid #eee';
+            
+            div.onmouseover = () => div.style.backgroundColor = '#f0f9f6';
+            div.onmouseout = () => div.style.backgroundColor = 'white';
+            div.onclick = () => {
+                // تحديد المعيار
+                const criterionSelect = document.getElementById('criterionSelect');
+                criterionSelect.value = report.criterion_id;
+                loadSubcategories();
+                
+                // تحديد التصنيف الفرعي
+                setTimeout(() => {
+                    const subcategorySelect = document.getElementById('subcategorySelect');
+                    subcategorySelect.value = report.subcategory_id;
+                    loadReports();
+                    
+                    // تحديد التقرير
+                    setTimeout(() => {
+                        const reportSelect = document.getElementById('reportSelect');
+                        reportSelect.value = report.id;
+                        document.getElementById('manualReportTitle').value = report.name;
+                        updateReport();
+                    }, 100);
+                }, 100);
+                
+                reportSearch.value = '';
+                searchResults.style.display = 'none';
+                showNotification(`تم تحديد التقرير: ${report.name}`);
+            };
+            searchResults.appendChild(div);
+        });
+        searchResults.style.display = 'block';
+    } else {
+        searchResults.innerHTML = '<div style="padding:12px; color:#666; text-align:center;">لا توجد نتائج</div>';
+        searchResults.style.display = 'block';
     }
 }
 
@@ -2653,9 +2924,19 @@ async function fillWithAI() {
     }
     
     // الحصول على نوع التقرير
-    const reportType = getReportTypeText();
-    if (!reportType || reportType === 'تقرير') {
-        alert('الرجاء اختيار أو إدخال نوع التقرير أولاً');
+    const reportName = document.getElementById('manualReportTitle').value.trim();
+    if (!reportName) {
+        alert('الرجاء اختيار أو إدخال عنوان التقرير أولاً');
+        return;
+    }
+    
+    // الحصول على معرفات المعيار والتصنيف والتقرير
+    const criterionId = document.getElementById('criterionSelect').value;
+    const subcategoryId = document.getElementById('subcategorySelect').value;
+    const reportId = document.getElementById('reportSelect').value;
+    
+    if (!criterionId || !subcategoryId || !reportId) {
+        alert('الرجاء اختيار المعيار التربوي والتصنيف الفرعي والتقرير بشكل كامل');
         return;
     }
     
@@ -2687,7 +2968,9 @@ async function fillWithAI() {
                 'X-Activation-Code': activationCode
             },
             body: JSON.stringify({
-                report_type: reportType,
+                criterion_id: criterionId,
+                subcategory_id: subcategoryId,
+                report_id: reportId,
                 report_data: reportData
             })
         });
@@ -2742,126 +3025,6 @@ async function fillWithAI() {
 }
 
 // ==================== دوال مساعدة ====================
-function handleReportCategory() {
-    const categorySelect = document.getElementById('reportCategory');
-    const reportTypeSelect = document.getElementById('reportType');
-    const reportTypeInput = document.getElementById('reportTypeInput');
-    const reportSearchContainer = document.getElementById('reportSearchContainer');
-    const manualTitleContainer = document.querySelector('.manual-title-container');
-    
-    if (categorySelect.value === "أخرى") {
-        reportTypeSelect.style.display = 'none';
-        reportTypeInput.style.display = 'block';
-        reportSearchContainer.style.display = 'none';
-        manualTitleContainer.style.display = 'block';
-        reportTypeSelect.innerHTML = '<option value="أخرى">أخرى</option>';
-        reportTypeSelect.value = "أخرى";
-    } else if (categorySelect.value) {
-        reportTypeSelect.style.display = 'block';
-        reportTypeInput.style.display = 'none';
-        reportSearchContainer.style.display = 'block';
-        manualTitleContainer.style.display = 'block';
-        const reports = window.reportsByCategory[categorySelect.value] || [];
-        updateReportTypeOptions(reports);
-        document.getElementById('reportSearch').value = '';
-        document.getElementById('searchResults').style.display = 'none';
-    } else {
-        reportTypeSelect.style.display = 'none';
-        reportTypeInput.style.display = 'none';
-        reportSearchContainer.style.display = 'none';
-        manualTitleContainer.style.display = 'block';
-        reportTypeSelect.innerHTML = '<option value="">اختر تقريرًا</option>';
-    }
-    updateReport();
-}
-
-function updateReportTypeOptions(reports) {
-    const reportTypeSelect = document.getElementById('reportType');
-    reportTypeSelect.innerHTML = '<option value="">اختر تقريرًا</option>';
-    
-    reports.forEach(report => {
-        const option = document.createElement('option');
-        option.value = report;
-        option.textContent = report;
-        reportTypeSelect.appendChild(option);
-    });
-}
-
-function handleReportSearch() {
-    const reportSearch = document.getElementById('reportSearch');
-    const searchResults = document.getElementById('searchResults');
-    const categorySelect = document.getElementById('reportCategory');
-    const reportTypeSelect = document.getElementById('reportType');
-    
-    const searchTerm = reportSearch.value.trim().toLowerCase();
-    
-    if (searchTerm === '') {
-        searchResults.style.display = 'none';
-        searchResults.innerHTML = '';
-        return;
-    }
-    
-    let filteredReports = [];
-    
-    if (categorySelect.value && categorySelect.value !== "أخرى") {
-        const reports = window.reportsByCategory[categorySelect.value] || [];
-        filteredReports = reports.filter(report => 
-            report.toLowerCase().includes(searchTerm)
-        );
-    } else if (categorySelect.value === "أخرى") {
-        filteredReports = [];
-    } else {
-        filteredReports = window.allReports.filter(item => 
-            item.name.toLowerCase().includes(searchTerm)
-        );
-    }
-    
-    if (filteredReports.length > 0) {
-        searchResults.innerHTML = '';
-        
-        filteredReports.forEach(item => {
-            const reportName = typeof item === 'string' ? item : item.name;
-            const reportCategory = typeof item === 'string' ? categorySelect.value : item.category;
-            
-            const div = document.createElement('div');
-            div.textContent = reportName;
-            div.style.padding = '8px 12px';
-            div.style.cursor = 'pointer';
-            div.style.borderBottom = '1px solid #eee';
-            div.setAttribute('data-category', reportCategory);
-            div.setAttribute('data-report', reportName);
-            
-            div.onmouseover = () => div.style.backgroundColor = '#f0f9f6';
-            div.onmouseout = () => div.style.backgroundColor = 'white';
-            div.onclick = () => {
-                const selectedReport = div.getAttribute('data-report');
-                const selectedCategory = div.getAttribute('data-category');
-                
-                if (categorySelect.value !== selectedCategory && selectedCategory) {
-                    categorySelect.value = selectedCategory;
-                    const reports = window.reportsByCategory[selectedCategory] || [];
-                    updateReportTypeOptions(reports);
-                }
-                
-                reportTypeSelect.value = selectedReport;
-                reportSearch.value = '';
-                searchResults.style.display = 'none';
-                updateReport();
-                reportTypeSelect.style.display = 'block';
-                reportTypeSelect.style.borderColor = '#066d4d';
-                setTimeout(() => {
-                    reportTypeSelect.style.borderColor = '#d4ebe2';
-                }, 1000);
-            };
-            searchResults.appendChild(div);
-        });
-        searchResults.style.display = 'block';
-    } else {
-        searchResults.innerHTML = '<div style="padding:12px; color:#666; text-align:center;">لا توجد نتائج</div>';
-        searchResults.style.display = 'block';
-    }
-}
-
 function updateManualTitle() {
     updateReport();
 }
@@ -2956,7 +3119,7 @@ function updateReport(){
     document.getElementById('termBox').innerText = termValue ? `الفصل الدراسي ${termValue}` : 'غير محدد';
     document.getElementById('gradeBox').innerText = document.getElementById('grade').value || 'غير محدد';
     document.getElementById('countBox').innerText = document.getElementById('count').value || 'غير محدد';
-    document.getElementById('reportTypeBox').innerText = getReportTypeText();
+    document.getElementById('reportTypeBox').innerText = document.getElementById('manualReportTitle').value || 'تقرير';
     document.getElementById('targetBox').innerText = document.getElementById('target').value || 'غير محدد';
     document.getElementById('placeBox').innerText = document.getElementById('place').value || 'غير محدد';
     document.getElementById('subjectBox').innerText = document.getElementById('subject').value || 'غير محدد';
@@ -2977,23 +3140,6 @@ function updateReport(){
     
     updateToolsDisplay();
     setTimeout(adaptSubjectLessonFontWithRetry, 10);
-}
-
-function getReportTypeText() {
-    const reportTypeSelect = document.getElementById('reportType');
-    const reportTypeInput = document.getElementById('reportTypeInput');
-    const manualTitleInput = document.getElementById('manualReportTitle');
-    const categorySelect = document.getElementById('reportCategory');
-    
-    if (manualTitleInput && manualTitleInput.value.trim()) {
-        return manualTitleInput.value.trim();
-    }
-    
-    if (categorySelect.value === "أخرى") {
-        return reportTypeInput.value || "تقرير";
-    } else {
-        return reportTypeSelect.value || "تقرير";
-    }
 }
 
 function toggleTool(element) {
@@ -3073,6 +3219,9 @@ function saveTeacherData(){
         term: document.getElementById('term').value,
         count: document.getElementById('count').value,
         manualTitle: document.getElementById('manualReportTitle').value,
+        criterion: document.getElementById('criterionSelect').value,
+        subcategory: document.getElementById('subcategorySelect').value,
+        report: document.getElementById('reportSelect').value,
         tools: []
     };
     
@@ -3241,7 +3390,7 @@ function ensureWordCount(content, targetWords) {
             'لضمان تحقيق رؤية التعليم وتطوير العملية التعليمية بصورة شاملة',
             'مع الاستفادة من أفضل الممارسات التربوية والتقنيات التعليمية الحديثة',
             'بما يعزز من دور المعلم كميسر للتعلم وموجه للطالب نحو التميز'
-    ];
+        ];
     
         let extendedContent = content;
         while (extendedContent.split(' ').length < targetWords) {
@@ -3319,7 +3468,7 @@ async function downloadPDF(){
     reportContent.style.top = '0';
     reportContent.style.left = '0';
 
-    const cleanFileName = getReportTypeText().replace(/[\/\\:*?"<>|]/g, '_');
+    const cleanFileName = document.getElementById('manualReportTitle').value.replace(/[\/\\:*?"<>|]/g, '_') || 'تقرير';
 
     await new Promise(resolve => setTimeout(resolve, 300));
 
@@ -3373,7 +3522,7 @@ async function sharePDFWhatsApp(){
     reportContent.style.top = '0';
     reportContent.style.left = '0';
 
-    const reportName = getReportTypeText();
+    const reportName = document.getElementById('manualReportTitle').value || 'تقرير';
 
     await new Promise(resolve => setTimeout(resolve, 300));
 
