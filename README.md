@@ -7,7 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-/* ========== جميع الأنماط السابقة مع إضافة تعديلات بسيطة ========== */
+/* ========== جميع الأنماط السابقة مع إضافة تعديلات ========== */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
@@ -1018,7 +1018,7 @@ button[title]:hover::before {
     font-size: 12px;
 }
 
-/* نافذة التقارير المحفوظة (محدثة) */
+/* نافذة التقارير المحفوظة (بها شريط التقدم) */
 #savedReportsModal {
     display: none;
     position: fixed;
@@ -2081,40 +2081,87 @@ button[title]:hover::before {
     background: linear-gradient(135deg, #2b6cb0 0%, #3182ce 100%);
 }
 
-/* سهم توجيهي لزر PDF */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
-    40% {transform: translateX(-10px);}
-    60% {transform: translateX(-5px);}
+/* صندوق التوجيه بعد التوليد */
+.ai-guide-box {
+    position: fixed;
+    bottom: 150px;
+    left: 30px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    border: 3px solid #ff6b6b;
+    z-index: 2000;
+    max-width: 280px;
+    text-align: center;
+    animation: slideIn 0.5s ease;
+    direction: rtl;
 }
 
-.pdf-guide-arrow {
-    position: fixed;
-    bottom: 140px;
-    left: 140px;
+@keyframes slideIn {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.ai-guide-arrow {
+    font-size: 50px;
     color: #ff6b6b;
-    font-size: 40px;
-    z-index: 2000;
-    animation: bounce 1.5s infinite;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-    pointer-events: none;
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    transform: rotate(45deg);
+    animation: bounceArrow 1s infinite;
 }
 
-.pdf-guide-message {
-    position: fixed;
-    bottom: 190px;
-    left: 70px;
-    background: #066d4d;
+@keyframes bounceArrow {
+    0%, 100% { transform: rotate(45deg) translateX(0); }
+    50% { transform: rotate(45deg) translateX(-10px); }
+}
+
+.ai-guide-content h4 {
+    color: #044a35;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.ai-guide-timer {
+    font-size: 24px;
+    font-weight: 900;
+    color: #ff6b6b;
+    margin: 10px 0;
+}
+
+.ai-guide-btn {
+    background: #ff6b6b;
     color: white;
-    padding: 8px 15px;
-    border-radius: 30px;
-    font-size: 14px;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 25px;
+    font-size: 18px;
     font-weight: 700;
-    z-index: 2000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    border: 2px solid #ffd166;
-    white-space: nowrap;
-    pointer-events: none;
+    cursor: pointer;
+    width: 100%;
+    margin: 10px 0;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.ai-guide-btn:hover {
+    background: #ee5a52;
+    transform: scale(1.05);
+}
+
+.ai-guide-close {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 5px;
 }
 </style>
 </head>
@@ -2142,7 +2189,7 @@ button[title]:hover::before {
     </div>
 </div>
 
-<!-- شريط الأخبار العلوي (مطوّر) -->
+<!-- شريط الأخبار العلوي -->
 <div class="top-marquee">
 <div class="marquee-inner">
 <i class="fas fa-star" style="margin-left:8px;"></i> 
@@ -2265,7 +2312,7 @@ button[title]:hover::before {
     <input id="school" placeholder="اسم المدرسة" oninput="updateReport()">
   </div>
   
-  <!-- صف مقدم التقرير (سيكون ديناميكياً حسب الدور) -->
+  <!-- صف مقدم التقرير (ديناميكي) -->
   <div class="form-row">
     <div class="form-group">
       <label><i class="fas fa-chalkboard-teacher"></i><span id="reporterTypeLabel">صفة المعلّم</span></label>
@@ -2313,7 +2360,7 @@ button[title]:hover::before {
     </div>
   </div>
 
-  <!-- تفاصيل المكان (تظهر دائماً) -->
+  <!-- تفاصيل المكان -->
   <div id="detailedPlaceContainer" class="form-group">
     <label><i class="fas fa-location-dot"></i>حدد المكان بالضبط</label>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
@@ -2445,7 +2492,7 @@ button[title]:hover::before {
 </div>
 </div>
 
-<!-- قسم PDF للتقارير داخل الصف (القالب المحدّث) -->
+<!-- قسم PDF للتقارير داخل الصف -->
 <div id="report-content" class="pdf-export" style="display:none;">
 <div class="header">
   <img src="https://i.ibb.co/zH7k1s8c/IMG-2987.png" alt="شعار وزارة التعليم">
@@ -2458,7 +2505,7 @@ button[title]:hover::before {
   </div>
 </div>
 
-<!-- الصف العلوي بخمس خانات حسب الطلب -->
+<!-- الصف العلوي بخمس خانات -->
 <div class="info-grid">
   <div class="info-box"><div class="info-title">الفصل الدراسي</div><div class="info-value" id="termBox"></div></div>
   <div class="info-box"><div class="info-title">مكان التنفيذ</div><div class="info-value" id="placeBox"></div></div>
@@ -2469,7 +2516,6 @@ button[title]:hover::before {
 
 <div class="info-grid2">
   <div class="info-box"><div class="info-title">نوع التقرير</div><div class="info-value" id="reportTypeBox"></div></div>
-
   <div class="subject-lesson-box">
     <div class="subject-lesson-title">المادة | الدرس</div>
     <div class="subject-lesson">
@@ -2528,7 +2574,7 @@ button[title]:hover::before {
 </div>
 </div>
 
-<!-- قسم PDF للتقارير خارج الصف (القالب محدّث) -->
+<!-- قسم PDF للتقارير خارج الصف -->
 <div id="report-content-outside" class="pdf-export" style="display:none;">
 <div class="header">
   <img src="https://i.ibb.co/zH7k1s8c/IMG-2987.png" alt="شعار وزارة التعليم">
@@ -2734,12 +2780,20 @@ button[title]:hover::before {
   </div>
 </div>
 
-<!-- عناصر التوجيه بعد التعبئة الذكية (تظهر مؤقتاً) -->
-<div id="pdfGuideArrow" class="pdf-guide-arrow" style="display: none;">
-  <i class="fas fa-arrow-left"></i>
-</div>
-<div id="pdfGuideMessage" class="pdf-guide-message" style="display: none;">
-  اضغط هنا لتنزيل التقرير ✓
+<!-- صندوق التوجيه بعد التوليد (يظهر مؤقتاً) -->
+<div id="aiGuideBox" class="ai-guide-box" style="display: none;">
+  <div class="ai-guide-arrow">
+    <i class="fas fa-arrow-left"></i>
+  </div>
+  <div class="ai-guide-content">
+    <h4>✅ تم توليد التقرير بنجاح</h4>
+    <p>التقرير متاح الآن في <strong>التقارير المحفوظة</strong></p>
+    <div class="ai-guide-timer" id="guideTimer">20</div>
+    <button class="ai-guide-btn" id="guideDownloadBtn">
+      <i class="fas fa-file-pdf"></i> ⬇️ تنزيل التقرير PDF
+    </button>
+    <button class="ai-guide-close" id="guideCloseBtn">تجاهل</button>
+  </div>
 </div>
 
 <script>
@@ -2752,6 +2806,7 @@ window.allReportsList = [];          // قائمة مسطحة لجميع الت�
 window.roles = [];                   // قائمة الأدوار من الخادم
 window.otherTools = [];              // الأدوات الإضافية (خارج الصف)
 window.currentRole = 'teacher';      // الدور الحالي
+window.guideTimerInterval = null;    // مؤقت العداد
 
 const ACTIVATION_KEY_NAME = "activation_code";
 const BACKEND_URL = "https://deep-qphc.onrender.com";
@@ -3158,42 +3213,44 @@ function updateOutsideToolsList() {
 }
 
 // ==================== دوال حفظ واستعراض التقارير ====================
+// [تم تعديل calculateProgress حسب الطلب]
 function calculateProgress() {
-    // نحسب فقط إذا كان الدور الحالي هو معلم
+    const progressContainer = document.getElementById('progressBarContainer');
+
     if (window.currentRole !== 'teacher') {
-        document.getElementById('progressBarContainer').style.display = 'none';
+        progressContainer.style.display = 'none';
         return;
     }
-    
+
+    progressContainer.style.display = 'flex';
+
     const savedReports = JSON.parse(localStorage.getItem(REPORTS_STORAGE_KEY)) || {};
-    const criteria = window.allCriteria.length > 0 ? window.allCriteria : [];
-    
+    const criteria = window.allCriteria || [];
+
     if (criteria.length === 0) {
-        document.getElementById('progressBarContainer').style.display = 'none';
+        progressContainer.style.display = 'none';
         return;
     }
-    
-    document.getElementById('progressBarContainer').style.display = 'flex';
-    
+
     const totalWeight = criteria.reduce((sum, c) => sum + (parseFloat(c.weight) || 0), 0);
     let completedWeight = 0;
     let completedCount = 0;
-    
+
     criteria.forEach(criterion => {
-        const criterionId = criterion.id;
         const criterionWeight = parseFloat(criterion.weight) || 0;
-        
-        if (savedReports[criterionId]) {
+        if (savedReports[criterion.id]) {
             completedWeight += criterionWeight;
             completedCount++;
         }
     });
-    
-    const percentage = totalWeight > 0 ? Math.round((completedWeight / totalWeight) * 100) : 0;
-    
+
+    const percentage = totalWeight > 0
+        ? Math.round((completedWeight / totalWeight) * 100)
+        : 0;
+
     document.getElementById('progressPercentage').textContent = percentage + '%';
     document.getElementById('progressFill').style.width = percentage + '%';
-    document.getElementById('progressMessage').textContent = 
+    document.getElementById('progressMessage').textContent =
         `${completedCount} من ${criteria.length} معايير مكتملة (${completedWeight} من ${totalWeight} نقطة)`;
 }
 
@@ -3406,10 +3463,13 @@ function openSavedReports() {
         reports.forEach(report => {
             const card = document.createElement('div');
             card.className = 'report-card completed';
+            // تعديل عرض الوزن: يظهر فقط للمعلم
             card.innerHTML = `
                 <div class="report-title">${report.title}</div>
                 <div class="report-criterion"><i class="fas fa-star"></i> ${report.criterionName}</div>
-                <div class="report-weight">الوزن: ${formatWeight(report.weight)}</div>
+                ${window.currentRole === 'teacher'
+                    ? `<div class="report-weight">الوزن: ${formatWeight(report.weight)}</div>`
+                    : ''}
                 <div class="report-date"><i class="fas fa-calendar"></i> ${report.date} | ${report.hijriDate} هـ</div>
                 <div class="report-actions">
                     <button class="load-btn" onclick="loadSavedReport('${report.criterionId}'); closeSavedReports();" title="فتح في النموذج"><i class="fas fa-download"></i> فتح</button>
@@ -3579,12 +3639,12 @@ function loadSubcategories() {
     const criterion = window.allCriteria.find(c => c.id === criterionId);
     if (criterion) {
         document.getElementById('selectedCriterionName').textContent = criterion.name;
-        // إذا كان الدور خاص، نخفي الوزن
-        if (specialRoles.includes(window.currentRole)) {
-            document.getElementById('selectedCriterionWeight').style.display = 'none';
-        } else {
+        // تعديل عرض الوزن: يظهر فقط للمعلم
+        if (window.currentRole === 'teacher') {
             document.getElementById('selectedCriterionWeight').style.display = 'inline-block';
             document.getElementById('selectedCriterionWeight').textContent = formatWeight(criterion.weight);
+        } else {
+            document.getElementById('selectedCriterionWeight').style.display = 'none';
         }
         criterionInfo.style.display = 'flex';
     }
@@ -3697,7 +3757,7 @@ function handleReportSearch() {
     }
 }
 
-// ==================== دوال التعبئة الذكية ====================
+// ==================== دوال التعبئة الذكية (معدلة لدعم الوضع المرتبط والحر) ====================
 async function fillWithAI() {
     const activationCode = localStorage.getItem(ACTIVATION_KEY_NAME);
     if (!activationCode) {
@@ -3716,10 +3776,12 @@ async function fillWithAI() {
         return;
     }
     
-    const criterionId = document.getElementById('criterionSelect').value;
-    const subcategoryId = document.getElementById('subcategorySelect').value;
-    const reportId = document.getElementById('reportSelect').value;
+    const criterionId = document.getElementById('criterionSelect').value || null;
+    const subcategoryId = document.getElementById('subcategorySelect').value || null;
+    const reportId = document.getElementById('reportSelect').value || null;
     const role = document.getElementById('roleSelect').value;
+    
+    const manualMode = !criterionId; // إذا لم يتم اختيار معيار → وضع حر
     
     const aiButton = document.getElementById('aiFillFloatingBtn');
     const originalText = aiButton.querySelector('.floating-ai-text').textContent;
@@ -3731,6 +3793,7 @@ async function fillWithAI() {
     aiButton.disabled = true;
     
     try {
+        // إرسال البيانات إلى الخادم
         const response = await fetch(BACKEND_URL + "/api/generate-report-content", {
             method: 'POST',
             headers: {
@@ -3738,9 +3801,10 @@ async function fillWithAI() {
                 'X-Activation-Code': activationCode
             },
             body: JSON.stringify({
-                criterion_id: criterionId || 'default',
-                subcategory_id: subcategoryId || 'default',
-                report_id: reportId || 'default',
+                criterion_id: criterionId,
+                subcategory_id: subcategoryId,
+                report_id: reportId,
+                manual_mode: manualMode,
                 role: role,
                 report_data: {
                     subject: document.getElementById('subject').value || 'الموضوع',
@@ -3748,7 +3812,8 @@ async function fillWithAI() {
                     grade: document.getElementById('grade').value || 'الصف',
                     target: document.getElementById('target').value || 'الطلاب',
                     place: document.getElementById('place').value || 'المدرسة',
-                    count: document.getElementById('count').value || 'عدد الطلاب'
+                    count: document.getElementById('count').value || 'عدد الطلاب',
+                    title: reportTitle // إرسال العنوان اليدوي أيضاً
                 }
             })
         });
@@ -3766,24 +3831,8 @@ async function fillWithAI() {
         // حفظ التقرير تلقائياً
         saveCurrentReport();
         
-        showNotification('تم توليد التقرير بنجاح! ✓');
-        
-        // إظهار السهم التوجيهي لزر PDF
-        const guideArrow = document.getElementById('pdfGuideArrow');
-        const guideMessage = document.getElementById('pdfGuideMessage');
-        guideArrow.style.display = 'block';
-        guideMessage.style.display = 'block';
-        
-        // إخفاء السهم بعد 8 ثوانٍ
-        setTimeout(() => {
-            guideArrow.style.display = 'none';
-            guideMessage.style.display = 'none';
-        }, 8000);
-        
-        // إشعار إضافي بأن التقرير أصبح في المحفوظة
-        setTimeout(() => {
-            showNotification('التقرير متاح الآن في "التقارير المحفوظة"');
-        }, 1000);
+        // إظهار صندوق التوجيه
+        showGuideBox();
         
     } catch (error) {
         console.error('خطأ في الذكاء الاصطناعي:', error);
@@ -3795,6 +3844,44 @@ async function fillWithAI() {
         aiButton.disabled = false;
         updateAiButtonTheme(localStorage.getItem(APP_THEME_KEY) || 'default');
     }
+}
+
+// ==================== دوال صندوق التوجيه ====================
+function showGuideBox() {
+    const guideBox = document.getElementById('aiGuideBox');
+    const timerSpan = document.getElementById('guideTimer');
+    let seconds = 20;
+    
+    // إيقاف أي مؤقت سابق
+    if (window.guideTimerInterval) {
+        clearInterval(window.guideTimerInterval);
+    }
+    
+    // تعيين المؤقت الجديد
+    window.guideTimerInterval = setInterval(() => {
+        seconds--;
+        timerSpan.textContent = seconds;
+        if (seconds <= 0) {
+            clearInterval(window.guideTimerInterval);
+            guideBox.style.display = 'none';
+        }
+    }, 1000);
+    
+    // ربط زر التنزيل
+    document.getElementById('guideDownloadBtn').onclick = function() {
+        downloadPDF();
+        clearInterval(window.guideTimerInterval);
+        guideBox.style.display = 'none';
+    };
+    
+    // ربط زر الإغلاق
+    document.getElementById('guideCloseBtn').onclick = function() {
+        clearInterval(window.guideTimerInterval);
+        guideBox.style.display = 'none';
+    };
+    
+    // عرض الصندوق
+    guideBox.style.display = 'block';
 }
 
 // ==================== دوال مساعدة ====================
@@ -4554,9 +4641,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
     
-    // إخفاء عناصر التوجيه عند بدء التشغيل
-    document.getElementById('pdfGuideArrow').style.display = 'none';
-    document.getElementById('pdfGuideMessage').style.display = 'none';
+    // إخفاء صندوق التوجيه عند بدء التشغيل
+    document.getElementById('aiGuideBox').style.display = 'none';
 });
 </script>
 
