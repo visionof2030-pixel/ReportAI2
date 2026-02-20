@@ -2244,8 +2244,7 @@ button[title]:hover::before {
   <div class="form-group">
     <label><i class="fas fa-user-tie"></i> مقدم التقرير</label>
     <select id="roleSelect" onchange="handleRoleChange()">
-      <option value="teacher">معلم</option>
-      <!-- سيتم تعبئة باقي الأدوار من الخادم -->
+      <!-- سيتم تعبئة الأدوار من الخادم -->
     </select>
   </div>
   
@@ -2264,7 +2263,7 @@ button[title]:hover::before {
       </select>
     </div>
     
-    <!-- معلومات المعيار المحدد -->
+    <!-- معلومات المعيار المحدد (تظهر دائماً مع الوزن) -->
     <div id="criterionInfo" class="criterion-info" style="display: none;">
       <span id="selectedCriterionName" class="criterion-name"></span>
       <span id="selectedCriterionWeight" class="criterion-weight"></span>
@@ -2315,14 +2314,14 @@ button[title]:hover::before {
   <!-- صف مقدم التقرير (ديناميكي) -->
   <div class="form-row">
     <div class="form-group">
-      <label><i class="fas fa-chalkboard-teacher"></i><span id="reporterTypeLabel">صفة المعلّم</span></label>
+      <label><i class="fas fa-chalkboard-teacher"></i><span id="reporterTypeLabel">صفة مقدم التقرير</span></label>
       <select id="reporterType" oninput="updateReporterGender()">
         <!-- سيتم تعبئتها حسب الدور -->
       </select>
     </div>
     
     <div class="form-group">
-      <label><i class="fas fa-user"></i><span id="reporterNameLabel">اسم المعلّم</span></label>
+      <label><i class="fas fa-user"></i><span id="reporterNameLabel">اسم مقدم التقرير</span></label>
       <input id="reporterName" placeholder="اسم مقدم التقرير" oninput="updateReport()">
     </div>
   </div>
@@ -2653,8 +2652,8 @@ button[title]:hover::before {
   <div>
     <h3><i class="fas fa-folder-open"></i> التقارير المحفوظة</h3>
     
-    <!-- شريط التقدم - يظهر فقط للمعلمين -->
-    <div id="progressBarContainer" class="progress-bar-container" style="display: none;">
+    <!-- شريط التقدم - يظهر لجميع الأدوار -->
+    <div id="progressBarContainer" class="progress-bar-container">
         <div class="progress-header">
             <div><i class="fas fa-chart-line"></i> تقدم إنجاز التقارير</div>
             <div class="progress-stats">
@@ -2817,13 +2816,11 @@ const REPORTS_STORAGE_KEY = "saved_educational_reports";
 let currentHijriDate = '';
 let currentGregorianDate = '';
 
-// الأدوار التي تخفي النسب المئوية وتفرض خارج الصف وتغيير التسميات
-const specialRoles = ['deputy', 'student_guide', 'health_guide', 'activity_leader'];
-
-// دالة مساعدة لتنسيق الوزن مع % واحدة فقط (تستخدم فقط للمعلم)
+// دالة مساعدة لتنسيق الوزن مع % واحدة فقط (تستخدم لجميع الأدوار)
 function formatWeight(weight) {
-    if (weight === undefined || weight === null) return '0%';
-    let num = parseFloat(String(weight).replace(/%/g, '')) || 0;
+    if (weight === undefined || weight === null || weight === '') return '0%';
+    let num = parseFloat(String(weight).replace(/%/g, '').trim());
+    if (isNaN(num)) return '0%';
     return num + '%';
 }
 
@@ -3025,46 +3022,73 @@ function getDetailedPlaceValue() {
 
 // ==================== دوال تحديث واجهة مقدم التقرير ====================
 function updateReporterFields(role) {
-    const isSpecial = specialRoles.includes(role);
-    
-    // تحديث تسميات الحقول
+    // تحديث تسميات الحقول بناءً على الدور
     const reporterTypeLabel = document.getElementById('reporterTypeLabel');
     const reporterNameLabel = document.getElementById('reporterNameLabel');
     
     let typeOptions = [];
     let defaultType = '';
     
-    if (role === 'teacher') {
-        reporterTypeLabel.textContent = 'صفة المعلّم';
-        reporterNameLabel.textContent = 'اسم المعلّم';
-        typeOptions = ['المعلم', 'المعلمة'];
-        defaultType = 'المعلم';
-    } else if (role === 'deputy') {
-        reporterTypeLabel.textContent = 'صفة الوكيل';
-        reporterNameLabel.textContent = 'اسم الوكيل';
-        typeOptions = ['وكيل المدرسة', 'وكيلة المدرسة'];
-        defaultType = 'وكيل المدرسة';
-    } else if (role === 'student_guide') {
-        reporterTypeLabel.textContent = 'صفة الموجه الطلابي';
-        reporterNameLabel.textContent = 'اسم الموجه الطلابي';
-        typeOptions = ['موجه طلابي', 'موجهة طلابية'];
-        defaultType = 'موجه طلابي';
-    } else if (role === 'health_guide') {
-        reporterTypeLabel.textContent = 'صفة الموجه الصحي';
-        reporterNameLabel.textContent = 'اسم الموجه الصحي';
-        typeOptions = ['موجه صحي', 'موجهة صحية'];
-        defaultType = 'موجه صحي';
-    } else if (role === 'activity_leader') {
-        reporterTypeLabel.textContent = 'صفة رائد النشاط';
-        reporterNameLabel.textContent = 'اسم رائد النشاط';
-        typeOptions = ['رائد نشاط', 'رائدة نشاط'];
-        defaultType = 'رائد نشاط';
-    } else {
-        // أدوار أخرى (قد تضاف لاحقاً)
-        reporterTypeLabel.textContent = 'صفة مقدم التقرير';
-        reporterNameLabel.textContent = 'اسم مقدم التقرير';
-        typeOptions = ['مقدم التقرير', 'مقدمة التقرير'];
-        defaultType = 'مقدم التقرير';
+    switch (role) {
+        case 'teacher':
+            reporterTypeLabel.textContent = 'صفة المعلّم';
+            reporterNameLabel.textContent = 'اسم المعلّم';
+            typeOptions = ['المعلم', 'المعلمة'];
+            defaultType = 'المعلم';
+            break;
+        case 'vice_principal':
+            reporterTypeLabel.textContent = 'صفة الوكيل';
+            reporterNameLabel.textContent = 'اسم الوكيل';
+            typeOptions = ['وكيل المدرسة', 'وكيلة المدرسة'];
+            defaultType = 'وكيل المدرسة';
+            break;
+        case 'student_guide':
+            reporterTypeLabel.textContent = 'صفة الموجه الطلابي';
+            reporterNameLabel.textContent = 'اسم الموجه الطلابي';
+            typeOptions = ['موجه طلابي', 'موجهة طلابية'];
+            defaultType = 'موجه طلابي';
+            break;
+        case 'health_guide':
+            reporterTypeLabel.textContent = 'صفة الموجه الصحي';
+            reporterNameLabel.textContent = 'اسم الموجه الصحي';
+            typeOptions = ['موجه صحي', 'موجهة صحية'];
+            defaultType = 'موجه صحي';
+            break;
+        case 'activity_leader':
+            reporterTypeLabel.textContent = 'صفة رائد النشاط';
+            reporterNameLabel.textContent = 'اسم رائد النشاط';
+            typeOptions = ['رائد نشاط', 'رائدة نشاط'];
+            defaultType = 'رائد نشاط';
+            break;
+        case 'kindergarten_teacher':
+            reporterTypeLabel.textContent = 'صفة معلمة رياض الأطفال';
+            reporterNameLabel.textContent = 'اسم معلمة رياض الأطفال';
+            typeOptions = ['معلمة رياض أطفال', 'معلم رياض أطفال'];
+            defaultType = 'معلمة رياض أطفال';
+            break;
+        case 'lab_preparer':
+            reporterTypeLabel.textContent = 'صفة محضر المختبر';
+            reporterNameLabel.textContent = 'اسم محضر المختبر';
+            typeOptions = ['محضر مختبر', 'محضرة مختبر'];
+            defaultType = 'محضر مختبر';
+            break;
+        case 'school_principal':
+            reporterTypeLabel.textContent = 'صفة مدير المدرسة';
+            reporterNameLabel.textContent = 'اسم مدير المدرسة';
+            typeOptions = ['مدير المدرسة', 'مديرة المدرسة'];
+            defaultType = 'مدير المدرسة';
+            break;
+        case 'educational_supervisor':
+            reporterTypeLabel.textContent = 'صفة المشرف التربوي';
+            reporterNameLabel.textContent = 'اسم المشرف التربوي';
+            typeOptions = ['مشرف تربوي', 'مشرفة تربوية'];
+            defaultType = 'مشرف تربوي';
+            break;
+        default:
+            reporterTypeLabel.textContent = 'صفة مقدم التقرير';
+            reporterNameLabel.textContent = 'اسم مقدم التقرير';
+            typeOptions = ['مقدم التقرير', 'مقدمة التقرير'];
+            defaultType = 'مقدم التقرير';
     }
     
     // تعبئة قائمة الصفات
@@ -3081,21 +3105,8 @@ function updateReporterFields(role) {
     // تحديث صفة المدير بناءً على جنس مقدم التقرير
     updatePrincipalType();
     
-    // إذا كان الدور من الأدوار الخاصة، نخفي النسب المئوية في القوائم، ونفرض خارج الصف
-    if (isSpecial) {
-        // إخفاء الوزن في معلومات المعيار
-        document.getElementById('selectedCriterionWeight').style.display = 'none';
-        
-        // إزالة الأوزان من خيارات المعايير عند تحميلها لاحقاً (سيتم في loadDataFromBackend)
-        
-        // فرض مكان التنفيذ إلى خارج الصف
-        document.getElementById('place').value = 'خارج الصف';
-        togglePlaceFields();
-    } else {
-        // إظهار الوزن
-        document.getElementById('selectedCriterionWeight').style.display = 'inline-block';
-        // لا نفرض مكان التنفيذ
-    }
+    // نعرض الوزن لجميع الأدوار
+    document.getElementById('selectedCriterionWeight').style.display = 'inline-block';
     
     // تحديث حقل صفة المدير المعروض
     updateReport();
@@ -3213,16 +3224,10 @@ function updateOutsideToolsList() {
 }
 
 // ==================== دوال حفظ واستعراض التقارير ====================
-// [تم تعديل calculateProgress حسب الطلب]
+// حساب التقدم: يتم عرضه لجميع الأدوار
 function calculateProgress() {
     const progressContainer = document.getElementById('progressBarContainer');
-
-    if (window.currentRole !== 'teacher') {
-        progressContainer.style.display = 'none';
-        return;
-    }
-
-    progressContainer.style.display = 'flex';
+    progressContainer.style.display = 'flex'; // الآن يظهر للجميع
 
     const savedReports = JSON.parse(localStorage.getItem(REPORTS_STORAGE_KEY)) || {};
     const criteria = window.allCriteria || [];
@@ -3463,13 +3468,11 @@ function openSavedReports() {
         reports.forEach(report => {
             const card = document.createElement('div');
             card.className = 'report-card completed';
-            // تعديل عرض الوزن: يظهر فقط للمعلم
+            // نعرض الوزن لجميع الأدوار
             card.innerHTML = `
                 <div class="report-title">${report.title}</div>
                 <div class="report-criterion"><i class="fas fa-star"></i> ${report.criterionName}</div>
-                ${window.currentRole === 'teacher'
-                    ? `<div class="report-weight">الوزن: ${formatWeight(report.weight)}</div>`
-                    : ''}
+                <div class="report-weight">الوزن: ${formatWeight(report.weight)}</div>
                 <div class="report-date"><i class="fas fa-calendar"></i> ${report.date} | ${report.hijriDate} هـ</div>
                 <div class="report-actions">
                     <button class="load-btn" onclick="loadSavedReport('${report.criterionId}'); closeSavedReports();" title="فتح في النموذج"><i class="fas fa-download"></i> فتح</button>
@@ -3509,14 +3512,9 @@ async function loadDataFromBackend(role = 'teacher') {
         window.reportsBySubcategory = {};
         window.allReportsList = [];
         
-        const isSpecial = specialRoles.includes(role);
-        
         structure.forEach(criterion => {
-            let optionText = criterion.name;
-            // إذا لم يكن دور خاص نضيف الوزن
-            if (!isSpecial) {
-                optionText += ` (${formatWeight(criterion.weight)})`;
-            }
+            // نضيف الوزن لجميع الأدوار
+            let optionText = `${criterion.name} (${formatWeight(criterion.weight)})`;
             const option = document.createElement("option");
             option.value = criterion.id;
             option.textContent = optionText;
@@ -3639,13 +3637,8 @@ function loadSubcategories() {
     const criterion = window.allCriteria.find(c => c.id === criterionId);
     if (criterion) {
         document.getElementById('selectedCriterionName').textContent = criterion.name;
-        // تعديل عرض الوزن: يظهر فقط للمعلم
-        if (window.currentRole === 'teacher') {
-            document.getElementById('selectedCriterionWeight').style.display = 'inline-block';
-            document.getElementById('selectedCriterionWeight').textContent = formatWeight(criterion.weight);
-        } else {
-            document.getElementById('selectedCriterionWeight').style.display = 'none';
-        }
+        // نعرض الوزن لجميع الأدوار
+        document.getElementById('selectedCriterionWeight').textContent = formatWeight(criterion.weight);
         criterionInfo.style.display = 'flex';
     }
     
@@ -3781,8 +3774,6 @@ async function fillWithAI() {
     const reportId = document.getElementById('reportSelect').value || null;
     const role = document.getElementById('roleSelect').value;
     
-    const manualMode = !criterionId; // إذا لم يتم اختيار معيار → وضع حر
-    
     const aiButton = document.getElementById('aiFillFloatingBtn');
     const originalText = aiButton.querySelector('.floating-ai-text').textContent;
     const originalIcon = aiButton.querySelector('.floating-ai-icon').className;
@@ -3804,7 +3795,6 @@ async function fillWithAI() {
                 criterion_id: criterionId,
                 subcategory_id: subcategoryId,
                 report_id: reportId,
-                manual_mode: manualMode,
                 role: role,
                 report_data: {
                     subject: document.getElementById('subject').value || 'الموضوع',
